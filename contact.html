@@ -19,10 +19,7 @@
             </div>
 
             <div class="top-right">
-                <!-- Add social links here in future, e.g.: -->
-                <!-- <a href="#" class="social-link"><img src="facebook-icon.svg" alt="Facebook"></a> -->
-                <!-- <a href="#" class="social-link"><img src="instagram-icon.svg" alt="Instagram"></a> -->
-                <!-- <a href="#" class="social-link"><img src="twitter-icon.svg" alt="Twitter"></a> -->
+                <!-- Add social links here in future -->
             </div>
         </div>
         <div class="header-main">
@@ -30,7 +27,6 @@
                 <a href="index.html" style="text-decoration: none; color: inherit;">Home Revival Brisbane</a>
             </div>
             <div class="header-right">
-
                 <div class="dropdown">
                     <button class="dropbtn">☰ Menu</button>
                     <div class="dropdown-content">
@@ -50,16 +46,11 @@
         <p>If you have any questions, feedback, or need help with a service request, you can reach out to us directly:
         </p>
 
-        <ul>
-            <li><strong>Email:</strong> <a href="mailto:homerevivalbrisbane@gmail.com">homerevivalbrisbane@gmail.com</a>
-            </li>
-        </ul>
+        <p>We aim to respond to all inquiries within 2 business days.</p>
 
-        <p>We aim to respond to all inquiries within 1 business day.</p>
-
-        <!-- Optional contact form -->
+        <!-- Contact form -->
         <h2>Send us a message</h2>
-        <form action="mailto:homerevivalbrisbane@gmail.com" method="post" enctype="text/plain"
+        <form id="contactForm" action="https://formspree.io/f/xzzvayyq" method="POST" enctype="multipart/form-data"
             style="max-width: 500px;">
             <label for="name">Your Name</label><br />
             <input type="text" id="name" name="name" required style="width: 100%; padding: 8px;" /><br /><br />
@@ -71,6 +62,12 @@
             <textarea id="message" name="message" rows="6" required
                 style="width: 100%; padding: 8px;"></textarea><br /><br />
 
+            <label for="image">Upload an image (optional):</label><br />
+            <input type="file" id="image" name="image" accept="image/*"
+                style="width: 100%; margin-bottom: 1em;" /><br />
+
+            <div id="formErrorMsg" style="color: red; display: none; margin-bottom: 10px;"></div>
+
             <button type="submit"
                 style="padding: 10px 20px; background-color: #2c5f2d; color: white; border: none; cursor: pointer;">
                 Send Message
@@ -79,11 +76,54 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 Home Revival Brisbane<br><small>ABN: 76 698 587 269</small><br><small>Hours: 9am–5pm, Monday to
-                Friday
-                (excl. public holidays)</small></p>
+        <p>&copy; 2025 Home Revival Brisbane<br /><small>ABN: 76 698 587 269</small><br /><small>Hours: 9am–5pm, Monday
+                to Friday (excl. public holidays)</small></p>
         <a href="terms.html">Terms & Conditions</a><a href="privacy.html">Privacy Policy</a>
     </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const form = e.target;
+            const errorMsg = document.getElementById('formErrorMsg');
+            errorMsg.style.display = 'none';
+            errorMsg.textContent = '';
+
+            // Simple validation: check required fields manually (browser should also enforce)
+            if (!form.name.value.trim() || !form.email.value.trim() || !form.message.value.trim()) {
+                errorMsg.textContent = 'Please fill in all required fields.';
+                errorMsg.style.display = 'block';
+                return;
+            }
+
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    alert('Thank you! Your message has been sent.');
+                    form.reset();
+                } else {
+                    const data = await response.json();
+                    if (data && data.errors) {
+                        errorMsg.textContent = data.errors.map(e => e.message).join(', ');
+                    } else {
+                        errorMsg.textContent = 'Oops! There was a problem sending your message.';
+                    }
+                    errorMsg.style.display = 'block';
+                }
+            } catch (error) {
+                errorMsg.textContent = 'Network error. Please try again later.';
+                errorMsg.style.display = 'block';
+            }
+        });
+    </script>
 </body>
 
 </html>
