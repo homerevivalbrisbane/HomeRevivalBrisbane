@@ -2,146 +2,152 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home Revival Brisbane - Contact Us</title>
-  <link rel="icon" type="image/png" href="favicon.png" />
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    /* Red asterisk for required fields */
-    label.required::after {
-      content: " *";
-      color: red;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Revival Brisbane - Contact Us</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* Red asterisk for required fields */
+        label.required::after {
+            content: " *";
+            color: red;
+        }
 
-    /* Highlight error fields */
-    input.error-field,
-    textarea.error-field {
-      border: 2px solid red;
-    }
-  </style>
+        /* Highlight error fields */
+        input.error-field,
+        textarea.error-field {
+            border: 2px solid red;
+        }
+    </style>
 </head>
 
 <body>
-  <header>
-    <!-- Top strip for phone and socials -->
-    <div class="top-strip">
-      <div class="call-banner">
-        Prefer to talk? <a href="tel:0408540150" class="call-link">Call us anytime on <strong>0408 540 150</strong></a>
-      </div>
+    <header>
+        <!-- Top strip for phone and socials -->
+        <div class="top-strip">
+            <div class="call-banner">
+                Prefer to talk? <a href="tel:0408540150" class="call-link">Call us anytime on <strong>0408 540
+                        150</strong></a>
+            </div>
 
-      <div class="top-right">
-        <!-- Add social links here in future -->
-      </div>
-    </div>
-    <div class="header-main">
-      <div class="site-name">
-        <a href="index.html" style="text-decoration: none; color: inherit;">Home Revival Brisbane</a>
-      </div>
-      <div class="header-right">
-        <div class="dropdown">
-          <button class="dropbtn">☰ Menu</button>
-          <div class="dropdown-content">
-            <a href="about.html">About Us</a>
-            <a href="contact.html">Contact us</a>
-            <a href="terms.html">Terms & Conditions</a>
-            <a href="privacy.html">Privacy Policy</a>
-          </div>
+            <div class="top-right">
+                <!-- Add social links here in future -->
+            </div>
         </div>
-      </div>
-    </div>
-  </header>
+        <div class="header-main">
+            <div class="site-name">
+                <a href="index.html" style="text-decoration: none; color: inherit;">Home Revival Brisbane</a>
+            </div>
+            <div class="header-right">
+                <div class="dropdown">
+                    <button class="dropbtn">☰ Menu</button>
+                    <div class="dropdown-content">
+                        <a href="about.html">About Us</a>
+                        <a href="contact.html">Contact us</a>
+                        <a href="terms.html">Terms & Conditions</a>
+                        <a href="privacy.html">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-  <main class="content-container">
-    <h1>Contact Us</h1>
+    <main class="content-container">
+        <h1>Contact Us</h1>
 
-    <p>If you have any questions, feedback, or need help with a service request, you can reach out to us directly:</p>
+        <p>If you have any questions, feedback, or need help with a service request, you can reach out to us directly:
+        </p>
 
-    <p>We aim to respond to all inquiries within 2 business days.</p>
+        <p>We aim to respond to all inquiries within 2 business days.</p>
 
-    <!-- Contact form -->
-    <h2>Send us a message</h2>
-    <form id="contactForm" action="https://formspree.io/f/xzzvayyq" method="POST" enctype="multipart/form-data" style="max-width: 500px;">
-      <label for="name" class="required">Your Name</label><br />
-      <input type="text" id="name" name="name" required style="width: 100%; padding: 8px;" /><br /><br />
+        <!-- Contact form -->
+        <h2>Send us a message - All fields required:</h2>
+        <form id="contactForm" action="https://formspree.io/f/xzzvayyq" method="POST" enctype="multipart/form-data"
+            style="max-width: 500px;">
+            <label for="name" class="required">Your Name:</label><br />
+            <input type="text" id="name" name="name" required style="width: 100%; padding: 8px;" /><br /><br />
 
-      <label for="phone" class="required">Phone Number</label><br />
-      <input type="tel" id="phone" name="phone" required style="width: 100%; padding: 8px;" /><br /><br />
+            <label for="phone" class="required">Phone Number:</label><br />
+            <input type="tel" id="phone" name="phone" required style="width: 100%; padding: 8px;" /><br /><br />
 
-      <label for="email" class="required">Your Email</label><br />
-      <input type="email" id="email" name="email" required style="width: 100%; padding: 8px;" /><br /><br />
+            <label for="email" class="required">Your Email:</label><br />
+            <input type="email" id="email" name="email" required style="width: 100%; padding: 8px;" /><br /><br />
 
-      <label for="message" class="required">Message</label><br />
-      <textarea id="message" name="message" rows="6" required style="width: 100%; padding: 8px;"></textarea><br /><br />
+            <label for="message" class="required">Message:</label><br />
+            <textarea id="message" name="message" rows="6" required
+                style="width: 100%; padding: 8px;"></textarea><br /><br />
 
-      <div id="formErrorMsg" style="color: red; display: none; margin-bottom: 10px;"></div>
+            <div id="formErrorMsg" style="color: red; display: none; margin-bottom: 10px;"></div>
 
-      <button type="submit" style="padding: 10px 20px; background-color: #2c5f2d; color: white; border: none; cursor: pointer;">
-        Send Message
-      </button>
-    </form>
-  </main>
+            <button type="submit"
+                style="padding: 10px 20px; background-color: #2c5f2d; color: white; border: none; cursor: pointer;">
+                Send Message
+            </button>
+        </form>
+    </main>
 
-  <footer>
-    <p>&copy; 2025 Home Revival Brisbane<br /><small>ABN: 76 698 587 269</small><br /><small>Hours: 9am–5pm, Monday to Friday (excl. public holidays)</small></p>
-    <a href="terms.html">Terms & Conditions</a><a href="privacy.html">Privacy Policy</a>
-  </footer>
+    <footer>
+        <p>&copy; 2025 Home Revival Brisbane<br /><small>ABN: 76 698 587 269</small><br /><small>Hours: 9am–5pm, Monday
+                to Friday (excl. public holidays)</small></p>
+        <a href="terms.html">Terms & Conditions</a><a href="privacy.html">Privacy Policy</a>
+    </footer>
 
-  <script>
-    document.getElementById('contactForm').addEventListener('submit', async function (e) {
-      e.preventDefault();
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
 
-      const form = e.target;
-      const errorMsg = document.getElementById('formErrorMsg');
-      errorMsg.style.display = 'none';
-      errorMsg.textContent = '';
+            const form = e.target;
+            const errorMsg = document.getElementById('formErrorMsg');
+            errorMsg.style.display = 'none';
+            errorMsg.textContent = '';
 
-      // Remove previous error styles
-      const fields = [form.name, form.phone, form.email, form.message];
-      fields.forEach(field => field.classList.remove('error-field'));
+            // Remove previous error styles
+            const fields = [form.name, form.phone, form.email, form.message];
+            fields.forEach(field => field.classList.remove('error-field'));
 
-      // Validation: check required fields manually
-      let errorFields = [];
-      fields.forEach(field => {
-        if (!field.value.trim()) {
-          errorFields.push(field);
-          field.classList.add('error-field');
-        }
-      });
+            // Validation: check required fields manually
+            let errorFields = [];
+            fields.forEach(field => {
+                if (!field.value.trim()) {
+                    errorFields.push(field);
+                    field.classList.add('error-field');
+                }
+            });
 
-      if (errorFields.length > 0) {
-        errorMsg.textContent = 'Please fill in all required fields.';
-        errorMsg.style.display = 'block';
-        return;
-      }
+            if (errorFields.length > 0) {
+                errorMsg.textContent = 'Please fill in all required fields.';
+                errorMsg.style.display = 'block';
+                return;
+            }
 
-      const formData = new FormData(form);
+            const formData = new FormData(form);
 
-      try {
-        const response = await fetch(form.action, {
-          method: form.method,
-          body: formData,
-          headers: { 'Accept': 'application/json' }
+            try {
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    alert('Thank you! Your message has been sent.');
+                    form.reset();
+                } else {
+                    const data = await response.json();
+                    if (data && data.errors) {
+                        errorMsg.textContent = data.errors.map(e => e.message).join(', ');
+                    } else {
+                        errorMsg.textContent = 'Oops! There was a problem sending your message.';
+                    }
+                    errorMsg.style.display = 'block';
+                }
+            } catch (error) {
+                errorMsg.textContent = 'Network error. Please try again later.';
+                errorMsg.style.display = 'block';
+            }
         });
-
-        if (response.ok) {
-          alert('Thank you! Your message has been sent.');
-          form.reset();
-        } else {
-          const data = await response.json();
-          if (data && data.errors) {
-            errorMsg.textContent = data.errors.map(e => e.message).join(', ');
-          } else {
-            errorMsg.textContent = 'Oops! There was a problem sending your message.';
-          }
-          errorMsg.style.display = 'block';
-        }
-      } catch (error) {
-        errorMsg.textContent = 'Network error. Please try again later.';
-        errorMsg.style.display = 'block';
-      }
-    });
-  </script>
+    </script>
 </body>
 
 </html>
