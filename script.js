@@ -17,74 +17,15 @@ function closeTermsModal() {
   document.getElementById("termsModal").classList.add("hidden");
 }
 
-// --- Custom dynamic fields per service ---
-function generateFields(service) {
-  switch (service) {
-    case "Plumbing":
-      return `
-        <label>What’s the plumbing issue?</label>
-        <textarea required></textarea>
-        <label>Do you need emergency assistance?</label>
-        <select required><option value="">Select</option><option>No</option><option>Yes</option></select>
-      `;
-    case "Electrical":
-      return `
-        <label>What’s the electrical issue?</label>
-        <textarea required></textarea>
-        <label>Is this a safety hazard?</label>
-        <select required><option value="">Select</option><option>No</option><option>Yes</option></select>
-      `;
-    case "Painting":
-      return `
-        <label>What do you need painted?</label>
-        <input type="text" required />
-        <label>Approximate area (m²):</label>
-        <input type="number" />
-      `;
-    case "Gardening":
-      return `
-        <label>Lawn size:</label>
-        <select required><option value="">Select</option><option>Small</option><option>Medium</option><option>Large</option></select>
-        <label>Include edging or trimming?</label>
-        <select><option>No</option><option>Yes</option></select>
-      `;
-    case "Cleaning":
-      return `
-        <label>Cleaning type (e.g. home, end-of-lease):</label>
-        <input type="text" required />
-        <label>Rooms to clean (e.g. 3 bed, 2 bath):</label>
-        <input type="text" />
-      `;
-    case "Appliances":
-      return `
-        <label>What appliance is it?</label>
-        <input type="text" required />
-        <label>Describe the problem:</label>
-        <textarea required></textarea>
-      `;
-    case "Furniture":
-      return `
-        <label>What furniture needs attention?</label>
-        <input type="text" required />
-        <label>Assembly or repair?</label>
-        <select required><option value="">Select</option><option>Assembly</option><option>Repair</option></select>
-      `;
-    case "Other":
-    default:
-      return `
-        <label>Describe your issue:</label>
-        <textarea required></textarea>
-        <label>What kind of help are you looking for?</label>
-        <input type="text" />
-      `;
-  }
-}
+
 
 // --- Form validation ---
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("serviceRequestForm");
   if (form) {
-    form.addEventListener("submit", function (e) {
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
       let errorFields = [];
       let requiredFields = form.querySelectorAll("[required]");
       requiredFields.forEach((field) => {
@@ -101,14 +42,43 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const errorMsg = document.getElementById("formErrorMsg");
       if (errorFields.length > 0) {
-        e.preventDefault();
         if (errorMsg) {
           errorMsg.textContent =
             "Please fill in all required fields and accept the Terms & Conditions.";
           errorMsg.style.display = "block";
         }
+        return; // stop submission if invalid
       } else {
         if (errorMsg) errorMsg.style.display = "none";
+      }
+
+      // Build FormData and submit via fetch (AJAX)
+      try {
+        const formData = new FormData(form);
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          },
+        });
+
+        if (response.ok) {
+          alert("Thank you! Your request has been sent.");
+          form.reset();
+          closeForm(); // close modal on success
+        } else {
+          const data = await response.json();
+          if (data && data.errors) {
+            errorMsg.textContent = data.errors.map(e => e.message).join(", ");
+          } else {
+            errorMsg.textContent = "Oops! There was a problem submitting your form.";
+          }
+          errorMsg.style.display = "block";
+        }
+      } catch (error) {
+        errorMsg.textContent = "Network error. Please try again later.";
+        errorMsg.style.display = "block";
       }
     });
   }
