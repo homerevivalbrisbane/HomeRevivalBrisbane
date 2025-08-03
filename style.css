@@ -1,0 +1,255 @@
+.call-banner {
+  background-color: #fceeb5;
+  /* Soft warm yellow-beige */
+  color: #000;
+  /* Black text for readability */
+  font-size: 1rem;
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-align: right;
+}
+
+.call-banner .call-link {
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.call-banner .call-link:hover {
+  text-decoration: underline;
+}
+
+.call-banner .call-link strong {
+  font-size: 1.05em;
+}
+
+/* Header Main (site-name & menu) */
+.header-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #2c5f2d;
+  color: white;
+  padding: 1em;
+  position: relative;
+}
+
+.site-name a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4em;
+}
+
+/* Dropdown Menu */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background-color: #2c5f2d;
+  color: white;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.dropdown-content a {
+  color: #2c5f2d;
+  padding: 10px 16px;
+  display: block;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.dropdown-content a:hover {
+  background-color: #f3f3f3;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f3f3f3;
+  color: #333;
+}
+
+/* Hero Section */
+#hero {
+  background: #d6eadf;
+  padding: 2em;
+  text-align: center;
+}
+
+/* Services */
+.service-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5em;
+  padding: 2em;
+}
+
+.service {
+  background: white;
+  border-radius: 10px;
+  width: 140px;
+  height: 140px;
+  font-size: 1.2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.service:hover {
+  transform: scale(1.05);
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90%;
+  overflow-y: auto;
+  position: relative;
+}
+
+.scrollable {
+  overflow-y: auto;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Form */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+form input,
+form textarea {
+  padding: 0.6em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form button {
+  background: #2c5f2d;
+  color: white;
+  padding: 0.7em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Main content container */
+.content-container {
+  padding: 2em;
+  max-width: 800px;
+  margin: 1em auto 0;
+  line-height: 1.6;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1em;
+  background: #eee;
+  font-size: 0.9em;
+}
+
+footer a {
+  display: block;
+  margin-top: 5px;
+  text-decoration: none;
+  color: #2c5f2d;
+}
+
+/* Form validation and alignment */
+.error-field {
+  border-color: red;
+  background: #ffeaea;
+}
+
+label.required::after {
+  content: " *";
+  color: red;
+}
+
+.date-urgent-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.form-column {
+  flex: 1;
+  min-width: 200px;
+}
+
+.urgent-note {
+  color: red;
+  font-size: 0.9em;
+  margin: 5px 0 0 24px;
+}

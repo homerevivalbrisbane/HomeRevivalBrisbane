@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home Revival Brisbane</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<script src="script.js"></script>
+
+
+<body>
+  <header>
+    <!-- Top strip for phone and socials -->
+    <div class="top-strip">
+      <div class="call-banner">
+        Prefer to talk? <a href="tel:0408540150" class="call-link">Call us anytime on <strong>0408 540 150</strong></a>
+      </div>
+
+      <div class="top-right">
+        <!-- Add social links here in future, e.g.: -->
+        <!-- <a href="#" class="social-link"><img src="facebook-icon.svg" alt="Facebook"></a> -->
+        <!-- <a href="#" class="social-link"><img src="instagram-icon.svg" alt="Instagram"></a> -->
+        <!-- <a href="#" class="social-link"><img src="twitter-icon.svg" alt="Twitter"></a> -->
+      </div>
+    </div>
+    <div class="header-main">
+      <div class="site-name">
+        <a href="index.html" style="text-decoration: none; color: inherit;">Home Revival Brisbane</a>
+      </div>
+      <div class="header-right">
+
+        <div class="dropdown">
+          <button class="dropbtn">☰ Menu</button>
+          <div class="dropdown-content">
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact us</a>
+            <a href="terms.html">Terms & Conditions</a>
+            <a href="privacy.html">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="hero">
+    <h2>Need something fixed or sorted at home?</h2>
+    <p>We connect you to the right local professional — fast, simple, and hassle-free.</p>
+  </section>
+
+  <!-- Service Icons -->
+
+  <div class="service-container">
+    <div class="service" onclick="openForm('Plumbing')">🚿<br />Plumbing</div>
+    <div class="service" onclick="openForm('Electrical')">💡<br />Electrical</div>
+    <div class="service" onclick="openForm('Painting')">🎨<br />Painting</div>
+    <div class="service" onclick="openForm('Gardening')">🌿<br />Gardening</div>
+    <div class="service" onclick="openForm('Cleaning')">🧹<br />Cleaning</div>
+    <div class="service" onclick="openForm('Appliances')">🛠️<br />Appliances</div>
+    <div class="service" onclick="openForm('Carpentry')">🔨<br />Carpentry</div>
+    <div class="service" onclick="openForm('Plastering')">🧱<br />Plastering</div>
+    <div class="service" onclick="openForm('Furniture')">🪑<br />Furniture</div>
+    <div class="service" onclick="openForm('Other')">❓<br />Other</div>
+  </div>
+
+
+  <!-- Contact Form Modal -->
+  <div class="modal hidden" id="contactForm">
+    <div class="modal-content scrollable">
+      <span class="close-btn" onclick="closeForm()">&times;</span>
+      <h2 id="formTitle">Request Help</h2>
+      <p><strong>Note:</strong> One-time $30 fee applies. If we can’t find help, we’ll refund you.</p>
+      <form id="serviceRequestForm">
+
+        <label class="required">Your Name:</label>
+        <input type="text" required />
+
+        <label class="required">Email:</label>
+        <input type="email" required />
+
+        <label class="required">Phone Number:</label>
+        <input type="tel" required />
+
+        <label class="required">Address:</label>
+        <input type="text" required />
+
+        <div class="date-urgent-row">
+          <div class="form-column">
+            <label>Prefered completion date:</label>
+            <input type="date" name="completionDate" />
+          </div>
+          <div class="form-column urgent-checkbox">
+            <label>
+              <input type="checkbox" id="urgentCheckbox" name="urgent" />
+              This is urgent (ASAP)
+            </label>
+            <p class="urgent-note">$60 urgent fee applies</p>
+          </div>
+        </div>
+
+
+        <label class="required">Budget:</label>
+        <input type="text" />
+
+        <div id="customFields"></div>
+
+        <label>Additional information</label>
+        <textarea></textarea>
+
+        <label class="required">
+          <input type="checkbox" required />
+          I agree to the <a href="terms.html" target="_blank">Terms & Conditions</a>
+        </label>
+
+        <div id="formErrorMsg" style="color:red; display:none; margin-bottom:10px;"></div>
+
+        <button type="submit">Submit Request</button>
+      </form>
+
+    </div>
+  </div>
+
+
+  <!-- Terms Modal -->
+  <div class="modal hidden" id="termsModal">
+    <div class="modal-content scrollable">
+      <span class="close-btn" onclick="closeTermsModal()">&times;</span>
+      <h3>Terms & Conditions</h3>
+      <p>By submitting a request, you agree to our $30 non-refundable fee unless we are unable to find help. Home
+        Revival Brisbane acts only as a service connector. We are not responsible for the performance or outcome of
+        services provided by third-party professionals.</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Home Revival Brisbane<br><small>ABN: 76 698 587 269</small><br><small>Hours: 9am–5pm, Monday to
+        Friday
+        (excl. public holidays)</small></p>
+    <a href="terms.html">Terms & Conditions</a><a href="privacy.html">Privacy Policy</a>
+  </footer>
+
+
+
+
+</body>
+
+</html>
