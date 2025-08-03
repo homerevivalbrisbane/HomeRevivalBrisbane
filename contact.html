@@ -8,14 +8,15 @@
   <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* Add red asterisk for required fields */
+    /* Red asterisk for required fields */
     label.required::after {
       content: " *";
       color: red;
     }
 
-    /* Optional: highlight error fields */
-    input.error-field, textarea.error-field {
+    /* Highlight error fields */
+    input.error-field,
+    textarea.error-field {
       border: 2px solid red;
     }
   </style>
@@ -72,9 +73,6 @@
 
       <label for="message" class="required">Message</label><br />
       <textarea id="message" name="message" rows="6" required style="width: 100%; padding: 8px;"></textarea><br /><br />
-
-      <label for="image">Upload an image (optional):</label><br />
-      <input type="file" id="image" name="image" accept="image/*" style="width: 100%; margin-bottom: 1em;" /><br />
 
       <div id="formErrorMsg" style="color: red; display: none; margin-bottom: 10px;"></div>
 
