@@ -19,6 +19,36 @@
         textarea.error-field {
             border: 2px solid red;
         }
+
+        /* Tighten spacing between form elements */
+        form#contactForm label {
+            display: block;
+            margin-top: 12px;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        form#contactForm input,
+        form#contactForm textarea {
+            width: 100%;
+            padding: 6px 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: border-color 0.3s ease;
+        }
+
+        form#contactForm input:focus,
+        form#contactForm textarea:focus {
+            border-color: #2c5f2d;
+            outline: none;
+        }
+
+        form#contactForm button {
+            margin-top: 8px;
+        }
     </style>
 </head>
 
@@ -27,8 +57,7 @@
         <!-- Top strip for phone and socials -->
         <div class="top-strip">
             <div class="call-banner">
-                Prefer to talk? <a href="tel:0408540150" class="call-link">Call us on <strong>0408 540
-                        150</strong></a>
+                Prefer to talk? <a href="tel:0408540150" class="call-link">Call us on <strong>0408 540 150</strong></a>
             </div>
 
             <div class="top-right">
@@ -65,18 +94,17 @@
         <h2>Send us a message - All fields required:</h2>
         <form id="contactForm" action="https://formspree.io/f/xzzvayyq" method="POST" enctype="multipart/form-data"
             style="max-width: 500px;">
-            <label for="name" class="required">Your Name:</label><br />
-            <input type="text" id="name" name="name" required style="width: 100%; padding: 8px;" /><br /><br />
+            <label for="name" class="required">Your Name:</label>
+            <input type="text" id="name" name="name" required />
 
-            <label for="phone" class="required">Phone Number:</label><br />
-            <input type="tel" id="phone" name="phone" required style="width: 100%; padding: 8px;" /><br /><br />
+            <label for="phone" class="required">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required />
 
-            <label for="email" class="required">Your Email:</label><br />
-            <input type="email" id="email" name="email" required style="width: 100%; padding: 8px;" /><br /><br />
+            <label for="email" class="required">Your Email:</label>
+            <input type="email" id="email" name="email" required />
 
-            <label for="message" class="required">Message:</label><br />
-            <textarea id="message" name="message" rows="6" required
-                style="width: 100%; padding: 8px;"></textarea><br /><br />
+            <label for="message" class="required">Message:</label>
+            <textarea id="message" name="message" rows="6" required></textarea>
 
             <div id="formErrorMsg" style="color: red; display: none; margin-bottom: 10px;"></div>
 
@@ -151,4 +179,3 @@
 </body>
 
 </html>
-
