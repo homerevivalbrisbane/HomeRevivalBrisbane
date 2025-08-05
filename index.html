@@ -4,105 +4,114 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Home Revival Brisbane</title>
-  <link rel="stylesheet" href="style.css"/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #2c5f2d;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+    .service-icon {
+      width: 150px;
+      margin: 20px auto;
+      text-align: center;
+      background: white;
+      padding: 1em;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      cursor: pointer;
+    }
+    .form-overlay, .billing-summary {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+    .form-box, .summary-box {
+      background: white;
+      padding: 2em;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 0.5em;
+      margin-bottom: 10px;
+    }
+    button {
+      background: #2c5f2d;
+      color: white;
+      border: none;
+      padding: 0.75em 1.5em;
+      cursor: pointer;
+      width: 100%;
+      border-radius: 5px;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1 class="site-name">Home Revival Brisbane</h1>
-    <nav class="dropdown">
-      <button class="dropbtn">☰</button>
-      <div class="dropdown-content">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="terms.html">Terms & Conditions</a>
-      </div>
-    </nav>
-  </header>
 
-  <main>
-    <section class="services">
-      <h2>Select a Service</h2>
-      <div class="icon-grid">
-        <button class="service-icon" data-service="Plumbing">🚰 Plumbing</button>
-        <button class="service-icon" data-service="Electrical">💡 Electrical</button>
-        <button class="service-icon" data-service="Carpentry">🔨 Carpentry</button>
-        <button class="service-icon" data-service="Cleaning">🧹 Cleaning</button>
-        <button class="service-icon" data-service="Gardening">🌿 Gardening</button>
-        <button class="service-icon" data-service="Pest Control">🐜 Pest Control</button>
-        <button class="service-icon" data-service="Other">❓ Other</button>
-      </div>
-    </section>
-  </main>
+<header>
+  <h1>Home Revival Brisbane</h1>
+</header>
 
-  <!-- Service Form Modal -->
-  <div class="modal" id="formModal">
-    <div class="modal-content">
-      <span class="close" id="closeForm">&times;</span>
-      <h3>Request Service</h3>
-      <form id="serviceForm">
-        <input type="hidden" name="serviceType" id="serviceType" />
-        
-        <label for="urgency">Urgency:</label>
-        <select name="urgency" id="urgency">
-          <option value="normal">Normal</option>
-          <option value="urgent">Urgent</option>
-        </select>
+<div class="service-icon" onclick="openForm('Electrical')">
+  Electrical Services
+</div>
 
-        <label for="name">Your Name:</label>
-        <input type="text" name="name" required />
+<div class="form-overlay" id="formOverlay">
+  <div class="form-box">
+    <form id="serviceForm">
+      <input type="hidden" name="serviceType" id="serviceType" />
+      
+      <label for="name">Full Name</label>
+      <input type="text" name="name" required />
 
-        <label for="contact">Phone or Email:</label>
-        <input type="text" name="contact" required />
+      <label for="contact">Contact Number</label>
+      <input type="tel" name="contact" required />
 
-        <label for="address">Address:</label>
-        <input type="text" name="address" required />
+      <label for="address">Address</label>
+      <input type="text" name="address" required />
 
-        <label for="description">Describe the issue:</label>
-        <textarea name="description" required></textarea>
+      <label for="urgency">Urgency</label>
+      <select name="urgency" id="urgency">
+        <option value="normal">Normal</option>
+        <option value="urgent">Urgent</option>
+      </select>
 
-        <label>
-          <input type="checkbox" required />
-          I agree to the <a href="#" id="viewTerms">Terms & Conditions</a>
-        </label>
+      <label for="description">Description</label>
+      <textarea name="description" rows="4" required></textarea>
 
-        <button type="submit">Submit Request and Proceed to Payment</button>
-      </form>
-    </div>
+      <button type="submit">Submit Request</button>
+    </form>
   </div>
+</div>
 
-  <!-- Terms Modal -->
-  <div class="modal" id="termsModal">
-    <div class="modal-content scrollable">
-      <span class="close" id="closeTerms">&times;</span>
-      <h3>Terms & Conditions</h3>
-      <p>[Your full terms and conditions go here.]</p>
-    </div>
+<div class="billing-summary" id="billingSummary">
+  <div class="summary-box">
+    <h3>Billing Summary</h3>
+    <p><strong>Service:</strong> <span id="summaryService"></span></p>
+    <p><strong>Urgency Charge:</strong> <span id="summaryUrgency"></span></p>
+    <p><strong>Total:</strong> <span id="summaryTotal"></span></p>
+    <button id="finalisePayment">Finalise Payment</button>
   </div>
+</div>
 
-  <!-- Billing Summary Modal -->
-  <div class="modal" id="billingSummaryModal">
-    <div class="modal-content">
-      <h3>Order Summary</h3>
-      <p><strong>Service:</strong> <span id="summaryService"></span></p>
-      <p><strong>Urgency Fee:</strong> <span id="summaryUrgency"></span></p>
-      <p><strong>Total:</strong> $<span id="summaryTotal"></span></p>
-      <button id="confirmAndPay">Finalise Payment</button>
-    </div>
-  </div>
-
-  <!-- Success Modal -->
-  <div class="modal" id="successModal">
-    <div class="modal-content">
-      <h3>Thank you!</h3>
-      <p>Your request has been submitted.</p>
-      <button onclick="location.reload()">Done</button>
-    </div>
-  </div>
-
-  <footer>
-    <p>&copy; 2025 Home Revival Brisbane | <a href="terms.html">Terms & Conditions</a></p>
-  </footer>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
