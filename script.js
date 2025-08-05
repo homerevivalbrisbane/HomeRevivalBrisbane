@@ -19,6 +19,45 @@ function closeTermsModal() {
 
 
 
+  const servicePrices = {
+    Plumbing: 45,
+    Electrical: 50,
+    Painting: 40,
+    Gardening: 35,
+    Cleaning: 30,
+    Appliances: 50,
+    Carpentry: 45,
+    Plastering: 40,
+    Furniture: 35,
+    Other: 30
+  };
+
+  function openForm(service) {
+    // Set form title
+    document.getElementById('formTitle').innerText = `Request Help: ${service}`;
+
+    // Set service type in a hidden input if needed (for backend use)
+    let hidden = document.getElementById('serviceType');
+    if (!hidden) {
+      hidden = document.createElement('input');
+      hidden.type = 'hidden';
+      hidden.name = 'serviceType';
+      hidden.id = 'serviceType';
+      document.getElementById('serviceRequestForm').appendChild(hidden);
+    }
+    hidden.value = service;
+
+    // Update the price display
+    const price = servicePrices[service] || 30;
+    document.getElementById('servicePrice').innerText = `$${price}`;
+
+    // Show modal
+    document.getElementById('contactForm').classList.remove('hidden');
+  }
+
+  function closeForm() {
+    document.getElementById('contactForm').classList.add('hidden');
+  }
 // --- Form validation ---
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("serviceRequestForm");
