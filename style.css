@@ -253,3 +253,28 @@ label.required::after {
   font-size: 0.9em;
   margin: 5px 0 0 24px;
 }
+.form-group {
+  margin-bottom: 1.5em;
+}
+
+label.required::after {
+  content: " *";
+  color: red;
+}
+
+textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+  resize: vertical;
+}
+
+small.form-info {
+  display: block;
+  margin-top: 0.25em;
+  color: #666;
+  font-size: 0.85em;
+}
