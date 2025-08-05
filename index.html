@@ -88,16 +88,17 @@
               <input type="checkbox" name="urgent" />
               This is urgent (ASAP)
             </label>
-            <p class="urgent-note">$60 urgent fee applies</p>
+            <p class="urgent-note">Additional $40 urgent fee applies</p>
           </div>
         </div>
 
         <label class="required">Budget:</label>
         <input type="text" name="budget" />
 
-        <label class="required">Additional information</label>
-        <textarea name="additionalInfo"></textarea>
-
+        label class="required" for="additionalInfo">Job Description</label>
+        <small class="form-info">Please provide all necessary details about the job to help us connect you with the right professional.</small>
+  <textarea name="additionalInfo" id="additionalInfo" placeholder="Describe the issue, job requirements, or any important details..."></textarea>
+  
         <label class="required">
           <input type="checkbox" name="terms" required />
           I agree to the <a href="terms.html" target="_blank">Terms & Conditions</a>
