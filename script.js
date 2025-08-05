@@ -1,74 +1,56 @@
-document.getElementById("serviceForm").addEventListener("submit", function (e) {
+function openForm(serviceName) {
+  document.getElementById("formOverlay").style.display = "flex";
+  document.getElementById("serviceType").value = serviceName;
+}
+
+// Form submission
+document.getElementById("serviceForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
-  const formData = new FormData(this);
-  const service = formData.get("serviceType");
-  const urgency = formData.get("urgency");
+  const form = e.target;
+  const service = form.serviceType.value;
+  const urgency = form.urgency.value;
 
   let basePrice = 0;
-  let urgencyPrice = 0;
+  let urgencyCharge = 0;
 
-  // Set base price
-  switch (service) {
-    case "Plumbing":
-    case "Electrical":
-    case "Carpentry":
-      basePrice = 50;
-      break;
-    case "Cleaning":
-    case "Gardening":
-    case "Pest Control":
-      basePrice = 30;
-      break;
-    case "Other":
-      basePrice = 20; // placeholder, no payment
-      break;
+  if (["Electrical", "Plumbing", "Carpentry"].includes(service)) {
+    basePrice = 50;
+  } else {
+    basePrice = 30;
   }
 
-  // Urgency charge
-  if (urgency === "urgent" && service !== "Other") {
-    urgencyPrice = 40;
+  if (urgency === "urgent") {
+    urgencyCharge = 40;
   }
 
-  const totalPrice = basePrice + urgencyPrice;
+  const total = basePrice + urgencyCharge;
 
-  // Save form data globally
-  window.currentFormData = {
+  document.getElementById("formOverlay").style.display = "none";
+  document.getElementById("summaryService").textContent = `${service} - $${basePrice}`;
+  document.getElementById("summaryUrgency").textContent = `$${urgencyCharge}`;
+  document.getElementById("summaryTotal").textContent = `$${total}`;
+
+  document.getElementById("billingSummary").style.display = "flex";
+
+  // Store form data for later (like for Stripe)
+  window.formData = {
+    name: form.name.value,
+    contact: form.contact.value,
+    address: form.address.value,
     service,
     urgency,
-    basePrice,
-    urgencyPrice,
-    totalPrice,
-    name: formData.get("name"),
-    address: formData.get("address"),
-    contact: formData.get("contact"),
-    description: formData.get("description"),
+    description: form.description.value,
+    price: total
   };
-
-  // Show billing summary
-  document.getElementById("summaryService").textContent = `${service} - $${basePrice}`;
-  document.getElementById("summaryUrgency").textContent = urgency === "urgent" ? `$${urgencyPrice}` : "$0";
-  document.getElementById("summaryTotal").textContent = `$${totalPrice}`;
-
-  document.getElementById("billingSummaryModal").classList.add("active");
 });
 
-// Finalise and redirect to Stripe
-document.getElementById("proceedToPayment").addEventListener("click", async () => {
-  const data = window.currentFormData;
-  document.getElementById("billingSummaryModal").classList.remove("active");
+// Finalise payment (in future: redirect to Stripe)
+document.getElementById("finalisePayment").addEventListener("click", function () {
+  const data = window.formData;
 
-  // Send data to server to create checkout session
-  const response = await fetch("/create-checkout-session", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  });
+  alert(`Redirecting to payment for ${data.service} ($${data.price})`);
 
-  const result = await response.json();
-  if (result.url) {
-    window.location.href = result.url;
-  } else {
-    alert("Stripe payment failed to start.");
-  }
+  // Later: send this to backend to create Stripe Checkout session
+  // window.location.href = "https://your-stripe-checkout-url";
 });
