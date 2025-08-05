@@ -1,64 +1,62 @@
+// Prices for each service
+const servicePrices = {
+  Plumbing: 50,
+  Electrical: 50,
+  Painting: 30,
+  Gardening: 20,
+  Cleaning: 30,
+  Appliances: 30,
+  Carpentry: 30,
+  Plastering: 30,
+  Furniture: 30,
+  Other: 20
+};
+
 // --- Modal open/close logic ---
-function openForm(serviceType) {
-  document.getElementById("contactForm").classList.remove("hidden");
-  document.getElementById("formTitle").textContent = `Request Help: ${serviceType}`;
-  document.getElementById("customFields").innerHTML = generateFields(serviceType);
+function openForm(service) {
+  // Set form title
+  document.getElementById('formTitle').innerText = `Request Help: ${service}`;
+
+  // Set service type in hidden input
+  let hidden = document.getElementById('serviceType');
+  if (!hidden) {
+    hidden = document.createElement('input');
+    hidden.type = 'hidden';
+    hidden.name = 'serviceType';
+    hidden.id = 'serviceType';
+    document.getElementById('serviceRequestForm').appendChild(hidden);
+  }
+  hidden.value = service;
+
+  // Update the price display
+  const price = servicePrices[service] || 30;
+  document.getElementById('servicePrice').innerText = `$${price}`;
+
+  // Update fee note with "(subject to change)" if service is Other
+  const feeNoteEl = document.getElementById('feeNote');
+  if (service === 'Other') {
+    feeNoteEl.innerHTML = `<strong>Note:</strong> One-time <strong>$20</strong> fee applies (subject to change). If we can’t find help, we’ll refund you.`;
+  } else {
+    feeNoteEl.innerHTML = `<strong>Note:</strong> One-time <strong>$${price}</strong> fee applies. If we can’t find help, we’ll refund you.`;
+  }
+
+  // Show modal
+  document.getElementById('contactForm').classList.remove('hidden');
 }
 
 function closeForm() {
-  document.getElementById("contactForm").classList.add("hidden");
+  document.getElementById('contactForm').classList.add('hidden');
 }
 
 function openTermsModal() {
-  document.getElementById("termsModal").classList.remove("hidden");
+  document.getElementById('termsModal').classList.remove('hidden');
 }
 
 function closeTermsModal() {
-  document.getElementById("termsModal").classList.add("hidden");
+  document.getElementById('termsModal').classList.add('hidden');
 }
 
-
-
-  const servicePrices = {
-    Plumbing: 50,
-    Electrical: 50,
-    Painting: 30,
-    Gardening: 20,
-    Cleaning: 30,
-    Appliances: 30,
-    Carpentry: 30,
-    Plastering: 30,
-    Furniture: 30,
-    Other: 20
-  };
-
-  function openForm(service) {
-    // Set form title
-    document.getElementById('formTitle').innerText = `Request Help: ${service}`;
-
-    // Set service type in a hidden input if needed (for backend use)
-    let hidden = document.getElementById('serviceType');
-    if (!hidden) {
-      hidden = document.createElement('input');
-      hidden.type = 'hidden';
-      hidden.name = 'serviceType';
-      hidden.id = 'serviceType';
-      document.getElementById('serviceRequestForm').appendChild(hidden);
-    }
-    hidden.value = service;
-
-    // Update the price display
-    const price = servicePrices[service] || 30;
-    document.getElementById('servicePrice').innerText = `$${price}`;
-
-    // Show modal
-    document.getElementById('contactForm').classList.remove('hidden');
-  }
-
-  function closeForm() {
-    document.getElementById('contactForm').classList.add('hidden');
-  }
-// --- Form validation ---
+// --- Form validation and submission ---
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("serviceRequestForm");
   if (form) {
