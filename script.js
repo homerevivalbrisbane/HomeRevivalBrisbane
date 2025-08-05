@@ -20,16 +20,16 @@ function closeTermsModal() {
 
 
   const servicePrices = {
-    Plumbing: 45,
+    Plumbing: 50,
     Electrical: 50,
-    Painting: 40,
-    Gardening: 35,
+    Painting: 30,
+    Gardening: 20,
     Cleaning: 30,
-    Appliances: 50,
-    Carpentry: 45,
-    Plastering: 40,
-    Furniture: 35,
-    Other: 30
+    Appliances: 30,
+    Carpentry: 30,
+    Plastering: 30,
+    Furniture: 30,
+    Other: 20
   };
 
   function openForm(service) {
