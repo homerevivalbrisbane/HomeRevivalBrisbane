@@ -121,7 +121,7 @@
       <div id="orderDetails"></div>
       <div style="margin-top: 20px;">
         <button id="confirmPaymentBtn" style="background:#2c5f2d; color:white; padding:10px 20px; border:none; border-radius:5px; cursor:pointer;">Confirm and Proceed</button>
-        <button id="returnToEditBtn" style="margin-left: 10px; padding:10px 20px; border-radius:5px; cursor:pointer;">Return to Edit</button>
+        <button onclick="cancelOrderSummary()" style="margin-left: 10px; padding:10px 20px; border-radius:5px; cursor:pointer;">Cancel</button>
       </div>
       <div id="orderErrorMsg" style="color:red; margin-top: 10px; display:none;"></div>
     </div>
@@ -284,7 +284,7 @@
       });
 
       // Confirm & proceed button listener
-      document.getElementById('returnToEditBtn').addEventListener('click', function () {   document.getElementById('orderSummaryModal').classList.add('hidden');   document.getElementById('contactForm').classList.remove('hidden'); });
+      document.getElementById('confirmPaymentBtn').addEventListener('click', async function () {
         const orderErrorMsg = document.getElementById('orderErrorMsg');
         orderErrorMsg.style.display = 'none';
 
