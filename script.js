@@ -1,4 +1,4 @@
-// Prices for each service
+// Prices for each service type
 const servicePrices = {
   Plumbing: 50,
   Electrical: 50,
@@ -28,11 +28,10 @@ function openForm(service) {
   }
   hidden.value = service;
 
-  // Update the price display
+  // Get price for the service
   const price = servicePrices[service] || 30;
-  document.getElementById('servicePrice').innerText = `$${price}`;
 
-  // Update fee note with "(subject to change)" if service is Other
+  // Update fee note only (no separate price display)
   const feeNoteEl = document.getElementById('feeNote');
   if (service === 'Other') {
     feeNoteEl.innerHTML = `<strong>Note:</strong> One-time <strong>$20</strong> fee applies (subject to change). If we can’t find help, we’ll refund you.`;
