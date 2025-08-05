@@ -1,117 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Home Revival Brisbane</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f9f9f9;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background: #2c5f2d;
-      color: white;
-      padding: 1em;
-      text-align: center;
-    }
-    .service-icon {
-      width: 150px;
-      margin: 20px auto;
-      text-align: center;
-      background: white;
-      padding: 1em;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      cursor: pointer;
-    }
-    .form-overlay, .billing-summary {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
-      justify-content: center;
-      align-items: center;
-      z-index: 10;
-    }
-    .form-box, .summary-box {
-      background: white;
-      padding: 2em;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 400px;
-    }
-    label {
-      display: block;
-      margin: 10px 0 5px;
-    }
-    input, textarea, select {
-      width: 100%;
-      padding: 0.5em;
-      margin-bottom: 10px;
-    }
-    button {
-      background: #2c5f2d;
-      color: white;
-      border: none;
-      padding: 0.75em 1.5em;
-      cursor: pointer;
-      width: 100%;
-      border-radius: 5px;
-    }
-  </style>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-
-<header>
-  <h1>Home Revival Brisbane</h1>
-</header>
-
-<div class="service-icon" onclick="openForm('Electrical')">
-  Electrical Services
-</div>
-
-<div class="form-overlay" id="formOverlay">
-  <div class="form-box">
-    <form id="serviceForm">
-      <input type="hidden" name="serviceType" id="serviceType" />
-      
-      <label for="name">Full Name</label>
-      <input type="text" name="name" required />
-
-      <label for="contact">Contact Number</label>
-      <input type="tel" name="contact" required />
-
-      <label for="address">Address</label>
-      <input type="text" name="address" required />
-
-      <label for="urgency">Urgency</label>
-      <select name="urgency" id="urgency">
-        <option value="normal">Normal</option>
-        <option value="urgent">Urgent</option>
-      </select>
-
-      <label for="description">Description</label>
-      <textarea name="description" rows="4" required></textarea>
-
-      <button type="submit">Submit Request</button>
-    </form>
-  </div>
-</div>
-
-<div class="billing-summary" id="billingSummary">
-  <div class="summary-box">
-    <h3>Billing Summary</h3>
-    <p><strong>Service:</strong> <span id="summaryService"></span></p>
-    <p><strong>Urgency Charge:</strong> <span id="summaryUrgency"></span></p>
-    <p><strong>Total:</strong> <span id="summaryTotal"></span></p>
-    <button id="finalisePayment">Finalise Payment</button>
-  </div>
-</div>
-
 <script src="script.js"></script>
+
+<body>
+  <header>
+    <!-- Top strip for phone and socials -->
+    <div class="top-strip">
+      <div class="call-banner">
+        Prefer to talk? <a href="tel:0408540150" class="call-link">Call us on <strong>0408 540 150</strong></a>
+      </div>
+
+      <div class="top-right">
+        <!-- Social links placeholder -->
+      </div>
+    </div>
+    <div class="header-main">
+      <div class="site-name">
+        <a href="index.html" style="text-decoration: none; color: inherit;">Home Revival Brisbane</a>
+      </div>
+      <div class="header-right">
+        <div class="dropdown">
+          <button class="dropbtn">☰ Menu</button>
+          <div class="dropdown-content">
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact us</a>
+            <a href="terms.html">Terms & Conditions</a>
+            <a href="privacy.html">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="hero">
+    <h2>Need something fixed or sorted at home?</h2>
+    <p>We connect you to the right local professional — fast, simple, and hassle-free.</p>
+  </section>
+
+  <!-- Service Icons -->
+  <div class="service-container">
+    <div class="service" onclick="openForm('Plumbing')">🚿<br />Plumbing</div>
+    <div class="service" onclick="openForm('Electrical')">💡<br />Electrical</div>
+    <div class="service" onclick="openForm('Painting')">🎨<br />Painting</div>
+    <div class="service" onclick="openForm('Gardening')">🌿<br />Gardening</div>
+    <div class="service" onclick="openForm('Cleaning')">🧹<br />Cleaning</div>
+    <div class="service" onclick="openForm('Appliances')">🛠️<br />Appliances</div>
+    <div class="service" onclick="openForm('Carpentry')">🔨<br />Carpentry</div>
+    <div class="service" onclick="openForm('Plastering')">🧱<br />Plastering</div>
+    <div class="service" onclick="openForm('Furniture')">🪑<br />Furniture</div>
+    <div class="service" onclick="openForm('Other')">❓<br />Other</div>
+  </div>
+
+  <!-- Contact Form Modal -->
+  <div class="modal hidden" id="contactForm">
+    <div class="modal-content scrollable">
+      <span class="close-btn" onclick="closeForm()">&times;</span>
+      <h2 id="formTitle">Request Help</h2>
+    <p id="servicePrice"></p>
+   
+<p id="feeNote"><strong>Note:</strong> One-time <strong>$30</strong> fee applies. If we can’t find help, we’ll refund you.</p>
+
+      <form id="serviceRequestForm" action="https://formspree.io/f/xzzvayyq" method="POST">
+        <label class="required">Your Name:</label>
+        <input type="text" name="name" required />
+
+        <label class="required">Email:</label>
+        <input type="email" name="email" required />
+
+        <label class="required">Phone Number:</label>
+        <input type="tel" name="phone" required />
+
+        <label class="required">Address:</label>
+        <input type="text" name="address" required />
+
+        <div class="date-urgent-row">
+          <div class="form-column">
+            <label>Preferred completion date:</label>
+            <input type="date" name="completionDate" />
+          </div>
+          <div class="form-column urgent-checkbox">
+            <label>
+              <input type="checkbox" name="urgent" />
+              This is urgent (ASAP)
+            </label>
+            <p class="urgent-note">Additional $40 urgent fee applies</p>
+          </div>
+        </div>
+
+        <label class="required">Budget:</label>
+        <input type="text" name="budget" />
+
+       <div class="form-group">
+  <label class="required" for="additionalInfo">Job Description</label>
+  <textarea name="additionalInfo" id="additionalInfo" placeholder="Describe the issue, job requirements, or any important details..."></textarea>
+  <small class="form-info">Please provide all necessary details about the job to help us connect you with the right professional.</small>
+</div>
+
+
+        <label class="required">
+          <input type="checkbox" name="terms" required />
+          I agree to the <a href="terms.html" target="_blank">Terms & Conditions</a>
+        </label>
+
+        <div id="formErrorMsg" style="color:red; display:none; margin-bottom:10px;"></div>
+
+        <button type="submit">Submit Request</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Terms Modal -->
+  <div class="modal hidden" id="termsModal">
+    <div class="modal-content scrollable">
+      <span class="close-btn" onclick="closeTermsModal()">&times;</span>
+      <h3>Terms & Conditions</h3>
+      <p>By submitting a request, you agree to our $30 non-refundable fee unless we are unable to find help. Home
+        Revival Brisbane acts only as a service connector. We are not responsible for the performance or outcome of
+        services provided by third-party professionals.</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Home Revival Brisbane<br /><small>ABN: 76 698 587 269</small><br /><small>Hours: 9am–5pm, Monday to
+        Friday (excl. public holidays)</small></p>
+    <a href="terms.html">Terms & Conditions</a><a href="privacy.html">Privacy Policy</a>
+  </footer>
 </body>
+
 </html>
