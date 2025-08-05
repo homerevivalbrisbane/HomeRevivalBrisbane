@@ -4,7 +4,7 @@ const servicePrices = {
   Electrical: 50,
   Painting: 30,
   Gardening: 20,
-  Cleaning: 30,
+  Cleaning: 20,
   Appliances: 30,
   Carpentry: 30,
   Plastering: 30,
