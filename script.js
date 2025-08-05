@@ -1,121 +1,74 @@
-// Prices for each service type
-const servicePrices = {
-  Plumbing: 50,
-  Electrical: 50,
-  Painting: 30,
-  Gardening: 20,
-  Cleaning: 20,
-  Appliances: 30,
-  Carpentry: 30,
-  Plastering: 30,
-  Furniture: 30,
-  Other: 20
-};
+document.getElementById("serviceForm").addEventListener("submit", function (e) {
+  e.preventDefault();
 
-// --- Modal open/close logic ---
-function openForm(service) {
-  // Set form title
-  document.getElementById('formTitle').innerText = `Request Help: ${service}`;
+  const formData = new FormData(this);
+  const service = formData.get("serviceType");
+  const urgency = formData.get("urgency");
 
-  // Set service type in hidden input
-  let hidden = document.getElementById('serviceType');
-  if (!hidden) {
-    hidden = document.createElement('input');
-    hidden.type = 'hidden';
-    hidden.name = 'serviceType';
-    hidden.id = 'serviceType';
-    document.getElementById('serviceRequestForm').appendChild(hidden);
+  let basePrice = 0;
+  let urgencyPrice = 0;
+
+  // Set base price
+  switch (service) {
+    case "Plumbing":
+    case "Electrical":
+    case "Carpentry":
+      basePrice = 50;
+      break;
+    case "Cleaning":
+    case "Gardening":
+    case "Pest Control":
+      basePrice = 30;
+      break;
+    case "Other":
+      basePrice = 20; // placeholder, no payment
+      break;
   }
-  hidden.value = service;
 
-  // Get price for the service
-  const price = servicePrices[service] || 30;
+  // Urgency charge
+  if (urgency === "urgent" && service !== "Other") {
+    urgencyPrice = 40;
+  }
 
-  // Update fee note only (no separate price display)
-  const feeNoteEl = document.getElementById('feeNote');
-  if (service === 'Other') {
-    feeNoteEl.innerHTML = `<strong>Note:</strong> One-time <strong>$20</strong> fee applies (subject to change). If we can’t find help, we’ll refund you.`;
+  const totalPrice = basePrice + urgencyPrice;
+
+  // Save form data globally
+  window.currentFormData = {
+    service,
+    urgency,
+    basePrice,
+    urgencyPrice,
+    totalPrice,
+    name: formData.get("name"),
+    address: formData.get("address"),
+    contact: formData.get("contact"),
+    description: formData.get("description"),
+  };
+
+  // Show billing summary
+  document.getElementById("summaryService").textContent = `${service} - $${basePrice}`;
+  document.getElementById("summaryUrgency").textContent = urgency === "urgent" ? `$${urgencyPrice}` : "$0";
+  document.getElementById("summaryTotal").textContent = `$${totalPrice}`;
+
+  document.getElementById("billingSummaryModal").classList.add("active");
+});
+
+// Finalise and redirect to Stripe
+document.getElementById("proceedToPayment").addEventListener("click", async () => {
+  const data = window.currentFormData;
+  document.getElementById("billingSummaryModal").classList.remove("active");
+
+  // Send data to server to create checkout session
+  const response = await fetch("/create-checkout-session", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+
+  const result = await response.json();
+  if (result.url) {
+    window.location.href = result.url;
   } else {
-    feeNoteEl.innerHTML = `<strong>Note:</strong> One-time <strong>$${price}</strong> fee applies. If we can’t find help, we’ll refund you.`;
-  }
-
-  // Show modal
-  document.getElementById('contactForm').classList.remove('hidden');
-}
-
-function closeForm() {
-  document.getElementById('contactForm').classList.add('hidden');
-}
-
-function openTermsModal() {
-  document.getElementById('termsModal').classList.remove('hidden');
-}
-
-function closeTermsModal() {
-  document.getElementById('termsModal').classList.add('hidden');
-}
-
-// --- Form validation and submission ---
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("serviceRequestForm");
-  if (form) {
-    form.addEventListener("submit", async function (e) {
-      e.preventDefault();
-
-      let errorFields = [];
-      let requiredFields = form.querySelectorAll("[required]");
-      requiredFields.forEach((field) => {
-        if (
-          (field.type === "checkbox" && !field.checked) ||
-          (field.type !== "checkbox" && !field.value.trim())
-        ) {
-          errorFields.push(field);
-          field.classList.add("error-field");
-        } else {
-          field.classList.remove("error-field");
-        }
-      });
-
-      const errorMsg = document.getElementById("formErrorMsg");
-      if (errorFields.length > 0) {
-        if (errorMsg) {
-          errorMsg.textContent =
-            "Please fill in all required fields and accept the Terms & Conditions.";
-          errorMsg.style.display = "block";
-        }
-        return; // stop submission if invalid
-      } else {
-        if (errorMsg) errorMsg.style.display = "none";
-      }
-
-      // Build FormData and submit via fetch (AJAX)
-      try {
-        const formData = new FormData(form);
-        const response = await fetch(form.action, {
-          method: form.method,
-          body: formData,
-          headers: {
-            'Accept': 'application/json'
-          },
-        });
-
-        if (response.ok) {
-          alert("Thank you! Your request has been sent.");
-          form.reset();
-          closeForm(); // close modal on success
-        } else {
-          const data = await response.json();
-          if (data && data.errors) {
-            errorMsg.textContent = data.errors.map(e => e.message).join(", ");
-          } else {
-            errorMsg.textContent = "Oops! There was a problem submitting your form.";
-          }
-          errorMsg.style.display = "block";
-        }
-      } catch (error) {
-        errorMsg.textContent = "Network error. Please try again later.";
-        errorMsg.style.display = "block";
-      }
-    });
+    alert("Stripe payment failed to start.");
   }
 });
