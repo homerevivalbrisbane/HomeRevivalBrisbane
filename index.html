@@ -1,150 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Home Revival Brisbane</title>
   <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="stylesheet" href="style.css" />
+  <script src="https://js.stripe.com/v3/"></script>
 </head>
-<script src="script.js"></script>
 <body>
   <header>
-    <!-- Top strip for phone and socials -->
     <div class="top-strip">
       <div class="call-banner">
         Prefer to talk? <a href="tel:0408540150" class="call-link">Call us on <strong>0408 540 150</strong></a>
       </div>
-
-      <div class="top-right">
-        <!-- Social links placeholder -->
-      </div>
     </div>
     <div class="header-main">
-      <div class="site-name">
-        <a href="index.html" style="text-decoration: none; color: inherit;">Home Revival Brisbane</a>
-      </div>
-      <div class="header-right">
-        <div class="dropdown">
-          <button class="dropbtn">☰ Menu</button>
-          <div class="dropdown-content">
-            <a href="about.html">About Us</a>
-            <a href="contact.html">Contact us</a>
-            <a href="terms.html">Terms & Conditions</a>
-            <a href="privacy.html">Privacy Policy</a>
-          </div>
+      <div class="site-name"><a href="index.html">Home Revival Brisbane</a></div>
+      <div class="dropdown">
+        <button class="dropbtn">☰ Menu</button>
+        <div class="dropdown-content">
+          <a href="about.html">About Us</a>
+          <a href="contact.html">Contact Us</a>
+          <a href="terms.html">Terms & Conditions</a>
+          <a href="privacy.html">Privacy Policy</a>
         </div>
       </div>
     </div>
   </header>
 
   <section id="hero">
-    <h2>Need something fixed or sorted at home?</h2>
-    <p>We connect you to the right local professional — fast, simple, and hassle-free.</p>
+    <h2>Need something fixed at home?</h2>
+    <p>We connect you to the right professional — fast, simple, and hassle-free.</p>
   </section>
 
-  <!-- Service Icons -->
   <div class="service-container">
-    <div class="service" onclick="openForm('Plumbing')">🚿<br />Plumbing</div>
-    <div class="service" onclick="openForm('Electrical')">💡<br />Electrical</div>
-    <div class="service" onclick="openForm('Painting')">🎨<br />Painting</div>
-    <div class="service" onclick="openForm('Gardening')">🌿<br />Gardening</div>
-    <div class="service" onclick="openForm('Cleaning')">🧹<br />Cleaning</div>
-    <div class="service" onclick="openForm('Appliances')">🛠️<br />Appliances</div>
-    <div class="service" onclick="openForm('Carpentry')">🔨<br />Carpentry</div>
-    <div class="service" onclick="openForm('Plastering')">🧱<br />Plastering</div>
-    <div class="service" onclick="openForm('Furniture')">🪑<br />Furniture</div>
-    <div class="service" onclick="openForm('Other')">❓<br />Other</div>
+    <div class="service" onclick="openForm('Plumbing')">🚿<br>Plumbing</div>
+    <div class="service" onclick="openForm('Electrical')">💡<br>Electrical</div>
+    <div class="service" onclick="openForm('Painting')">🎨<br>Painting</div>
+    <div class="service" onclick="openForm('Gardening')">🌿<br>Gardening</div>
+    <div class="service" onclick="openForm('Cleaning')">🧹<br>Cleaning</div>
+    <div class="service" onclick="openForm('Appliances')">🛠️<br>Appliances</div>
+    <div class="service" onclick="openForm('Carpentry')">🔨<br>Carpentry</div>
+    <div class="service" onclick="openForm('Plastering')">🧱<br>Plastering</div>
+    <div class="service" onclick="openForm('Furniture')">🪑<br>Furniture</div>
+    <div class="service" onclick="openForm('Other')">❓<br>Other</div>
   </div>
 
-  <!-- Contact Form Modal -->
+  <!-- First Modal -->
   <div class="modal hidden" id="contactForm">
     <div class="modal-content scrollable">
       <span class="close-btn" onclick="closeForm()">&times;</span>
       <h2 id="formTitle">Request Help</h2>
-      <p id="feeNote"><strong>Note:</strong> One-time <strong>$30</strong> fee applies. If we can’t find help, we’ll refund you.</p>
+      <p id="feeNote"></p>
 
-      <form id="serviceRequestForm" action="https://formspree.io/f/xzzvayyq" method="POST">
+      <form id="serviceRequestForm">
         <label class="required">Your Name:</label>
         <input type="text" name="name" required />
-
         <label class="required">Email:</label>
         <input type="email" name="email" required />
-
-        <label class="required">Phone Number:</label>
+        <label class="required">Phone:</label>
         <input type="tel" name="phone" required />
-
         <label class="required">Address:</label>
         <input type="text" name="address" required />
-
-        <div class="date-urgent-row">
-          <div class="form-column">
-            <label>Preferred completion date:</label>
-            <input type="date" name="completionDate" />
-          </div>
-          <div class="form-column urgent-checkbox">
-            <label>
-              <input type="checkbox" name="urgent" />
-              This is urgent (ASAP)
-            </label>
-            <p class="urgent-note">Additional $40 urgent fee applies</p>
-          </div>
-        </div>
-
-        <label class="required">Budget:</label>
+        <label>Preferred completion date:</label>
+        <input type="date" name="completionDate" />
+        <label><input type="checkbox" name="urgent" /> Urgent (+$40)</label>
+        <label>Budget:</label>
         <input type="text" name="budget" />
-
-        <div class="form-group">
-          <label class="required" for="additionalInfo">Job Description</label>
-          <textarea name="additionalInfo" id="additionalInfo" placeholder="Describe the issue, job requirements, or any important details..." required></textarea>
-          <small class="form-info">Please provide all necessary details about the job to help us connect you with the right professional.</small>
-        </div>
-
-        <label class="required">
-          <input type="checkbox" name="terms" required />
-          I agree to the <a href="terms.html" target="_blank">Terms & Conditions</a>
-        </label>
-
-        <div id="formErrorMsg" style="color:red; display:none; margin-bottom:10px;"></div>
-
+        <label class="required">Job Description:</label>
+        <textarea name="additionalInfo" required></textarea>
+        <label class="required"><input type="checkbox" name="terms" required /> I agree to <a href="terms.html">Terms</a></label>
+        <div id="formErrorMsg" class="error-msg"></div>
         <button type="submit">Submit Request</button>
       </form>
     </div>
   </div>
 
-  <!-- Order Summary Modal -->
+  <!-- Second Modal (Order Summary) -->
   <div class="modal hidden" id="orderSummaryModal">
     <div class="modal-content scrollable">
       <span class="close-btn" onclick="cancelOrderSummary()">&times;</span>
       <h2>Confirm Your Request</h2>
       <div id="orderDetails"></div>
-      <div style="margin-top: 20px;">
-        <button id="confirmPaymentBtn" style="background:#2c5f2d; color:white; padding:10px 20px; border:none; border-radius:5px; cursor:pointer;">Confirm and Proceed</button>
-        <button onclick="cancelOrderSummary()" style="margin-left: 10px; padding:10px 20px; border-radius:5px; cursor:pointer;">Cancel</button>
-      </div>
-      <div id="orderErrorMsg" style="color:red; margin-top: 10px; display:none;"></div>
+      <button id="confirmPaymentBtn">Confirm & Proceed</button>
     </div>
   </div>
 
-  <!-- Terms Modal -->
-  <div class="modal hidden" id="termsModal">
+  <!-- Third Modal (Stripe Payment) -->
+  <div class="modal hidden" id="paymentModal">
     <div class="modal-content scrollable">
-      <span class="close-btn" onclick="closeTermsModal()">&times;</span>
-      <h3>Terms & Conditions</h3>
-      <p>By submitting a request, you agree to our $30 non-refundable fee unless we are unable to find help. Home
-        Revival Brisbane acts only as a service connector. We are not responsible for the performance or outcome of
-        services provided by third-party professionals.</p>
+      <span class="close-btn" onclick="cancelPayment()">&times;</span>
+      <h2>Secure Payment</h2>
+      <div id="payment-element"></div>
+      <button id="submitPaymentBtn">Pay Now</button>
+      <div id="paymentMessage"></div>
     </div>
   </div>
 
   <footer>
-    <p>&copy; 2025 Home Revival Brisbane<br /><small>ABN: 76 698 587 269</small><br /><small>Hours: 9am–5pm, Monday to
-        Friday (excl. public holidays)</small></p>
-    <a href="terms.html">Terms & Conditions</a><a href="privacy.html">Privacy Policy</a>
+    <p>&copy; 2025 Home Revival Brisbane</p>
   </footer>
 
-  
+  <script src="script.js"></script>
 </body>
-
 </html>
