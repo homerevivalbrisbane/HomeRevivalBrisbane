@@ -56,27 +56,22 @@ document.getElementById("serviceRequestForm").addEventListener("submit", functio
   document.getElementById('orderSummaryModal').classList.remove('hidden');
 });
 
-document.getElementById("confirmPaymentBtn").addEventListener("click", async function () {
-  document.getElementById('orderSummaryModal').classList.add('hidden');
-  document.getElementById('paymentModal').classList.remove('hidden');
+document.getElementById("pay-now-btn").addEventListener("click", async () => {
+  // Grab the amount from your modal's total element
+  const totalText = document.getElementById("order-total").textContent; 
+  // Removes $ sign, converts to cents
+  const amount = Math.round(parseFloat(totalText.replace(/[^0-9.]/g, "")) * 100);
 
-  const { clientSecret } = await fetch("/create-payment-intent", {
+  // Create a Stripe Checkout session
+  const res = await fetch("/.netlify/functions/create-checkout-session", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ amount: 5000 }) // example $50
-  }).then(r => r.json());
-
-  elements = stripe.elements({ clientSecret });
-  const paymentElement = elements.create("payment");
-  paymentElement.mount("#payment-element");
-});
-
-document.getElementById("submitPaymentBtn").addEventListener("click", async function () {
-  const { error } = await stripe.confirmPayment({
-    elements,
-    confirmParams: { return_url: window.location.href }
+    body: JSON.stringify({ amount }),
   });
-  if (error) {
-    document.getElementById("paymentMessage").textContent = error.message;
-  }
+
+  const data = await res.json();
+
+  // Redirect to Stripe Checkout
+  window.location.href = data.url;
 });
+
