@@ -1,128 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Home Revival Brisbane</title>
-  <link rel="stylesheet" href="style.css"/>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <!-- AOS Animations -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="logo"><a href="index.html">Home Revival Brisbane</a></div>
-    <nav>
-      <ul>
-        <li><a href="about.html">About</a></li>
-        <li><a href="terms.html">Terms</a></li>
-        <li><a href="policy.html">Policy</a></li>
-      </ul>
-    </nav>
+  <!-- Prefer to Call Banner -->
+  <div class="call-banner">
+    Prefer to call? 📞 Reach us at <a href="tel:0400XXXXXX">0400 XXX XXX</a>
+  </div>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <h1>Home Revival Brisbane</h1>
+    <p>Brisbane’s trusted lawn and garden care specialists</p>
   </header>
 
-  <!-- Hero -->
-  <section id="hero">
-    <div class="hero-content" data-aos="fade-up">
-      <h1>Home help, minus the hassle.</h1>
-      <p>From leaking taps to urgent yard cleanups — we connect Brisbane locals with trusted professionals fast.</p>
+  <!-- Service Icons -->
+  <section class="services">
+    <div class="service" data-service="lawn">
+      🌱
+      <p>Lawn Mowing</p>
+    </div>
+    <div class="service" data-service="garden">
+      🌿
+      <p>Garden Care</p>
+    </div>
+    <div class="service" data-service="trees">
+      🌴
+      <p>Tree Work</p>
     </div>
   </section>
 
-  <!-- Story -->
-  <section id="story" class="story-section">
-    <h2 data-aos="fade-up">Why Choose Home Revival Brisbane?</h2>
-    <p data-aos="fade-up" data-aos-delay="100">
-      We’re not just another app or marketplace. We’re real locals who know the area and know who’s worth calling.
-    </p>
-    <div class="story-grid">
-      <div class="story-card" data-aos="fade-up" data-aos-delay="200">
-        <h3>👨‍🔧 Real People</h3>
-        <p>We only connect you with hand-picked professionals we’d trust in our own homes.</p>
-      </div>
-      <div class="story-card" data-aos="fade-up" data-aos-delay="300">
-        <h3>⚡ Fast Response</h3>
-        <p>Most requests are matched within hours. When time matters, we’ve got your back.</p>
-      </div>
-      <div class="story-card" data-aos="fade-up" data-aos-delay="400">
-        <h3>🔨 All Jobs Welcome</h3>
-        <p>Big or small, urgent or flexible — if it needs doing, we’ll find the right person.</p>
-      </div>
-    </div>
-    <a href="about.html" class="cta-btn story-btn" data-aos="zoom-in" data-aos-delay="500">Learn More</a>
+  <!-- Learn More Button (centered between icons + screen split) -->
+  <div class="learn-more-wrapper">
+    <button class="learn-more">Learn More</button>
+  </div>
+
+  <!-- Get Started Section -->
+  <section class="cta">
+    <h2>Ready to Transform Your Outdoors?</h2>
+    <button class="get-started">🚀 Get Started Now!</button>
   </section>
 
-  <!-- Services -->
-  <section id="services">
-    <h2 data-aos="fade-up">Get Started</h2>
-    <div class="service-container" data-aos="fade-up" data-aos-delay="200">
-      <div class="service" onclick="openForm('Plumbing')">🚿<br />Plumbing</div>
-      <div class="service" onclick="openForm('Electrical')">💡<br />Electrical</div>
-      <div class="service" onclick="openForm('Painting')">🎨<br />Painting</div>
-      <div class="service" onclick="openForm('Gardening')">🌿<br />Gardening</div>
-      <div class="service" onclick="openForm('Cleaning')">🧹<br />Cleaning</div>
-      <div class="service" onclick="openForm('Appliances')">🛠️<br />Appliances</div>
-      <div class="service" onclick="openForm('Carpentry')">🔨<br />Carpentry</div>
-      <div class="service" onclick="openForm('Plastering')">🧱<br />Plastering</div>
-      <div class="service" onclick="openForm('Furniture')">🪑<br />Furniture</div>
-      <div class="service" onclick="openForm('Other')">❓<br />Other</div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Home Revival Brisbane</p>
-    <ul>
-      <li><a href="about.html">About</a></li>
-      <li><a href="terms.html">Terms & Conditions</a></li>
-      <li><a href="policy.html">Privacy Policy</a></li>
-    </ul>
-  </footer>
-
-  <!-- Contact Form Modal -->
-  <div class="modal hidden" id="contactForm">
-    <div class="modal-content scrollable">
-      <span class="close-btn" onclick="closeForm()">&times;</span>
-      <h2 id="formTitle">Request Help</h2>
-      <p id="feeNote"><strong>Note:</strong> One-time <strong>$30</strong> fee applies. If we can’t find help, we’ll refund you.</p>
-
-      <form id="serviceRequestForm" action="https://formspree.io/f/xzzvayyq" method="POST">
-        <label>Your Name:</label>
-        <input type="text" name="name" required />
-
-        <label>Email:</label>
-        <input type="email" name="email" required />
-
-        <label>Phone Number:</label>
-        <input type="tel" name="phone" required />
-
-        <label>Address:</label>
-        <input type="text" name="address" required />
-
-        <label>Preferred completion date:</label>
-        <input type="date" name="completionDate" />
-
-        <label><input type="checkbox" name="urgent" /> Urgent (+$40)</label>
-
-        <label>Budget:</label>
-        <input type="text" name="budget" />
-
-        <label>Job Description:</label>
-        <textarea name="additionalInfo" required></textarea>
-
-        <label><input type="checkbox" name="terms" required /> I agree to the <a href="terms.html" target="_blank">Terms & Conditions</a></label>
-
-        <div id="formErrorMsg" style="color:red; display:none; margin-bottom:10px;"></div>
-        <button type="submit">Submit Request</button>
+  <!-- Form (hidden, opens when clicking icons) -->
+  <div id="service-form" class="form-modal hidden">
+    <div class="form-content">
+      <span class="close">&times;</span>
+      <h3 id="form-title">Service Request</h3>
+      <form>
+        <label>Name</label>
+        <input type="text" required>
+        <label>Address</label>
+        <input type="text" required>
+        <label>Phone</label>
+        <input type="tel" required>
+        <label id="service-specific-label"></label>
+        <textarea id="service-specific-input" required></textarea>
+        <button type="submit">Submit</button>
       </form>
     </div>
   </div>
 
-  <!-- Scripts -->
-  <script src="script.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <script>AOS.init({ duration: 1000, once: true });</script>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-left">
+      <h3>Home Revival Brisbane</h3>
+      <p>Quality lawn & garden care for Brisbane homes</p>
+    </div>
+    <div class="footer-right">
+      <p>📍 Brisbane, QLD</p>
+      <p>📞 <a href="tel:0400XXXXXX">0400 XXX XXX</a></p>
+      <p>✉️ <a href="mailto:info@homerevival.com">info@homerevival.com</a></p>
+    </div>
+  </footer>
 </body>
 </html>
