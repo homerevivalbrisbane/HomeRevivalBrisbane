@@ -1,138 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Home Revival Brisbane</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://js.stripe.com/v3/"></script>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/scrollreveal"></script>
 </head>
-<body class="bg-gray-50 text-gray-900 font-sans">
-
+<body>
   <!-- Header -->
-  <header class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold cursor-pointer">Home Revival Brisbane</h1>
-      <nav>
-        <ul class="flex space-x-6">
-          <li><a href="index.html" class="hover:underline">Home</a></li>
-          <li><a href="about.html" class="hover:underline">About</a></li>
-          <li><a href="terms.html" class="hover:underline">Terms</a></li>
-        </ul>
-      </nav>
-    </div>
+  <header>
+    <div class="logo"><a href="index.html">Home Revival Brisbane</a></div>
+    <nav>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="terms.html">Terms</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <!-- Hero -->
-  <section class="text-center py-20 bg-gradient-to-b from-indigo-600 to-blue-500 text-white">
-    <h2 class="text-4xl font-extrabold mb-4">Connecting You with Local Experts</h2>
-    <p class="text-lg mb-6 max-w-2xl mx-auto">Plumbing, Electrical, Cleaning & More – Get the help you need fast, reliable, and local.</p>
-    <a href="#services" class="bg-white text-blue-600 px-6 py-3 rounded-xl font-semibold shadow hover:bg-gray-100 transition">Get Started</a>
-  </section>
-
-  <!-- Services Section -->
-  <section id="services" class="max-w-6xl mx-auto px-6 py-16">
-    <h3 class="text-3xl font-bold text-center mb-12 text-gray-800">Our Services</h3>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-10">
-
-      <!-- Example Service Card -->
-      <div class="flex flex-col items-center cursor-pointer group" onclick="openForm('Plumbing')">
-        <img src="images/plumbing.png" alt="Plumbing" class="w-20 h-20 object-contain mb-3 transition transform group-hover:scale-110">
-        <span class="text-lg font-semibold text-gray-700 group-hover:text-blue-600">Plumbing</span>
-      </div>
-
-      <div class="flex flex-col items-center cursor-pointer group" onclick="openForm('Electrical')">
-        <img src="images/electrical.png" alt="Electrical" class="w-20 h-20 object-contain mb-3 transition transform group-hover:scale-110">
-        <span class="text-lg font-semibold text-gray-700 group-hover:text-blue-600">Electrical</span>
-      </div>
-
-      <div class="flex flex-col items-center cursor-pointer group" onclick="openForm('Cleaning')">
-        <img src="images/cleaning.png" alt="Cleaning" class="w-20 h-20 object-contain mb-3 transition transform group-hover:scale-110">
-        <span class="text-lg font-semibold text-gray-700 group-hover:text-blue-600">Cleaning</span>
-      </div>
-
-      <div class="flex flex-col items-center cursor-pointer group" onclick="openForm('Gardening')">
-        <img src="images/gardening.png" alt="Gardening" class="w-20 h-20 object-contain mb-3 transition transform group-hover:scale-110">
-        <span class="text-lg font-semibold text-gray-700 group-hover:text-blue-600">Gardening</span>
-      </div>
-
-      <div class="flex flex-col items-center cursor-pointer group" onclick="openForm('Painting')">
-        <img src="images/painting.png" alt="Painting" class="w-20 h-20 object-contain mb-3 transition transform group-hover:scale-110">
-        <span class="text-lg font-semibold text-gray-700 group-hover:text-blue-600">Painting</span>
-      </div>
-
-      <div class="flex flex-col items-center cursor-pointer group" onclick="openForm('Carpentry')">
-        <img src="images/carpentry.png" alt="Carpentry" class="w-20 h-20 object-contain mb-3 transition transform group-hover:scale-110">
-        <span class="text-lg font-semibold text-gray-700 group-hover:text-blue-600">Carpentry</span>
-      </div>
-
-      <div class="flex flex-col items-center cursor-pointer group" onclick="openForm('Furniture')">
-        <img src="images/furniture.png" alt="Furniture" class="w-20 h-20 object-contain mb-3 transition transform group-hover:scale-110">
-        <span class="text-lg font-semibold text-gray-700 group-hover:text-blue-600">Furniture</span>
-      </div>
-
-      <div class="flex flex-col items-center cursor-pointer group" onclick="openForm('Other')">
-        <img src="images/other.png" alt="Other" class="w-20 h-20 object-contain mb-3 transition transform group-hover:scale-110">
-        <span class="text-lg font-semibold text-gray-700 group-hover:text-blue-600">Other</span>
-      </div>
-
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="hero-content">
+      <h1>Home help, minus the hassle.</h1>
+      <p>From leaking taps to urgent yard cleanups — we connect Brisbane locals with trusted professionals fast.</p>
     </div>
   </section>
 
   <!-- Story Section -->
-  <section class="bg-gray-100 py-16 px-6">
-    <div class="max-w-4xl mx-auto text-center">
-      <h3 class="text-3xl font-bold mb-6">Our Story</h3>
-      <p class="text-lg text-gray-700 mb-6">
-        Home Revival Brisbane was built to make finding trusted local help simple, transparent, and stress-free. 
-        Our network of professionals is ready to tackle your household challenges quickly and affordably.
-      </p>
-      <a href="about.html" class="bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold shadow hover:bg-blue-700 transition">Learn More</a>
+  <section id="story" class="story-section">
+    <h2>Why Choose Home Revival Brisbane?</h2>
+    <p>We’re not just another app or marketplace. We’re real locals who know the area and know who’s worth calling.</p>
+    <div class="story-grid">
+      <div class="story-card">
+        <h3>Real People</h3>
+        <p>We only connect you with hand-picked professionals we’d trust in our own homes.</p>
+      </div>
+      <div class="story-card">
+        <h3>Fast Response</h3>
+        <p>Most requests are matched within hours. When time matters, we’ve got your back.</p>
+      </div>
+      <div class="story-card">
+        <h3>All Jobs Welcome</h3>
+        <p>Big or small, urgent or flexible — if it needs doing, we’ll find the right person.</p>
+      </div>
+    </div>
+    <a href="about.html" class="cta-btn story-btn">Learn More</a>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services">
+    <h2>Get Started</h2>
+    <div class="services-grid">
+      <div class="service-icon" data-service="Plumbing">
+        <img src="icons/plumbing.png" alt="Plumbing" />
+        <p>Plumbing</p>
+      </div>
+      <div class="service-icon" data-service="Electrical">
+        <img src="icons/electrical.png" alt="Electrical" />
+        <p>Electrical</p>
+      </div>
+      <div class="service-icon" data-service="Carpentry">
+        <img src="icons/carpentry.png" alt="Carpentry" />
+        <p>Carpentry</p>
+      </div>
+      <div class="service-icon" data-service="Yard">
+        <img src="icons/yard.png" alt="Yard Work" />
+        <p>Yard Work</p>
+      </div>
+      <div class="service-icon" data-service="Other">
+        <img src="icons/other.png" alt="Other" />
+        <p>Other</p>
+      </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="bg-gray-800 text-white py-8 mt-12">
-    <div class="max-w-6xl mx-auto px-6 flex justify-between">
-      <p>&copy; 2025 Home Revival Brisbane. All rights reserved.</p>
-      <a href="terms.html" class="hover:underline">Terms & Conditions</a>
-    </div>
-  </footer>
+  <!-- Popup Form Overlay -->
+  <div id="formOverlay" class="overlay">
+    <div class="form-container">
+      <span class="close-btn" id="closeForm">&times;</span>
+      <h2 id="formTitle">Request a Service</h2>
+      <form id="serviceForm">
+        <input type="hidden" id="serviceType" name="serviceType" />
 
-  <!-- Form Modal -->
-  <div id="contactForm" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-    <div class="bg-white rounded-xl shadow-lg p-8 w-full max-w-lg relative">
-      <button onclick="closeForm()" class="absolute top-4 right-4 text-gray-500 hover:text-red-500">✕</button>
-      <h3 id="formTitle" class="text-2xl font-bold mb-4">Request Help</h3>
-      <form id="serviceRequestForm" class="space-y-4">
-        <div>
-          <label class="block mb-1">Your Name</label>
-          <input type="text" name="name" class="w-full border rounded p-2" required>
-        </div>
-        <div>
-          <label class="block mb-1">Contact</label>
-          <input type="text" name="contact" class="w-full border rounded p-2" required>
-        </div>
-        <div>
-          <label class="block mb-1">Urgent?</label>
-          <input type="checkbox" name="urgent">
-        </div>
-        <p id="feeNote" class="text-gray-600 text-sm"><strong>Fee:</strong> $30</p>
-        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Submit Request</button>
+        <label for="issue">Describe your issue:</label>
+        <textarea id="issue" name="issue" required></textarea>
+
+        <label for="timing">When do you need it done?</label>
+        <select id="timing" name="timing" required>
+          <option value="flexible">Flexible</option>
+          <option value="urgent">Urgent</option>
+        </select>
+
+        <label for="contact">Your Contact:</label>
+        <input type="text" id="contact" name="contact" required />
+
+        <label for="budget">Budget ($):</label>
+        <input type="number" id="budget" name="budget" required />
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required />
+
+        <p class="fee-note">* A $30 service fee applies</p>
+
+        <label>
+          <input type="checkbox" id="termsCheckbox" required />
+          I agree to the <a href="#" id="openTerms">Terms & Conditions</a>
+        </label>
+
+        <button type="submit" class="cta-btn">Submit Request</button>
       </form>
     </div>
   </div>
 
-  <!-- Order Summary Modal -->
-  <div id="orderSummaryModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-    <div class="bg-white rounded-xl shadow-lg p-8 w-full max-w-md text-center">
-      <h3 class="text-xl font-bold mb-4">Order Summary</h3>
-      <div id="orderDetails" class="mb-6"></div>
-      <button id="pay-now-btn" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">Proceed to Payment</button>
-      <button onclick="cancelOrderSummary()" class="ml-4 text-gray-600 hover:underline">Cancel</button>
+  <!-- Terms Modal -->
+  <div id="termsModal" class="overlay">
+    <div class="modal-container">
+      <span class="close-btn" id="closeTerms">&times;</span>
+      <h2>Terms & Conditions</h2>
+      <p>Higher demand services such as plumbing and electrical may carry higher rates due to limited supply and sourcing challenges. Please review full Terms & Conditions on our dedicated page.</p>
     </div>
   </div>
 
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Home Revival Brisbane</p>
+    <a href="terms.html">Terms & Conditions</a>
+  </footer>
+
+  <!-- Scripts -->
   <script src="script.js"></script>
+  <script>
+    // Scroll reveal animations
+    ScrollReveal().reveal('.hero-content', { duration: 1000, origin: 'bottom', distance: '40px' });
+    ScrollReveal().reveal('.story-card', { interval: 200, origin: 'bottom', distance: '40px' });
+    ScrollReveal().reveal('.services-grid', { duration: 1000, origin: 'bottom', distance: '40px' });
+  </script>
 </body>
 </html>
