@@ -22,17 +22,14 @@ const servicePrices = {
 // ------------------------------
 document.addEventListener("DOMContentLoaded", () => {
   // Animate on scroll
-  const animatedElements = document.querySelectorAll("[data-aos]");
-  animatedElements.forEach(el => AOS.init({ duration: 700, once: true }));
+  AOS.init({ duration: 700, once: true });
 
-  // Add data-service attribute for clarity
-document.querySelectorAll(".service").forEach(el => {
-  // Remove the emoji and get the text properly
-  const serviceName = el.textContent.replace(/[\u{1F300}-\u{1FAFF}]/gu, '').trim();
-  el.dataset.service = serviceName;
-  el.addEventListener("click", () => openForm(serviceName));
-});
-
+  // Attach service click handlers
+  document.querySelectorAll(".service").forEach(el => {
+    const serviceName = el.textContent.replace(/[\u{1F300}-\u{1FAFF}]/gu, '').trim();
+    el.dataset.service = serviceName;
+    el.addEventListener("click", () => openForm(serviceName));
+  });
 
   // Form submit
   document.getElementById("serviceRequestForm").addEventListener("submit", handleFormSubmit);
@@ -52,7 +49,7 @@ document.querySelectorAll(".service").forEach(el => {
     if (error) document.getElementById("paymentMessage").textContent = error.message;
   });
 
-  // Smooth scroll
+  // Smooth scroll for anchors
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener("click", e => {
       const targetId = anchor.getAttribute("href");
@@ -63,7 +60,7 @@ document.querySelectorAll(".service").forEach(el => {
     });
   });
 
-  // Expose globally
+  // Expose functions globally
   window.openForm = openForm;
   window.closeForm = closeForm;
   window.cancelOrderSummary = cancelOrderSummary;
@@ -83,7 +80,7 @@ function openForm(service) {
 
   document.getElementById("contactForm").classList.remove("hidden");
 
-  // Add hidden input to track service
+  // Hidden input to track service
   let hidden = document.querySelector("input[name='serviceType']");
   if (!hidden) {
     hidden = document.createElement("input");
@@ -110,6 +107,7 @@ function closeForm() {
   document.getElementById("contactForm").classList.add("hidden");
   const urgentCheckbox = document.querySelector("input[name='urgent']");
   if (urgentCheckbox) urgentCheckbox.checked = false;
+  document.getElementById("feeNote").innerHTML = '';
 }
 
 function cancelOrderSummary() {
@@ -170,31 +168,4 @@ async function setupStripe(total) {
   } catch (err) {
     console.error("Stripe setup error:", err);
   }
-}
-// Get all service buttons
-const serviceButtons = document.querySelectorAll('.service');
-const contactForm = document.getElementById('contactForm');
-const feeNote = document.getElementById('feeNote');
-const formTitle = document.getElementById('formTitle');
-
-// Open form modal when a service is clicked
-serviceButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-        const serviceName = btn.textContent.split('\n')[1]; // get the service label
-        formTitle.textContent = `Request Help - ${serviceName}`;
-        contactForm.classList.remove('hidden');
-
-        // Show special fee note only if "Other" is clicked
-        if (serviceName.trim() === "Other") {
-            feeNote.innerHTML = 'Note: Additional fees may apply. See <a href="terms.html#service-fee" target="_blank">Terms §3</a> for more information.';
-        } else {
-            feeNote.innerHTML = ''; // clear note for other services
-        }
-    });
-});
-
-// Close form modal
-function closeForm() {
-    contactForm.classList.add('hidden');
-    feeNote.innerHTML = '';
 }
