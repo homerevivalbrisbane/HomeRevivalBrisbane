@@ -10,12 +10,14 @@ body {
   line-height: 1.6;
 }
 
-a { text-decoration: none; }
 a {
-  color: #27ae60;
   text-decoration: none;
+  color: #27ae60;
 }
-a:hover { color: #2c5f2d; text-decoration: underline; }
+a:hover {
+  color: #2c5f2d;
+  text-decoration: underline;
+}
 
 .page-container {
   max-width: 1000px;
@@ -31,22 +33,22 @@ a:hover { color: #2c5f2d; text-decoration: underline; }
   color: #000;
   font-size: 1rem;
   padding: 6px 12px;
-  text-align: center; /* center for mobile */
   text-align: right;
 }
 .call-banner a {
   color: #000;
   font-weight: 600;
 }
-.call-banner a:hover { text-decoration: underline; }
+.call-banner a:hover {
+  text-decoration: underline;
+}
 
 /* ------------------------- */
 /* Header */
 /* ------------------------- */
 header {
   display: flex;
-  flex-direction: column; /* stacked on mobile */
-  justify-content: center;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   background: #2c5f2d;
@@ -57,7 +59,6 @@ header {
 }
 
 header .logo a {
-  text-decoration: none;
   font-size: 1.5em;
   font-weight: bold;
   color: white;
@@ -66,17 +67,14 @@ header .logo a {
 header nav ul {
   display: flex;
   list-style: none;
-  margin: 1em 0 0 0;
   margin: 0;
   padding: 0;
-  gap: 1em;
+  gap: 1.5em;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1.5em;
 }
 
 header nav a {
-  text-decoration: none;
   color: white;
   font-weight: 600;
 }
@@ -88,13 +86,10 @@ header nav a {
   background: linear-gradient(to right, #2c5f2d, #27ae60);
   color: white;
   text-align: center;
-  padding: 5em 1em 3em;
   padding: 6em 2em 4em;
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
 }
-#hero h1 { font-size: 2.2em; margin-bottom: 0.5em; }
-#hero p { font-size: 1.1em; max-width: 90%; margin: 0 auto 1.5em; }
 #hero h1 {
   font-size: 3em;
   margin-bottom: 0.5em;
@@ -111,34 +106,28 @@ header nav a {
 /* ------------------------- */
 .story-section {
   background: #ffffff;
-  padding: 4em 1em;
   padding: 5em 2em;
   text-align: center;
 }
-.story-section h2 { font-size: 1.8em; color: #2c5f2d; margin-bottom: 0.5em; }
-.story-section p { font-size: 1em; max-width: 90%; margin: 0 auto 1.5em; }
-
 .story-section h2 {
   font-size: 2.2em;
   color: #2c5f2d;
   margin-bottom: 0.5em;
 }
 .story-section p {
+  font-size: 1.1em;
   max-width: 800px;
   margin: 0 auto 2em;
-  font-size: 1.1em;
 }
+
 .story-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5em;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 2em;
   margin-top: 2em;
 }
 .story-card {
   background: #f9fafb;
-  padding: 1.5em;
   padding: 2em;
   border-radius: 16px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.08);
@@ -148,22 +137,18 @@ header nav a {
   transform: translateY(-6px);
   box-shadow: 0 10px 24px rgba(0,0,0,0.12);
 }
-.story-card h3 { color: #27ae60; margin-bottom: 0.5em; }
-
-/* CTA Button */
 .story-card h3 {
   color: #27ae60;
   margin-bottom: 0.8em;
 }
+
 .story-btn {
   display: inline-block;
   background: #fceeb5;
   color: #2c5f2d;
-  padding: 0.8em 2em;
   padding: 1em 2em;
   border-radius: 50px;
   font-weight: bold;
-  font-size: 1.1em;
   font-size: 1.2em;
   text-decoration: none;
   transition: all 0.3s;
@@ -179,13 +164,11 @@ header nav a {
 #services {
   background: #27ae60;
   color: white;
-  padding: 4em 1em;
   padding: 5em 2em;
   text-align: center;
   border-top-left-radius: 40px;
   border-top-right-radius: 40px;
 }
-#services h2 { font-size: 1.8em; margin-bottom: 1em; }
 #services h2 {
   font-size: 2.2em;
   margin-bottom: 1em;
@@ -194,17 +177,11 @@ header nav a {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1em;
-  margin-top: 1.5em;
   gap: 1.5em;
   margin-top: 2em;
 }
 .service {
   background: white;
-  border-radius: 16px;
-  width: 120px;
-  height: 120px;
-  font-size: 1em;
   border-radius: 20px;
   width: 140px;
   height: 140px;
@@ -213,7 +190,6 @@ header nav a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   box-shadow: 0 6px 16px rgba(0,0,0,0.1);
   cursor: pointer;
   transition: transform 0.25s, box-shadow 0.25s;
@@ -221,14 +197,12 @@ header nav a {
   text-align: center;
 }
 .service:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.12);
   transform: scale(1.08);
   box-shadow: 0 12px 24px rgba(0,0,0,0.15);
 }
 
 /* ------------------------- */
-/* Cards & Sections for Other Pages */
+/* Cards & Other Sections */
 /* ------------------------- */
 .card {
   background: #f9fafb;
@@ -246,73 +220,102 @@ header nav a {
 /* ------------------------- */
 /* Forms & Inputs */
 /* ------------------------- */
-form { display: flex; flex-direction: column; gap: 14px; }
-form input, form textarea { padding: 0.8em; border: 1px solid #ccc; border-radius: 6px; }
-form input:focus, form textarea:focus { border-color: #27ae60; outline: none; box-shadow: 0 0 4px #27ae60; }
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: #222;
+}
+
+form input,
+form textarea {
+  padding: 0.6em;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  box-sizing: border-box;
+  background: #fff;
+  color: #222;
+}
+
+form input:focus,
+form textarea:focus {
+  border-color: #27ae60;
+  outline: none;
+  box-shadow: 0 0 4px #27ae60;
+}
+
 form button {
-  background: #27ae60;
+  background: #2c5f2d;
   color: white;
-  padding: 0.8em;
+  padding: 0.7em;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   font-weight: 600;
   transition: all 0.3s;
 }
-form button:hover { background: #2c5f2d; }
-label.required::after { content: " *"; color: red; }
+
+form button:hover {
+  background: #256d25;
+}
+
+label.required::after {
+  content: " *";
+  color: red;
+}
 
 /* ------------------------- */
-/* Modals & Forms */
 /* Modals */
 /* ------------------------- */
-.modal { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.6); display:flex; align-items:center; justify-content:center; z-index:1000; }
 .modal {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(0,0,0,0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.6);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:1000;
 }
 .modal.hidden { display: none; }
+
 .modal-content {
-  background: white;
+  background: #fff;
+  color: #222;
   padding: 2em;
   border-radius: 12px;
-  width: 95%;
-  max-width: 450px;
   width: 90%;
   max-width: 500px;
   max-height: 90%;
   overflow-y: auto;
   position: relative;
+  font-size: 1em;
 }
-.close-btn { position:absolute; top:10px; right:15px; font-size:24px; cursor:pointer; }
-form { display:flex; flex-direction:column; gap:12px; }
-form input, form textarea { padding:0.6em; border:1px solid #ccc; border-radius:6px; width:100%; box-sizing:border-box; }
-form button { background:#2c5f2d; color:white; padding:0.7em; border:none; border-radius:6px; cursor:pointer; font-weight:600; }
-form button:hover { background:#256d25; }
-.scrollable { overflow-y: auto; }
+
 .close-btn {
   position: absolute;
-  top: 10px; right: 15px;
+  top: 10px;
+  right: 15px;
   font-size: 24px;
   cursor: pointer;
+  color: #222;
 }
+
+/* ------------------------- */
 /* Checkboxes */
+/* ------------------------- */
 .checkbox-label {
   display: flex;
   align-items: center;
-  gap: 0.5em; /* space between checkbox and text */
-  cursor: pointer; /* makes the whole label clickable */
+  gap: 0.5em;
+  cursor: pointer;
   margin-bottom: 0.8em;
 }
 
 .checkbox-label.required a {
-  margin-left: 0.2em;
   text-decoration: underline;
   color: #27ae60;
 }
@@ -334,7 +337,7 @@ footer {
 
 .footer-container {
   display: flex;
-  flex-direction: column; /* stacked on mobile */
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0.8em;
@@ -374,29 +377,15 @@ footer {
   color: #f9fafb;
 }
 
+/* ------------------------- */
 /* Responsive */
-@media (min-width: 600px) {
-  .footer-container {
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: left;
-  }
-  .footer-left {
-    align-items: flex-start;
-  }
-  .footer-right {
-    justify-content: flex-end;
-  }
-}
-
-/* ------------------------- */
-/* Responsive Adjustments */
-/* Responsive Design */
-/* ------------------------- */
 @media (min-width: 600px) {
   header { flex-direction: row; justify-content: space-between; padding: 1em 2em; }
   .footer-container { flex-direction: row; justify-content: space-between; max-width: 1100px; margin: 0 auto; width:90%; text-align:left; }
+  .footer-left { align-items: flex-start; }
   .footer-right { justify-content:flex-end; }
+}
+
 @media (max-width: 1024px) {
   #hero h1 { font-size: 2.5em; }
   #hero p { font-size: 1.1em; }
@@ -409,6 +398,13 @@ footer {
   .service-container { justify-content: center; gap: 1em; }
 }
 
+@media (max-width: 480px) {
+  h1 { font-size: 1.8em; }
+  h2 { font-size: 1.5em; }
+  p { font-size: 0.95em; }
+  .btn, form button { padding: 0.6em 1.5em; font-size: 0.95em; }
+}
+
 @media (max-width: 400px) {
   .service { width: 100px; height:100px; font-size:0.9em; }
   #hero h1 { font-size:1.8em; }
@@ -416,9 +412,4 @@ footer {
   .story-section h2 { font-size:1.5em; }
   .story-section p { font-size:0.95em; }
   #services h2 { font-size:1.5em; }
-@media (max-width: 480px) {
-  h1 { font-size: 1.8em; }
-  h2 { font-size: 1.5em; }
-  p { font-size: 0.95em; }
-  .btn, form button { padding: 0.6em 1.5em; font-size: 0.95em; }
 }
