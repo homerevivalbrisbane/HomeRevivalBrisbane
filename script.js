@@ -18,29 +18,18 @@ const servicePrices = {
 };
 
 // ------------------------------
-// On DOM Ready
+// DOM Ready
 // ------------------------------
 document.addEventListener("DOMContentLoaded", () => {
   // Animate on scroll
   const animatedElements = document.querySelectorAll("[data-aos]");
-  const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2 }
-  );
-  animatedElements.forEach(el => observer.observe(el));
+  animatedElements.forEach(el => AOS.init({ duration: 700, once: true }));
 
-  // Service icons click
+  // Add data-service attribute for clarity
   document.querySelectorAll(".service").forEach(el => {
-    el.addEventListener("click", () => {
-      const service = el.textContent.trim().split("\n")[0].trim();
-      openForm(service);
-    });
+    const serviceName = el.textContent.split("\n")[1]?.trim() || el.textContent.trim();
+    el.dataset.service = serviceName;
+    el.addEventListener("click", () => openForm(serviceName));
   });
 
   // Form submit
@@ -58,15 +47,13 @@ document.addEventListener("DOMContentLoaded", () => {
       elements,
       confirmParams: { return_url: window.location.href }
     });
-    if (error) {
-      document.getElementById("paymentMessage").textContent = error.message;
-    }
+    if (error) document.getElementById("paymentMessage").textContent = error.message;
   });
 
   // Smooth scroll
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener("click", function(e) {
-      const targetId = this.getAttribute("href");
+    anchor.addEventListener("click", e => {
+      const targetId = anchor.getAttribute("href");
       if (targetId.length > 1) {
         e.preventDefault();
         document.querySelector(targetId).scrollIntoView({ behavior: "smooth", block: "start" });
@@ -122,7 +109,7 @@ async function handleFormSubmit(e) {
   const formData = new FormData(e.target);
   const service = formData.get("serviceType");
   const basePrice = servicePrices[service] || 30;
-  const urgentFee = formData.get("urgent") ? 40 : 0;
+  const urgentFee = formData.get("urgent") === "on" ? 40 : 0;
   const total = basePrice + urgentFee;
 
   document.getElementById("orderDetails").innerHTML = `
@@ -135,7 +122,6 @@ async function handleFormSubmit(e) {
   closeForm();
   document.getElementById("orderSummaryModal").classList.remove("hidden");
 
-  // Setup Stripe
   await setupStripe(total);
 }
 
@@ -143,20 +129,24 @@ async function handleFormSubmit(e) {
 // Stripe Payment Setup
 // ------------------------------
 async function setupStripe(total) {
-  const amount = total * 100; // cents
-  const res = await fetch("/.netlify/functions/create-checkout-session", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ amount })
-  });
-  const data = await res.json();
+  const amount = total * 100; // convert to cents
+  try {
+    const res = await fetch("/.netlify/functions/create-checkout-session", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ amount })
+    });
+    const data = await res.json();
 
-  if (data.clientSecret) {
-    elements = stripe.elements({ clientSecret: data.clientSecret });
-    if (paymentElement) paymentElement.unmount();
-    paymentElement = elements.create("payment");
-    paymentElement.mount("#payment-element");
-  } else if (data.url) {
-    window.location.href = data.url;
+    if (data.clientSecret) {
+      elements = stripe.elements({ clientSecret: data.clientSecret });
+      if (paymentElement) paymentElement.unmount();
+      paymentElement = elements.create("payment");
+      paymentElement.mount("#payment-element");
+    } else if (data.url) {
+      window.location.href = data.url;
+    }
+  } catch (err) {
+    console.error("Stripe setup error:", err);
   }
 }
