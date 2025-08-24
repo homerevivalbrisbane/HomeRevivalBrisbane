@@ -81,7 +81,7 @@
     </div>
   </section>
 
-  <!-- First Modal: Service Form -->
+  <!-- Service Form Modal -->
   <div class="modal hidden" id="contactForm">
     <div class="modal-content scrollable">
       <span class="close-btn" onclick="closeForm()">&times;</span>
@@ -103,14 +103,16 @@
         <input type="text" name="budget" />
         <label class="required">Job Description:</label>
         <textarea name="additionalInfo" required></textarea>
-        <label class="required"><input type="checkbox" name="terms" required /> I agree to <a href="terms.html">Terms and Conditions.</a></label>
+        <label class="required">
+          <input type="checkbox" name="terms" required /> I agree to <a href="terms.html">Terms and Conditions.</a>
+        </label>
         <div id="formErrorMsg" class="error-msg"></div>
         <button type="submit">Submit Request</button>
       </form>
     </div>
   </div>
 
-  <!-- Second Modal: Order Summary -->
+  <!-- Order Summary Modal -->
   <div class="modal hidden" id="orderSummaryModal">
     <div class="modal-content scrollable">
       <span class="close-btn" onclick="cancelOrderSummary()">&times;</span>
@@ -120,7 +122,7 @@
     </div>
   </div>
 
-  <!-- Third Modal: Stripe Payment -->
+  <!-- Stripe Payment Modal -->
   <div class="modal hidden" id="paymentModal">
     <div class="modal-content scrollable">
       <span class="close-btn" onclick="cancelPayment()">&times;</span>
