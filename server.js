@@ -1,56 +1,58 @@
-
-app.listen(3000, () => console.log("Server running on port 3000"));
-import express from 'express';
-import Stripe from 'stripe';
-import cors from 'cors';
+// server.js
+import express from "express";
+import Stripe from "stripe";
+import bodyParser from "body-parser";
+import cors from "cors";
 
 const app = express();
-const stripe = new Stripe('spk_test_51RzXEUS9s8DViJRGJX6FLVQ7CqIj6HpoxE5vJHBWpRCvbeiGg9vc1LNw5P4QsLHSHqiceXF4IKmilLPqZ3DwEeUT009beNjoxF', {
-  apiVersion: '2022-11-15'
-});
-
 app.use(cors());
-app.use(express.json());
+app.use(bodyParser.json());
 
-// Create payment intent
-app.post('/create-payment-intent', async (req, res) => {
-  const { service, urgent } = req.body;
-  let amount = 0;
+const stripe = new Stripe("sk_test_51RzXEUS9s8DViJRGf8CPh2myvwvyMKEr2Tf63Ow3aCYMK62JGvoaE5n9aFrD6pUU7kkShxiBqRnVywitGkRbIMJE00x4RZbVGj");
 
-  // Set prices for each service
-  const servicePrices = {
-   Plumbing: 50,
-  Electrical: 50,
-  Painting: 30,
-  Gardening: 20,
-  Cleaning: 20,
-  Appliances: 30,
-  Carpentry: 30,
-  Plastering: 30,
-  Furniture: 30,
-  Other: 20
-  };
-
-  amount = servicePrices[service] || 100;
-  if (urgent) amount += 40; // urgency fee
-
+// Create Checkout Session
+app.post("/create-checkout-session", async (req, res) => {
   try {
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: amount * 100, // in cents
-      currency: 'aud',
-      automatic_payment_methods: { enabled: true }
+    const { service, cost, urgency } = req.body;
+
+    const line_items = [
+      {
+        price_data: {
+          currency: "aud",
+          product_data: {
+            name: service,
+          },
+          unit_amount: cost * 100, // Stripe needs cents
+        },
+        quantity: 1,
+      },
+    ];
+
+    if (urgency) {
+      line_items.push({
+        price_data: {
+          currency: "aud",
+          product_data: {
+            name: "Urgency Fee",
+          },
+          unit_amount: urgency * 100,
+        },
+        quantity: 1,
+      });
+    }
+
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      mode: "payment",
+      line_items,
+      success_url: "http://localhost:5173/success", // Change to your success page
+      cancel_url: "http://localhost:5173/cancel",   // Change to your cancel page
     });
-    res.send({ clientSecret: paymentIntent.client_secret });
+
+    res.json({ url: session.url });
   } catch (err) {
-    res.status(500).send({ error: err.message });
+    res.status(500).json({ error: err.message });
   }
 });
 
-// Log order (optional)
-app.post('/log-order', (req, res) => {
-  console.log("Order received:", req.body);
-  res.send({ success: true });
-});
-
-app.listen(3000, () => console.log("Server running on port 3000"));
-
+app.listen(4242, () => console.log("Server running on http://localhost:4242"));
