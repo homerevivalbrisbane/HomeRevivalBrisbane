@@ -413,3 +413,24 @@ footer {
   .story-section p { font-size:0.95em; }
   #services h2 { font-size:1.5em; }
 }
+/* Ensure body text is visible */
+body, body * {
+  color: #222 !important; /* dark text for readability */
+}
+
+/* Ensure inputs and textareas have readable text */
+input, textarea {
+  color: #222 !important;
+  background-color: #fff !important; /* make sure input background is white */
+}
+
+/* Modal text */
+.modal-content, .modal-content * {
+  color: #222 !important;
+}
+
+/* Buttons text */
+button, .story-btn {
+  color: #222; /* or white depending on background */
+}
+
