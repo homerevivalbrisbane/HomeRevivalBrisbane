@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Home Revival Brisbane</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css"/>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <!-- AOS Scroll Animations -->
+  <!-- AOS Animations -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
 </head>
 <body>
@@ -23,7 +23,7 @@
     </nav>
   </header>
 
-  <!-- Hero Section -->
+  <!-- Hero -->
   <section id="hero">
     <div class="hero-content" data-aos="fade-up">
       <h1>Home help, minus the hassle.</h1>
@@ -31,7 +31,7 @@
     </div>
   </section>
 
-  <!-- Story Section -->
+  <!-- Story -->
   <section id="story" class="story-section">
     <h2 data-aos="fade-up">Why Choose Home Revival Brisbane?</h2>
     <p data-aos="fade-up" data-aos-delay="100">
@@ -39,50 +39,25 @@
     </p>
     <div class="story-grid">
       <div class="story-card" data-aos="fade-up" data-aos-delay="200">
-        <h3>Real People</h3>
+        <h3>👨‍🔧 Real People</h3>
         <p>We only connect you with hand-picked professionals we’d trust in our own homes.</p>
       </div>
       <div class="story-card" data-aos="fade-up" data-aos-delay="300">
-        <h3>Fast Response</h3>
+        <h3>⚡ Fast Response</h3>
         <p>Most requests are matched within hours. When time matters, we’ve got your back.</p>
       </div>
       <div class="story-card" data-aos="fade-up" data-aos-delay="400">
-        <h3>All Jobs Welcome</h3>
+        <h3>🔨 All Jobs Welcome</h3>
         <p>Big or small, urgent or flexible — if it needs doing, we’ll find the right person.</p>
       </div>
     </div>
     <a href="about.html" class="cta-btn story-btn" data-aos="zoom-in" data-aos-delay="500">Learn More</a>
   </section>
 
-  <!-- Services Section -->
+  <!-- Services -->
   <section id="services">
     <h2 data-aos="fade-up">Get Started</h2>
-    <div class="service-grid">
-      <div class="service-card" data-aos="flip-left">
-        <img src="icons/plumbing.svg" alt="Plumbing">
-        <h3>Plumbing</h3>
-      </div>
-      <div class="service-card" data-aos="flip-left" data-aos-delay="100">
-        <img src="icons/electrical.svg" alt="Electrical">
-        <h3>Electrical</h3>
-      </div>
-      <div class="service-card" data-aos="flip-left" data-aos-delay="200">
-        <img src="icons/carpentry.svg" alt="Carpentry">
-        <h3>Carpentry</h3>
-      </div>
-      <div class="service-card" data-aos="flip-left" data-aos-delay="300">
-        <img src="icons/cleaning.svg" alt="Cleaning">
-        <h3>Cleaning</h3>
-      </div>
-      <div class="service-card" data-aos="flip-left" data-aos-delay="400">
-        <img src="icons/gardening.svg" alt="Gardening">
-        <h3>Gardening</h3>
-      </div>
-      <div class="service-card" data-aos="flip-left" data-aos-delay="500">
-        <img src="icons/other.svg" alt="Other">
-        <h3>Other</h3>
-      </div>
-    </div>
+    <div class="service-grid" id="serviceGrid"></div>
   </section>
 
   <!-- Footer -->
@@ -98,8 +73,6 @@
   <!-- Scripts -->
   <script src="script.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <script>
-    AOS.init({ duration: 1000, once: true });
-  </script>
+  <script>AOS.init({ duration: 1000, once: true });</script>
 </body>
 </html>
