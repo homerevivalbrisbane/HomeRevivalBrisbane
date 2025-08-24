@@ -2,7 +2,7 @@
 // Stripe Setup
 // ------------------------------
 const stripe = Stripe("pk_test_YOUR_PUBLIC_KEY"); // <-- Replace with your key
-let elements;
+let elements, paymentElement;
 
 const servicePrices = {
   Plumbing: 50,
@@ -22,7 +22,7 @@ const servicePrices = {
 // ------------------------------
 document.addEventListener("DOMContentLoaded", () => {
   // Animate on scroll
-  const animatedElements = document.querySelectorAll(".fade-up, .fade-left, .fade-right");
+  const animatedElements = document.querySelectorAll("[data-aos]");
   const observer = new IntersectionObserver(
     entries => {
       entries.forEach(entry => {
@@ -35,48 +35,37 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   animatedElements.forEach(el => observer.observe(el));
 
-  // Make service icons clickable
-  const serviceElements = document.querySelectorAll(".service, .service-card, .service-icon");
-  serviceElements.forEach(el => {
-    el.style.cursor = "pointer";
+  // Service icons click
+  document.querySelectorAll(".service").forEach(el => {
     el.addEventListener("click", () => {
-      const datasetService = el.dataset?.service;
-      const textService = el.textContent?.trim().split("\n")[0].trim();
-      const svc = datasetService || textService;
-      openForm(svc);
+      const service = el.textContent.trim().split("\n")[0].trim();
+      openForm(service);
     });
   });
 
   // Form submit
-  const form = document.getElementById("serviceRequestForm");
-  if (form) form.addEventListener("submit", handleFormSubmit);
+  document.getElementById("serviceRequestForm").addEventListener("submit", handleFormSubmit);
 
-  // Order confirm
-  const confirmBtn = document.getElementById("confirmPaymentBtn");
-  if (confirmBtn) {
-    confirmBtn.addEventListener("click", async () => {
-      document.getElementById("orderSummaryModal").classList.add("hidden");
-      document.getElementById("paymentModal").classList.remove("hidden");
+  // Confirm order
+  document.getElementById("confirmPaymentBtn").addEventListener("click", () => {
+    document.getElementById("orderSummaryModal").classList.add("hidden");
+    document.getElementById("paymentModal").classList.remove("hidden");
+  });
+
+  // Stripe payment
+  document.getElementById("submitPaymentBtn").addEventListener("click", async () => {
+    const { error } = await stripe.confirmPayment({
+      elements,
+      confirmParams: { return_url: window.location.href }
     });
-  }
+    if (error) {
+      document.getElementById("paymentMessage").textContent = error.message;
+    }
+  });
 
-  // Payment submission
-  const submitPaymentBtn = document.getElementById("submitPaymentBtn");
-  if (submitPaymentBtn) {
-    submitPaymentBtn.addEventListener("click", async () => {
-      const { error } = await stripe.confirmPayment({
-        elements,
-        confirmParams: { return_url: window.location.href }
-      });
-      if (error) {
-        document.getElementById("paymentMessage").textContent = error.message;
-      }
-    });
-  }
-
-  // Smooth scrolling
+  // Smooth scroll
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener("click", function (e) {
+    anchor.addEventListener("click", function(e) {
       const targetId = this.getAttribute("href");
       if (targetId.length > 1) {
         e.preventDefault();
@@ -85,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Expose openForm globally
+  // Expose globally
   window.openForm = openForm;
   window.closeForm = closeForm;
   window.cancelOrderSummary = cancelOrderSummary;
@@ -93,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ------------------------------
-// Modal + Form Flow
+// Open / Close Modals
 // ------------------------------
 function openForm(service) {
   const price = servicePrices[service] || 30;
@@ -122,12 +111,13 @@ function cancelOrderSummary() {
 
 function cancelPayment() {
   document.getElementById("paymentModal").classList.add("hidden");
+  if (paymentElement) paymentElement.unmount();
 }
 
 // ------------------------------
 // Handle Form Submit
 // ------------------------------
-function handleFormSubmit(e) {
+async function handleFormSubmit(e) {
   e.preventDefault();
   const formData = new FormData(e.target);
   const service = formData.get("serviceType");
@@ -145,8 +135,8 @@ function handleFormSubmit(e) {
   closeForm();
   document.getElementById("orderSummaryModal").classList.remove("hidden");
 
-  // create payment intent
-  setupStripe(total);
+  // Setup Stripe
+  await setupStripe(total);
 }
 
 // ------------------------------
@@ -163,10 +153,10 @@ async function setupStripe(total) {
 
   if (data.clientSecret) {
     elements = stripe.elements({ clientSecret: data.clientSecret });
-    const paymentElement = elements.create("payment");
+    if (paymentElement) paymentElement.unmount();
+    paymentElement = elements.create("payment");
     paymentElement.mount("#payment-element");
   } else if (data.url) {
-    // fallback to Checkout redirect
     window.location.href = data.url;
   }
 }
