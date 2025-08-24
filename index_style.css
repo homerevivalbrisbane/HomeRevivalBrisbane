@@ -325,35 +325,58 @@ input[type="checkbox"] {
 
 /* ------------------------- */
 /* Footer */
-/* ------------------------- */
 footer {
   background: #2c5f2d;
   color: #f9fafb;
   padding: 2em 1em;
   font-size: 0.95em;
 }
+
 .footer-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* stacked on mobile */
   align-items: center;
+  justify-content: center;
   gap: 0.5em;
+  max-width: 1100px;
+  margin: 0 auto;
   text-align: center;
 }
-.footer-left, .footer-right {
+
+.footer-left,
+.footer-right {
   display: flex;
-  gap: 1.2em;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 1em;
   align-items: center;
 }
+
 .footer-right a {
   color: #f9fafb;
   font-weight: 600;
   transition: color 0.3s, transform 0.2s;
 }
+
 .footer-right a:hover {
   color: #fceeb5;
   transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (min-width: 600px) {
+  .footer-container {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+  .footer-left {
+    justify-content: flex-start;
+    gap: 1em;
+  }
+  .footer-right {
+    justify-content: flex-end;
+  }
 }
 
 /* ------------------------- */
