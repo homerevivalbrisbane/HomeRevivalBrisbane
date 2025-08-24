@@ -1,9 +1,15 @@
-// ------------------------------
-// Stripe Setup
-// ------------------------------
-const stripe = Stripe("pk_test_YOUR_PUBLIC_KEY"); // <-- Replace with your key
-let elements, paymentElement;
+import express from "express";
+import Stripe from "stripe";
+import bodyParser from "body-parser";
+import cors from "cors";
 
+const app = express();
+const stripe = new Stripe("sk_test_YOUR_SECRET_KEY"); // Replace with your secret key
+
+app.use(bodyParser.json());
+app.use(cors());
+
+// Map service to base cost
 const servicePrices = {
   Plumbing: 50,
   Electrical: 50,
@@ -17,156 +23,40 @@ const servicePrices = {
   Other: 20
 };
 
-// ------------------------------
-// DOM Ready
-// ------------------------------
-document.addEventListener("DOMContentLoaded", () => {
-  // Animate on scroll
-  AOS.init({ duration: 700, once: true });
+// Endpoint to create payment intent
+app.post("/create-payment-intent", async (req, res) => {
+  try {
+    const { service, urgent } = req.body;
+    const serviceCost = servicePrices[service] || 80;
+    const urgencyFee = urgent ? 40 : 0;
 
-  // Add data-service attribute and click event for each service
-  document.querySelectorAll(".service").forEach(el => {
-    const serviceName = el.textContent.replace(/[\u{1F300}-\u{1FAFF}]/gu, '').trim();
-    el.dataset.service = serviceName;
-    el.addEventListener("click", () => openForm(serviceName));
-  });
-
-  // Form submit
-  document.getElementById("serviceRequestForm").addEventListener("submit", handleFormSubmit);
-
-  // Confirm order button
-  document.getElementById("confirmPaymentBtn").addEventListener("click", () => {
-    document.getElementById("orderSummaryModal").classList.add("hidden");
-    document.getElementById("paymentModal").classList.remove("hidden");
-  });
-
-  // Stripe payment button
-  document.getElementById("submitPaymentBtn").addEventListener("click", async () => {
-    const { error } = await stripe.confirmPayment({
-      elements,
-      confirmParams: { return_url: window.location.href }
-    });
-    if (error) document.getElementById("paymentMessage").textContent = error.message;
-  });
-
-  // Smooth scroll
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener("click", e => {
-      const targetId = anchor.getAttribute("href");
-      if (targetId.length > 1) {
-        e.preventDefault();
-        document.querySelector(targetId).scrollIntoView({ behavior: "smooth", block: "start" });
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: Math.round((serviceCost + urgencyFee) * 100), // in cents
+      currency: "aud",
+      automatic_payment_methods: { enabled: true },
+      metadata: {
+        service,
+        urgent: urgent ? "Yes" : "No",
+        serviceCost,
+        urgencyFee
       }
     });
-  });
 
-  // Expose functions globally for modal buttons
-  window.openForm = openForm;
-  window.closeForm = closeForm;
-  window.cancelOrderSummary = cancelOrderSummary;
-  window.cancelPayment = cancelPayment;
+    res.send({ clientSecret: paymentIntent.client_secret });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ error: err.message });
+  }
 });
 
-// ------------------------------
-// Open / Close Modals
-// ------------------------------
-function openForm(service) {
-  const basePrice = servicePrices[service] || 30;
-  const urgentCheckbox = document.querySelector("input[name='urgent']");
-  const feeNote = document.getElementById("feeNote");
-
-  document.getElementById("formTitle").innerText = `Request Help: ${service}`;
-  updateFeeNote(basePrice, urgentCheckbox.checked, service);
-
-  document.getElementById("contactForm").classList.remove("hidden");
-
-  // Add hidden input to track service
-  let hidden = document.querySelector("input[name='serviceType']");
-  if (!hidden) {
-    hidden = document.createElement("input");
-    hidden.type = "hidden";
-    hidden.name = "serviceType";
-    document.getElementById("serviceRequestForm").appendChild(hidden);
-  }
-  hidden.value = service;
-
-  // Update fee dynamically when urgent is checked/unchecked
-  urgentCheckbox.onchange = () => updateFeeNote(basePrice, urgentCheckbox.checked, service);
-}
-
-function updateFeeNote(basePrice, isUrgent, service) {
-  const feeNote = document.getElementById("feeNote");
-  let urgentFee = isUrgent ? 40 : 0;
-  let note = `<strong>Fee:</strong> $${basePrice + urgentFee}`;
-  if (service === "Other") {
-    note += `<br><em>Note: 'Other' services may incur additional costs based on complexity.</em>`;
-  }
-  feeNote.innerHTML = note;
-}
-
-function closeForm() {
-  document.getElementById("contactForm").classList.add("hidden");
-  const urgentCheckbox = document.querySelector("input[name='urgent']");
-  if (urgentCheckbox) urgentCheckbox.checked = false;
-  document.getElementById("feeNote").innerHTML = "";
-}
-
-function cancelOrderSummary() {
-  document.getElementById("orderSummaryModal").classList.add("hidden");
-  document.getElementById("contactForm").classList.remove("hidden");
-}
-
-function cancelPayment() {
-  document.getElementById("paymentModal").classList.add("hidden");
-  if (paymentElement) paymentElement.unmount();
-}
-
-// ------------------------------
-// Handle Form Submit
-// ------------------------------
-async function handleFormSubmit(e) {
-  e.preventDefault();
-  const formData = new FormData(e.target);
-  const service = formData.get("serviceType");
-  const basePrice = servicePrices[service] || 30;
-  const urgentFee = formData.get("urgent") === "on" ? 40 : 0;
-  const total = basePrice + urgentFee;
-
-  document.getElementById("orderDetails").innerHTML = `
-    <p><strong>Service:</strong> ${service}</p>
-    <p><strong>Base price:</strong> $${basePrice}</p>
-    <p><strong>Urgent fee:</strong> $${urgentFee}</p>
-    <p><strong>Total:</strong> $${total}</p>
-  `;
-
-  closeForm();
-  document.getElementById("orderSummaryModal").classList.remove("hidden");
-
-  await setupStripe(total);
-}
-
-// ------------------------------
-// Stripe Payment Setup
-// ------------------------------
-async function setupStripe(total) {
-  const amount = total * 100; // convert to cents
+// Endpoint to log orders after successful payment (optional)
+app.post("/log-order", async (req, res) => {
   try {
-    const res = await fetch("/.netlify/functions/create-checkout-session", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ amount })
-    });
-    const data = await res.json();
-
-    if (data.clientSecret) {
-      elements = stripe.elements({ clientSecret: data.clientSecret });
-      if (paymentElement) paymentElement.unmount();
-      paymentElement = elements.create("payment");
-      paymentElement.mount("#payment-element");
-    } else if (data.url) {
-      window.location.href = data.url;
-    }
+    console.log("New Order:", req.body); // You can save to DB here
+    res.send({ success: true });
   } catch (err) {
-    console.error("Stripe setup error:", err);
+    res.status(500).send({ error: err.message });
   }
-}
+});
+
+app.listen(3000, () => console.log("Server running on port 3000"));
