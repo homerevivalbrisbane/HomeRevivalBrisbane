@@ -88,8 +88,8 @@
     <div class="modal-content scrollable">
       <span class="close-btn" onclick="closeForm()">&times;</span>
       <h2 id="formTitle">Request Help</h2>
-      <p id="feeNote"></p>
       <form id="serviceRequestForm">
+        <input type="hidden" name="service" />
         <label class="required">Your Name:</label>
         <input type="text" name="name" required />
         <label class="required">Email:</label>
@@ -101,16 +101,16 @@
         <label>Preferred completion date:</label>
         <input type="date" name="completionDate" />
         <label class="checkbox-label">
-  <input type="checkbox" name="urgent" /> Urgent (+$40)
-</label>
+          <input type="checkbox" name="urgent" /> Urgent (+$40)
+        </label>
         <label>Budget:</label>
         <input type="text" name="budget" />
         <label class="required">Job Description:</label>
         <textarea name="additionalInfo" required></textarea>
         <label class="checkbox-label required">
-  <input type="checkbox" name="terms" required />
-  I agree to <a href="terms.html">Terms and Conditions.</a>
-</label>
+          <input type="checkbox" name="terms" required />
+          I agree to <a href="terms.html">Terms and Conditions.</a>
+        </label>
         <div id="formErrorMsg" class="error-msg"></div>
         <button type="submit">Submit Request</button>
       </form>
@@ -124,17 +124,6 @@
       <h2>Confirm Your Request</h2>
       <div id="orderDetails"></div>
       <button id="confirmPaymentBtn">Confirm & Proceed</button>
-    </div>
-  </div>
-
-  <!-- Third Modal: Stripe Payment -->
-  <div class="modal hidden" id="paymentModal">
-    <div class="modal-content scrollable">
-      <span class="close-btn" onclick="cancelPayment()">&times;</span>
-      <h2>Secure Payment</h2>
-      <div id="payment-element"></div>
-      <button id="submitPaymentBtn">Pay Now</button>
-      <div id="paymentMessage"></div>
     </div>
   </div>
 
@@ -159,106 +148,51 @@
   <script src="script.js"></script>
   <script>
     AOS.init({ duration: 700, once: true });
+
+    // Handle service selection
+    document.querySelectorAll(".service").forEach(serviceEl => {
+      serviceEl.addEventListener("click", () => {
+        document.querySelector("#serviceRequestForm [name='service']").value = serviceEl.dataset.service;
+        document.getElementById("contactForm").classList.remove("hidden");
+        document.getElementById("formTitle").textContent = `Request Help: ${serviceEl.dataset.service}`;
+      });
+    });
+
+    function closeForm() { document.getElementById("contactForm").classList.add("hidden"); }
+    function cancelOrderSummary() { document.getElementById("orderSummaryModal").classList.add("hidden"); }
+
+    // Show order summary after form submit
+    document.getElementById("serviceRequestForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const service = formData.get("service") || "Other";
+      const urgent = formData.get("urgent") ? true : false;
+      const urgencyFee = urgent ? 40 : 0;
+
+      document.getElementById("orderDetails").innerHTML = `
+        <p><strong>Service:</strong> ${service}</p>
+        <p><strong>Urgency Fee:</strong> $${urgencyFee}</p>
+      `;
+
+      document.getElementById("contactForm").classList.add("hidden");
+      document.getElementById("orderSummaryModal").classList.remove("hidden");
+    });
+
+    // Redirect to Stripe Checkout
+    document.getElementById("confirmPaymentBtn").addEventListener("click", async () => {
+      const formData = new FormData(document.getElementById("serviceRequestForm"));
+      const service = formData.get("service") || "Other";
+      const urgent = formData.get("urgent") ? true : false;
+
+      const response = await fetch("http://localhost:4242/create-checkout-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ service, cost: 100, urgency: urgent ? 40 : 0 }) // Example cost: 100
+      });
+
+      const data = await response.json();
+      window.location.href = data.url; // Redirects to Stripe hosted checkout
+    });
   </script>
-  <script>
-const stripe = Stripe("pk_test_YOUR_PUBLIC_KEY"); // Replace with your public key
-let elements;
-let clientSecret;
-
-// Service selection
-document.querySelectorAll(".service").forEach(serviceEl => {
-  serviceEl.addEventListener("click", () => {
-    document.querySelector("#serviceRequestForm [name='service']")?.remove();
-    const input = document.createElement("input");
-    input.type = "hidden";
-    input.name = "service";
-    input.value = serviceEl.dataset.service;
-    document.getElementById("serviceRequestForm").appendChild(input);
-    document.getElementById("contactForm").classList.remove("hidden");
-    document.getElementById("formTitle").textContent = `Request Help: ${serviceEl.dataset.service}`;
-  });
-});
-
-// Close / cancel modals
-function closeForm() { document.getElementById("contactForm").classList.add("hidden"); }
-function cancelOrderSummary() { document.getElementById("orderSummaryModal").classList.add("hidden"); }
-function cancelPayment() { document.getElementById("paymentModal").classList.add("hidden"); }
-
-// Handle form submission -> show order summary
-document.getElementById("serviceRequestForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const formData = new FormData(e.target);
-  const service = formData.get("service") || "Other";
-  const urgent = formData.get("urgent") ? true : false;
-  const serviceCost = 0; // actual price will come from backend
-  const urgencyFee = urgent ? 40 : 0;
-
-  document.getElementById("orderDetails").innerHTML = `
-    <p><strong>Service:</strong> ${service}</p>
-    <p><strong>Urgency Fee:</strong> $${urgencyFee}</p>
-    <p><strong>Total:</strong> Calculated at payment</p>
-  `;
-
-  document.getElementById("orderSummaryModal").classList.remove("hidden");
-});
-
-// Confirm & proceed -> create Stripe PaymentIntent and show payment modal
-document.getElementById("confirmPaymentBtn").addEventListener("click", async () => {
-  const formData = new FormData(document.getElementById("serviceRequestForm"));
-  const service = formData.get("service") || "Other";
-  const urgent = formData.get("urgent") ? true : false;
-
-  // Request payment intent from backend
-  const res = await fetch("http://localhost:3000/create-payment-intent", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ service, urgent })
-  });
-  const data = await res.json();
-  clientSecret = data.clientSecret;
-
-  document.getElementById("orderSummaryModal").classList.add("hidden");
-  document.getElementById("paymentModal").classList.remove("hidden");
-
-  // Mount Stripe Elements if not already mounted
-  if (!elements) {
-    elements = stripe.elements();
-    const paymentElement = elements.create("payment");
-    paymentElement.mount("#payment-element");
-  }
-});
-
-// Handle Stripe payment
-document.getElementById("submitPaymentBtn").addEventListener("click", async () => {
-  const { error, paymentIntent } = await stripe.confirmPayment({
-    elements,
-    confirmParams: { return_url: window.location.href },
-    redirect: 'if_required'
-  });
-
-  if (error) {
-    document.getElementById("paymentMessage").textContent = error.message;
-    return;
-  }
-
-  document.getElementById("paymentMessage").textContent = "Payment successful! ✅";
-
-  // Log order to backend
-  const formData = new FormData(document.getElementById("serviceRequestForm"));
-  const orderData = Object.fromEntries(formData.entries());
-  orderData.paymentId = paymentIntent.id;
-  orderData.amount = paymentIntent.amount / 100;
-
-  await fetch("http://localhost:3000/log-order", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(orderData)
-  });
-
-  document.getElementById("paymentModal").classList.add("hidden");
-});
-</script>
-
-
 </body>
 </html>
