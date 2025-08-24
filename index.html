@@ -1,134 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Home Revival Brisbane</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- AOS Scroll Animations -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
 </head>
 <body>
   <!-- Header -->
-  <header class="header">
-    <div class="logo">
-      <a href="index.html">Home Revival Brisbane</a>
-    </div>
-    <nav class="nav">
+  <header>
+    <div class="logo"><a href="index.html">Home Revival Brisbane</a></div>
+    <nav>
       <ul>
         <li><a href="about.html">About</a></li>
-        <li><a href="terms.html">T&Cs</a></li>
+        <li><a href="terms.html">Terms</a></li>
         <li><a href="policy.html">Policy</a></li>
       </ul>
     </nav>
   </header>
 
   <!-- Hero Section -->
-  <section id="hero" class="fade-up">
-    <div class="hero-content">
+  <section id="hero">
+    <div class="hero-content" data-aos="fade-up">
       <h1>Home help, minus the hassle.</h1>
       <p>From leaking taps to urgent yard cleanups — we connect Brisbane locals with trusted professionals fast.</p>
     </div>
   </section>
 
   <!-- Story Section -->
-  <section id="story" class="story-section fade-up">
-    <h2>Why Choose Home Revival Brisbane?</h2>
-    <p>We’re not just another app or marketplace. We’re real locals who know the area and know who’s worth calling.</p>
+  <section id="story" class="story-section">
+    <h2 data-aos="fade-up">Why Choose Home Revival Brisbane?</h2>
+    <p data-aos="fade-up" data-aos-delay="100">
+      We’re not just another app or marketplace. We’re real locals who know the area and know who’s worth calling.
+    </p>
     <div class="story-grid">
-      <div class="story-card fade-up">
+      <div class="story-card" data-aos="fade-up" data-aos-delay="200">
         <h3>Real People</h3>
         <p>We only connect you with hand-picked professionals we’d trust in our own homes.</p>
       </div>
-      <div class="story-card fade-up">
+      <div class="story-card" data-aos="fade-up" data-aos-delay="300">
         <h3>Fast Response</h3>
         <p>Most requests are matched within hours. When time matters, we’ve got your back.</p>
       </div>
-      <div class="story-card fade-up">
+      <div class="story-card" data-aos="fade-up" data-aos-delay="400">
         <h3>All Jobs Welcome</h3>
         <p>Big or small, urgent or flexible — if it needs doing, we’ll find the right person.</p>
       </div>
     </div>
-    <a href="about.html" class="cta-btn story-btn fade-up">Learn More</a>
+    <a href="about.html" class="cta-btn story-btn" data-aos="zoom-in" data-aos-delay="500">Learn More</a>
   </section>
 
   <!-- Services Section -->
-  <section id="services" class="fade-up">
-    <h2>Get Started</h2>
-    <div class="services-grid">
-      <div class="service-card fade-up" data-service="Plumbing">
-        <img src="icons/plumbing.png" alt="Plumbing">
+  <section id="services">
+    <h2 data-aos="fade-up">Get Started</h2>
+    <div class="service-grid">
+      <div class="service-card" data-aos="flip-left">
+        <img src="icons/plumbing.svg" alt="Plumbing">
         <h3>Plumbing</h3>
       </div>
-      <div class="service-card fade-up" data-service="Electrical">
-        <img src="icons/electrical.png" alt="Electrical">
+      <div class="service-card" data-aos="flip-left" data-aos-delay="100">
+        <img src="icons/electrical.svg" alt="Electrical">
         <h3>Electrical</h3>
       </div>
-      <div class="service-card fade-up" data-service="Carpentry">
-        <img src="icons/carpentry.png" alt="Carpentry">
+      <div class="service-card" data-aos="flip-left" data-aos-delay="200">
+        <img src="icons/carpentry.svg" alt="Carpentry">
         <h3>Carpentry</h3>
       </div>
-      <div class="service-card fade-up" data-service="Cleaning">
-        <img src="icons/cleaning.png" alt="Cleaning">
+      <div class="service-card" data-aos="flip-left" data-aos-delay="300">
+        <img src="icons/cleaning.svg" alt="Cleaning">
         <h3>Cleaning</h3>
       </div>
-      <div class="service-card fade-up" data-service="Yard Work">
-        <img src="icons/yard.png" alt="Yard Work">
-        <h3>Yard Work</h3>
+      <div class="service-card" data-aos="flip-left" data-aos-delay="400">
+        <img src="icons/gardening.svg" alt="Gardening">
+        <h3>Gardening</h3>
       </div>
-      <div class="service-card fade-up" data-service="Other">
-        <img src="icons/other.png" alt="Other">
+      <div class="service-card" data-aos="flip-left" data-aos-delay="500">
+        <img src="icons/other.svg" alt="Other">
         <h3>Other</h3>
       </div>
     </div>
   </section>
 
-  <!-- Overlay Form (hidden initially) -->
-  <div id="form-overlay" class="overlay">
-    <div class="form-container fade-up">
-      <button class="close-btn">&times;</button>
-      <h2 id="form-title">Service Request</h2>
-      <form id="service-form">
-        <label for="issue">Describe your issue:</label>
-        <textarea id="issue" name="issue" required></textarea>
-
-        <label for="urgency">Urgency:</label>
-        <select id="urgency" name="urgency" required>
-          <option value="normal">Normal</option>
-          <option value="urgent">Urgent</option>
-        </select>
-
-        <label for="budget">Estimated Budget ($):</label>
-        <input type="number" id="budget" name="budget" required>
-
-        <label for="contact">Your Contact Info:</label>
-        <input type="text" id="contact" name="contact" placeholder="Name & Phone/Email" required>
-
-        <label for="address">Job Address:</label>
-        <input type="text" id="address" name="address" required>
-
-        <div class="form-note">
-          <small>Note: A $30 service fee applies for all requests.</small>
-        </div>
-
-        <div class="checkbox-container">
-          <input type="checkbox" id="agree" required>
-          <label for="agree">I agree to the <a href="terms.html" target="_blank">Terms & Conditions</a></label>
-        </div>
-
-        <button type="submit" class="cta-btn">Submit Request</button>
-      </form>
-    </div>
-  </div>
-
   <!-- Footer -->
-  <footer class="footer fade-up">
-    <p>&copy; 2025 Home Revival Brisbane. All rights reserved.</p>
-    <a href="terms.html">Terms & Conditions</a> | 
-    <a href="policy.html">Privacy Policy</a>
+  <footer>
+    <p>&copy; 2025 Home Revival Brisbane</p>
+    <ul>
+      <li><a href="about.html">About</a></li>
+      <li><a href="terms.html">Terms & Conditions</a></li>
+      <li><a href="policy.html">Privacy Policy</a></li>
+    </ul>
   </footer>
 
+  <!-- Scripts -->
   <script src="script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+  </script>
 </body>
 </html>
