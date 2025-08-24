@@ -5,7 +5,7 @@ body {
   font-family: "Inter", Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background: #f9fafb;
+  background: #f5f6f7; /* lighter neutral background */
   color: #222;
   line-height: 1.6;
 }
@@ -14,16 +14,17 @@ body {
 /* Call Banner */
 /* ------------------------- */
 .call-banner {
-  background-color: #fceeb5;
-  color: #000;
+  background-color: #fff8dc; /* soft cream */
+  color: #333;
   font-size: 1rem;
   padding: 6px 12px;
   text-align: right;
+  font-weight: 600;
 }
 .call-banner a {
-  color: #000;
+  color: #2c5f2d;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: bold;
 }
 .call-banner a:hover {
   text-decoration: underline;
@@ -36,18 +37,19 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #2c5f2d;
+  background: #256d25; /* slightly darker green */
   color: white;
   padding: 1em 2em;
   position: relative;
   z-index: 10;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 header .logo a {
   text-decoration: none;
-  font-size: 1.5em;
-  font-weight: bold;
-  color: white;
+  font-size: 1.6em;
+  font-weight: 700;
+  color: #fff;
 }
 
 header nav ul {
@@ -55,20 +57,24 @@ header nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 1.5em;
+  gap: 1.8em;
 }
 
 header nav a {
   text-decoration: none;
-  color: white;
+  color: #f5f5f5;
   font-weight: 600;
+  transition: color 0.3s ease;
+}
+header nav a:hover {
+  color: #fceeb5;
 }
 
 /* ------------------------- */
 /* Hero Section */
 /* ------------------------- */
 #hero {
-  background: linear-gradient(to right, #2c5f2d, #27ae60);
+  background: linear-gradient(to right, #2c5f2d, #38a169); /* modern green gradient */
   color: white;
   text-align: center;
   padding: 6em 2em 4em;
@@ -100,13 +106,14 @@ header nav a {
 }
 .story-section h2 {
   font-size: 2.2em;
-  color: #2c5f2d;
+  color: #256d25; /* darker green for headings */
   margin-bottom: 0.5em;
 }
 .story-section p {
   max-width: 800px;
   margin: 0 auto 2em;
   font-size: 1.1em;
+  color: #444;
 }
 .story-grid {
   display: grid;
@@ -118,15 +125,15 @@ header nav a {
   background: #f9fafb;
   padding: 2em;
   border-radius: 16px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
   transition: transform 0.3s, box-shadow 0.3s;
 }
 .story-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.12);
 }
 .story-card h3 {
-  color: #27ae60;
+  color: #38a169; /* vibrant green for accents */
   margin-bottom: 0.8em;
 }
 
@@ -134,10 +141,10 @@ header nav a {
 .story-btn {
   display: inline-block;
   background: #fceeb5;
-  color: #2c5f2d;
+  color: #256d25;
   padding: 1em 2em;
   border-radius: 50px;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 1.2em;
   text-decoration: none;
   transition: all 0.3s;
@@ -151,7 +158,7 @@ header nav a {
 /* Services Section */
 /* ------------------------- */
 #services {
-  background: #27ae60;
+  background: #38a169; /* lighter green */
   color: white;
   padding: 5em 2em;
   text-align: center;
@@ -179,23 +186,24 @@ header nav a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
   cursor: pointer;
-  transition: transform 0.25s, box-shadow 0.25s;
-  color: #2c5f2d;
+  transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
+  color: #256d25;
   text-align: center;
 }
 .service:hover {
   transform: scale(1.08);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+  background: #f0f9f4;
 }
 
 /* ------------------------- */
 /* Footer - Modern Style */
 /* ------------------------- */
 footer {
-  background: #2c5f2d;
-  color: #f9fafb;
+  background: #256d25; /* dark green footer */
+  color: #f5f5f5;
   padding: 2em 1em;
   font-size: 0.95em;
 }
@@ -205,15 +213,18 @@ footer {
   align-items: center;
   gap: 0.5em;
 }
-.footer-left, .footer-right {
+.footer-left p, .footer-left small {
+  margin: 2px 0;
+  color: #e6f0e6;
+}
+.footer-right {
   display: flex;
   gap: 1.2em;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
 }
 .footer-right a {
-  color: #f9fafb;
+  color: #f5f5f5;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s, transform 0.2s;
@@ -238,7 +249,7 @@ footer {
 }
 .modal.hidden { display: none; }
 .modal-content {
-  background: white;
+  background: #ffffff;
   padding: 2em;
   border-radius: 12px;
   width: 90%;
@@ -246,6 +257,7 @@ footer {
   max-height: 90%;
   overflow-y: auto;
   position: relative;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.12);
 }
 .scrollable { overflow-y: auto; }
 .close-btn {
@@ -256,7 +268,7 @@ footer {
 }
 form { display: flex; flex-direction: column; gap: 14px; }
 form input, form textarea { padding: 0.7em; border: 1px solid #ccc; border-radius: 6px; }
-form button { background: #2c5f2d; color: white; padding: 0.8em; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; }
-form button:hover { background: #256d25; }
+form button { background: #256d25; color: white; padding: 0.8em; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; transition: background 0.3s; }
+form button:hover { background: #1f5c1f; }
 label.required::after { content: " *"; color: red; }
 .error-field { border-color: red; background: #ffeaea; }
