@@ -72,11 +72,16 @@ document.addEventListener("DOMContentLoaded", () => {
 // Open / Close Modals
 // ------------------------------
 function openForm(service) {
-  const price = servicePrices[service] || 30;
+  const basePrice = servicePrices[service] || 30;
+  const feeNote = document.getElementById("feeNote");
+  const urgentCheckbox = document.querySelector("input[name='urgent']");
+
   document.getElementById("formTitle").innerText = `Request Help: ${service}`;
-  document.getElementById("feeNote").innerHTML = `<strong>Fee:</strong> $${price}`;
+  updateFeeNote(basePrice, urgentCheckbox.checked, service);
+
   document.getElementById("contactForm").classList.remove("hidden");
 
+  // Add hidden input to track service
   let hidden = document.querySelector("input[name='serviceType']");
   if (!hidden) {
     hidden = document.createElement("input");
@@ -85,10 +90,24 @@ function openForm(service) {
     document.getElementById("serviceRequestForm").appendChild(hidden);
   }
   hidden.value = service;
+
+  // Update fee dynamically when urgent is checked/unchecked
+  urgentCheckbox.onchange = () => updateFeeNote(basePrice, urgentCheckbox.checked, service);
+}
+
+function updateFeeNote(basePrice, isUrgent, service) {
+  let urgentFee = isUrgent ? 40 : 0;
+  let note = `<strong>Fee:</strong> $${basePrice + urgentFee}`;
+  if (service === "Other") {
+    note += `<br><em>Note: 'Other' services may incur additional costs based on complexity.</em>`;
+  }
+  document.getElementById("feeNote").innerHTML = note;
 }
 
 function closeForm() {
   document.getElementById("contactForm").classList.add("hidden");
+  const urgentCheckbox = document.querySelector("input[name='urgent']");
+  if (urgentCheckbox) urgentCheckbox.checked = false;
 }
 
 function cancelOrderSummary() {
