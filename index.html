@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
   <title>Home Revival Brisbane</title>
   <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="stylesheet" href="style.css"/>
@@ -14,6 +13,12 @@
   <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
+
+  <!-- Prefer to Call Banner -->
+  <div class="call-banner">
+    Prefer to call? 📞 Reach us at <a href="tel:0408540150">0408 540 150</a>
+  </div>
+
   <!-- Header -->
   <header>
     <div class="logo"><a href="index.html">Home Revival Brisbane</a></div>
@@ -24,18 +29,9 @@
         <li><a href="policy.html">Policy</a></li>
       </ul>
     </nav>
-  <!-- Prefer to Call Banner -->
-  <div class="call-banner">
-    Prefer to call? 📞 Reach us at <a href="tel:0408540150">0408 540 150</a>
-  </div>
-
-  <!-- Hero Section -->
-  <header class="hero">
-    <h1>Home Revival Brisbane</h1>
-    <p>Brisbane’s trusted lawn and garden care specialists</p>
   </header>
 
-  <!-- Hero -->
+  <!-- Hero Section -->
   <section id="hero">
     <div class="hero-content" data-aos="fade-up">
       <h1>Home help, minus the hassle.</h1>
@@ -43,7 +39,7 @@
     </div>
   </section>
 
-  <!-- Story -->
+  <!-- Story Section -->
   <section id="story" class="story-section">
     <h2 data-aos="fade-up">Why Choose Home Revival Brisbane?</h2>
     <p data-aos="fade-up" data-aos-delay="100">
@@ -62,33 +58,36 @@
         <h3>🔨 All Jobs Welcome</h3>
         <p>Big or small, urgent or flexible — if it needs doing, we’ll find the right person.</p>
       </div>
-    <a href="about.html" class="cta-btn story-btn" data-aos="zoom-in" data-aos-delay="500">Learn More</a>
-  </section>
-
-  <!-- Services -->
-  <section id="services">
-    <h2 data-aos="fade-up">Get Started</h2>
-    <div class="service-container" data-aos="fade-up" data-aos-delay="200">
-      <div class="service" onclick="openForm('Plumbing')">🚿<br />Plumbing</div>
-      <div class="service" onclick="openForm('Electrical')">💡<br />Electrical</div>
-      <div class="service" onclick="openForm('Painting')">🎨<br />Painting</div>
-      <div class="service" onclick="openForm('Gardening')">🌿<br />Gardening</div>
-      <div class="service" onclick="openForm('Cleaning')">🧹<br />Cleaning</div>
-      <div class="service" onclick="openForm('Appliances')">🛠️<br />Appliances</div>
-      <div class="service" onclick="openForm('Carpentry')">🔨<br />Carpentry</div>
-      <div class="service" onclick="openForm('Plastering')">🧱<br />Plastering</div>
-      <div class="service" onclick="openForm('Furniture')">🪑<br />Furniture</div>
-      <div class="service" onclick="openForm('Other')">❓<br />Other</div>
-  
+    </div>
+    <div style="margin-top: 2em; text-align: center;">
+      <a href="about.html" class="cta-btn story-btn" data-aos="zoom-in" data-aos-delay="500">Learn More</a>
     </div>
   </section>
- <!-- First Modal -->
+
+  <!-- Services Section -->
+  <section id="services">
+    <h2 data-aos="fade-up">Get Started</h2>
+    <p data-aos="fade-up" data-aos-delay="100">Select a service to request help instantly.</p>
+    <div class="service-container" data-aos="fade-up" data-aos-delay="200">
+      <div class="service">🚿<br />Plumbing</div>
+      <div class="service">💡<br />Electrical</div>
+      <div class="service">🎨<br />Painting</div>
+      <div class="service">🌿<br />Gardening</div>
+      <div class="service">🧹<br />Cleaning</div>
+      <div class="service">🛠️<br />Appliances</div>
+      <div class="service">🔨<br />Carpentry</div>
+      <div class="service">🧱<br />Plastering</div>
+      <div class="service">🪑<br />Furniture</div>
+      <div class="service">❓<br />Other</div>
+    </div>
+  </section>
+
+  <!-- First Modal: Service Form -->
   <div class="modal hidden" id="contactForm">
     <div class="modal-content scrollable">
       <span class="close-btn" onclick="closeForm()">&times;</span>
       <h2 id="formTitle">Request Help</h2>
       <p id="feeNote"></p>
-
       <form id="serviceRequestForm">
         <label class="required">Your Name:</label>
         <input type="text" name="name" required />
@@ -112,7 +111,7 @@
     </div>
   </div>
 
-  <!-- Second Modal (Order Summary) -->
+  <!-- Second Modal: Order Summary -->
   <div class="modal hidden" id="orderSummaryModal">
     <div class="modal-content scrollable">
       <span class="close-btn" onclick="cancelOrderSummary()">&times;</span>
@@ -122,7 +121,7 @@
     </div>
   </div>
 
-  <!-- Third Modal (Stripe Payment) -->
+  <!-- Third Modal: Stripe Payment -->
   <div class="modal hidden" id="paymentModal">
     <div class="modal-content scrollable">
       <span class="close-btn" onclick="cancelPayment()">&times;</span>
@@ -136,10 +135,13 @@
   <!-- Footer -->
   <footer>
     <p>&copy; 2025 Home Revival Brisbane</p>
+    <p><a href="about.html">About</a> | <a href="terms.html">Terms</a> | <a href="policy.html">Policy</a></p>
   </footer>
 
   <script src="script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({ duration: 700, once: true });
+  </script>
 </body>
 </html>
-
- 
