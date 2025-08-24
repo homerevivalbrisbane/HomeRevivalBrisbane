@@ -1,8 +1,9 @@
+/* ------------------------- */
+/* Call Banner */
+/* ------------------------- */
 .call-banner {
   background-color: #fceeb5;
-  /* Soft warm yellow-beige */
   color: #000;
-  /* Black text for readability */
   font-size: 1rem;
   padding: 6px 12px;
   border-radius: 6px;
@@ -23,7 +24,9 @@
   font-size: 1.05em;
 }
 
-/* Header Main (site-name & menu) */
+/* ------------------------- */
+/* Header & Navigation */
+/* ------------------------- */
 .header-main {
   display: flex;
   justify-content: space-between;
@@ -89,197 +92,9 @@
   display: block;
 }
 
-/* General Styles */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background: #f3f3f3;
-  color: #333;
-}
-
-/* Hero Section */
-#hero {
-  background: #d6eadf;
-  padding: 2em;
-  text-align: center;
-}
-
-/* Services */
-.service-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5em;
-  padding: 2em;
-}
-
-.service {
-  background: white;
-  border-radius: 10px;
-  width: 140px;
-  height: 140px;
-  font-size: 1.2em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.service:hover {
-  transform: scale(1.05);
-}
-
-/* Modal */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.modal.hidden {
-  display: none;
-}
-
-.modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  width: 90%;
-  max-width: 500px;
-  max-height: 90%;
-  overflow-y: auto;
-  position: relative;
-}
-
-.scrollable {
-  overflow-y: auto;
-}
-
-.close-btn {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 24px;
-  cursor: pointer;
-}
-
-/* Form */
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-form input,
-form textarea {
-  padding: 0.6em;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-form button {
-  background: #2c5f2d;
-  color: white;
-  padding: 0.7em;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-/* Main content container */
-.content-container {
-  padding: 2em;
-  max-width: 800px;
-  margin: 1em auto 0;
-  line-height: 1.6;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Footer */
-footer {
-  text-align: center;
-  padding: 1em;
-  background: #eee;
-  font-size: 0.9em;
-}
-
-footer a {
-  display: block;
-  margin-top: 5px;
-  text-decoration: none;
-  color: #2c5f2d;
-}
-
-/* Form validation and alignment */
-.error-field {
-  border-color: red;
-  background: #ffeaea;
-}
-
-label.required::after {
-  content: " *";
-  color: red;
-}
-
-.date-urgent-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.form-column {
-  flex: 1;
-  min-width: 200px;
-}
-
-.urgent-note {
-  color: red;
-  font-size: 0.9em;
-  margin: 5px 0 0 24px;
-}
-}
-.form-group {
-  margin-bottom: 1.5em;
-}
-
-label.required::after {
-  content: " *";
-  color: red;
-}
-
-textarea {
-  width: 100%;
-  min-height: 100px;
-  padding: 0.5em;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1em;
-  resize: vertical;
-}
-
-small.form-info {
-  display: block;
-  margin-top: 0.25em;
-  color: #666;
-  font-size: 0.85em;
-}
-/* Global reset tweaks */
+/* ------------------------- */
+/* Global Styles */
+/* ------------------------- */
 body {
   font-family: "Inter", Arial, sans-serif;
   margin: 0;
@@ -289,7 +104,9 @@ body {
   line-height: 1.6;
 }
 
+/* ------------------------- */
 /* Hero Section */
+/* ------------------------- */
 #hero {
   background: linear-gradient(to right, #2c5f2d, #27ae60);
   color: white;
@@ -340,7 +157,9 @@ body {
   background: #2c5f2d;
 }
 
+/* ------------------------- */
 /* Story Section */
+/* ------------------------- */
 .story-section {
   background: white;
   padding: 5em 2em;
@@ -378,8 +197,15 @@ body {
   margin-bottom: 0.8em;
 }
 
-/* Get Started Section */
-.get-started {
+.story-btn {
+  margin-top: 2.5em;
+}
+
+/* ------------------------- */
+/* Services (Get Started) */
+/* ------------------------- */
+#get-started,
+#services {
   background: #27ae60;
   color: white;
   padding: 5em 2em;
@@ -388,24 +214,28 @@ body {
   border-top-right-radius: 80px;
 }
 
-.get-started h2 {
+#get-started h2,
+#services h2 {
   font-size: 2.2em;
   margin-bottom: 0.4em;
 }
 
-.get-started p {
+#get-started p,
+#services p {
   margin-bottom: 2.5em;
   font-size: 1.2em;
 }
 
-.service-container {
+.service-container,
+.service-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 2em;
 }
 
-.service {
+.service,
+.service-card {
   background: white;
   border-radius: 20px;
   width: 150px;
@@ -418,9 +248,169 @@ body {
   box-shadow: 0 6px 16px rgba(0,0,0,0.1);
   cursor: pointer;
   transition: transform 0.25s, box-shadow 0.25s;
+  text-align: center;
+  color: #2c5f2d;
 }
 
-.service:hover {
+.service:hover,
+.service-card:hover {
   transform: scale(1.08);
   box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+}
+
+.service img,
+.service-card img {
+  max-width: 50px;
+  margin-bottom: 0.8em;
+}
+
+/* ------------------------- */
+/* Modal / Form Overlay */
+/* ------------------------- */
+.modal,
+#serviceForm,
+#tncModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal.active,
+#serviceForm.active,
+#tncModal.active {
+  display: flex;
+}
+
+.modal-content,
+.form-content {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90%;
+  overflow-y: auto;
+  position: relative;
+}
+
+.scrollable {
+  overflow-y: auto;
+}
+
+.close-btn,
+#closeForm,
+#closeTnc {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* ------------------------- */
+/* Forms */
+/* ------------------------- */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+form input,
+form textarea {
+  padding: 0.6em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form button {
+  background: #2c5f2d;
+  color: white;
+  padding: 0.7em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.error-field {
+  border-color: red;
+  background: #ffeaea;
+}
+
+label.required::after {
+  content: " *";
+  color: red;
+}
+
+.date-urgent-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.form-column {
+  flex: 1;
+  min-width: 200px;
+}
+
+.urgent-note {
+  color: red;
+  font-size: 0.9em;
+  margin: 5px 0 0 24px;
+}
+
+textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+  resize: vertical;
+}
+
+small.form-info {
+  display: block;
+  margin-top: 0.25em;
+  color: #666;
+  font-size: 0.85em;
+}
+
+/* ------------------------- */
+/* Content Pages (About, T&C, Policy) */
+/* ------------------------- */
+.content-container {
+  padding: 2em;
+  max-width: 800px;
+  margin: 1em auto 0;
+  line-height: 1.6;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+/* ------------------------- */
+/* Footer */
+/* ------------------------- */
+footer {
+  text-align: center;
+  padding: 1em;
+  background: #eee;
+  font-size: 0.9em;
+}
+
+footer a {
+  display: block;
+  margin-top: 5px;
+  text-decoration: none;
+  color: #2c5f2d;
 }
