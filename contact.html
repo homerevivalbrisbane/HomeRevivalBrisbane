@@ -3,18 +3,17 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Home Revival Brisbane</title>
+  <title>Contact Home Revival Brisbane</title>
   <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="stylesheet" href="style.css"/>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <!-- AOS Animations -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-  <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
 
-  <!-- Prefer to Call Banner -->
+  <!-- Call Banner -->
   <div class="call-banner">
     Prefer to call? 📞 Reach us at <a href="tel:0408540150">0408 540 150</a>
   </div>
@@ -24,7 +23,6 @@
     <div class="logo"><a href="index.html">Home Revival Brisbane</a></div>
     <nav>
       <ul> 
-        
         <li><a href="about.html">About</a></li>
         <li><a href="terms.html">Terms</a></li>
         <li><a href="privacy.html">Privacy Policy</a></li>
@@ -33,71 +31,68 @@
   </header>
 
   <!-- Main Content -->
-  <main class="content-container">
-    <h1>Contact Us</h1>
-    <p>If you have questions, feedback, or need help with a service request, reach out directly. We aim to respond within 2 business days.</p>
+  <main class="page-container" data-aos="fade-up">
 
-    <h2>Send us a message:</h2>
-    <form id="contactForm" action="https://formspree.io/f/xzzvayyq" method="POST" style="max-width: 500px;">
-      <label for="name" class="required">Your Name:</label>
-      <input type="text" id="name" name="name" required />
+    <section class="card">
+      <h1>Contact Us</h1>
+      <p>If you have questions, feedback, or need help with a service request, reach out directly. We aim to respond within 2 business days.</p>
+    </section>
 
-      <label for="phone" class="required">Phone Number:</label>
-      <input type="tel" id="phone" name="phone" required />
+    <section class="card">
+      <h2>Send us a message</h2>
+      <form id="contactForm" action="https://formspree.io/f/xzzvayyq" method="POST" class="form-container">
+        <label for="name" class="required">Your Name:</label>
+        <input type="text" id="name" name="name" required />
 
-      <label for="email" class="required">Email:</label>
-      <input type="email" id="email" name="email" required />
+        <label for="phone" class="required">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required />
 
-      <label for="message" class="required">Message:</label>
-      <textarea id="message" name="message" rows="6" required></textarea>
+        <label for="email" class="required">Email:</label>
+        <input type="email" id="email" name="email" required />
 
-      <div id="formErrorMsg" class="error-msg" style="display: none; color: red; margin-bottom: 10px;"></div>
+        <label for="message" class="required">Message:</label>
+        <textarea id="message" name="message" rows="6" required></textarea>
 
-      <button type="submit" class="cta-btn">Send Message</button>
-    </form>
+        <div id="formErrorMsg" class="error-msg"></div>
+
+        <button type="submit" class="cta-btn">Send Message</button>
+      </form>
+    </section>
+
   </main>
 
-<!-- Footer -->
-<footer>
-  <div class="footer-container">
-    <div class="footer-left">
-      <p>&copy; 2025 Home Revival Brisbane</p>
-      <p><small>ABN: 76 698 587 269</small></p>
-      <p><small>Hours: 9am–5pm, Monday to Friday (excl. public holidays)</small></p>
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-left">
+        <p>&copy; 2025 Home Revival Brisbane</p>
+        <small>ABN: 76 698 587 269</small>
+        <small>Hours: 9am–5pm, Monday to Friday (excl. public holidays)</small>
+      </div>
+      <div class="footer-right">
+        <a href="terms.html">Terms & Conditions</a>
+        <span> | </span>
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
     </div>
-    <div class="footer-right">
-      <a href="terms.html">Terms & Conditions</a>
-      <span> | </span>
-      <a href="privacy.html">Privacy Policy</a>
-    </div>
-  </div>
-</footer>
+  </footer>
 
-<!-- Scripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-<script src="script.js"></script>
-
-
-
+  <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>
-    // Animate on scroll
-    document.addEventListener("DOMContentLoaded", () => {
-      AOS.init({ duration: 700, once: true });
-    });
+    AOS.init({ duration: 700, once: true });
 
-    // Form Submission
-    document.getElementById('contactForm').addEventListener('submit', async function (e) {
+    const form = document.getElementById('contactForm');
+    const errorMsg = document.getElementById('formErrorMsg');
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const form = e.target;
-      const errorMsg = document.getElementById('formErrorMsg');
-      errorMsg.style.display = 'none';
       errorMsg.textContent = '';
-
+      errorMsg.style.display = 'none';
       const fields = [form.name, form.phone, form.email, form.message];
       fields.forEach(f => f.classList.remove('error-field'));
+      const errors = fields.filter(f => !f.value.trim());
 
-      let errors = fields.filter(f => !f.value.trim());
       if (errors.length > 0) {
         errors.forEach(f => f.classList.add('error-field'));
         errorMsg.textContent = 'Please fill in all required fields.';
@@ -105,8 +100,8 @@
         return;
       }
 
-      const formData = new FormData(form);
       try {
+        const formData = new FormData(form);
         const response = await fetch(form.action, {
           method: form.method,
           body: formData,
@@ -127,8 +122,6 @@
       }
     });
   </script>
+
 </body>
 </html>
-
-
-
