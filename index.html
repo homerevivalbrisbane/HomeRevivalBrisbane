@@ -1,214 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home Revival Brisbane</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    /* === COLOUR SCHEME === */
-    :root {
-      --primary: #008080;    /* teal */
-      --secondary: #ff6f61;  /* coral */
-      --light-bg: #f9f9f9;
-      --dark: #222;
-      --text: #444;
-      --white: #fff;
-    }
-
-    /* === RESET === */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; background: var(--light-bg); color: var(--text); }
-    a { text-decoration: none; }
-
-    /* === HEADER === */
-    header {
-      background: var(--white);
-      padding: 1em 2em;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-      position: sticky; top: 0; z-index: 100;
-    }
-    header h1 a {
-      color: var(--primary);
-      font-size: 1.4em;
-      font-weight: bold;
-    }
-    nav ul { display: flex; list-style: none; gap: 1.5em; }
-    nav ul li a { color: var(--dark); font-weight: 500; transition: color 0.3s; }
-    nav ul li a:hover { color: var(--secondary); }
-
-    /* === HERO === */
-    #hero {
-      background: linear-gradient(to right, var(--primary), var(--secondary));
-      color: var(--white);
-      text-align: center;
-      padding: 6em 2em;
-    }
-    #hero h1 { font-size: 2.5em; margin-bottom: 0.5em; }
-    #hero p { font-size: 1.2em; max-width: 600px; margin: 0 auto; }
-
-    /* === STORY === */
-    .story-section {
-      padding: 4em 2em;
-      text-align: center;
-      background: var(--white);
-    }
-    .story-section h2 {
-      font-size: 2em;
-      margin-bottom: 1em;
-      color: var(--primary);
-    }
-    .story-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2em;
-      margin-top: 2em;
-    }
-    .story-card {
-      background: var(--light-bg);
-      padding: 2em;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      transition: transform 0.3s;
-    }
-    .story-card:hover { transform: translateY(-5px); }
-    .story-btn {
-      margin-top: 2.5em;
-      display: inline-block;
-      background: var(--secondary);
-      color: var(--white);
-      padding: 0.8em 1.5em;
-      border-radius: 8px;
-      transition: background 0.3s;
-    }
-    .story-btn:hover { background: #e65c50; }
-
-    /* === SERVICES === */
-    .services {
-      padding: 4em 2em;
-      text-align: center;
-      background: var(--light-bg);
-    }
-    .services h2 { font-size: 2em; margin-bottom: 1em; color: var(--primary); }
-    .service-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2em;
-      margin-top: 2em;
-    }
-    .service-card {
-      background: var(--white);
-      padding: 2em;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      transition: transform 0.3s;
-    }
-    .service-card:hover { transform: translateY(-8px); }
-
-    /* === FOOTER === */
-    footer {
-      background: var(--dark);
-      color: var(--white);
-      text-align: center;
-      padding: 2em;
-    }
-    footer a { color: var(--secondary); margin: 0 0.5em; }
-
-    /* === SCROLL ANIMATIONS === */
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s ease-out;
-    }
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
+  <script src="https://js.stripe.com/v3/"></script>
 </head>
-<body>
+<body class="bg-gray-50 text-gray-900 font-sans">
 
-  <!-- HEADER -->
-  <header>
-    <h1><a href="index.html">Home Revival Brisbane</a></h1>
-    <nav>
-      <ul>
-        <li><a href="about.html">About</a></li>
-        <li><a href="terms.html">Terms</a></li>
-        <li><a href="#services">Services</a></li>
-      </ul>
-    </nav>
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold cursor-pointer">Home Revival Brisbane</h1>
+      <nav>
+        <ul class="flex space-x-6">
+          <li><a href="index.html" class="hover:underline">Home</a></li>
+          <li><a href="about.html" class="hover:underline">About</a></li>
+          <li><a href="terms.html" class="hover:underline">Terms</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <!-- HERO -->
-  <section id="hero">
-    <div class="hero-content reveal">
-      <h1>Home help, minus the hassle.</h1>
-      <p>From leaking taps to urgent yard cleanups — we connect Brisbane locals with trusted professionals fast.</p>
+  <!-- Hero -->
+  <section class="text-center py-20 bg-gradient-to-b from-indigo-600 to-blue-500 text-white">
+    <h2 class="text-4xl font-extrabold mb-4">Connecting You with Local Experts</h2>
+    <p class="text-lg mb-6 max-w-2xl mx-auto">Plumbing, Electrical, Cleaning & More – Get the help you need fast, reliable, and local.</p>
+    <a href="#services" class="bg-white text-blue-600 px-6 py-3 rounded-xl font-semibold shadow hover:bg-gray-100 transition">Get Started</a>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="max-w-6xl mx-auto px-6 py-16">
+    <h3 class="text-3xl font-bold text-center mb-12 text-gray-800">Our Services</h3>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-10">
+
+      <!-- Example Service Card -->
+      <div class="flex flex-col items-center cursor-pointer group" onclick="openForm('Plumbing')">
+        <img src="images/plumbing.png" alt="Plumbing" class="w-20 h-20 object-contain mb-3 transition transform group-hover:scale-110">
+        <span class="text-lg font-semibold text-gray-700 group-hover:text-blue-600">Plumbing</span>
+      </div>
+
+      <div class="flex flex-col items-center cursor-pointer group" onclick="openForm('Electrical')">
+        <img src="images/electrical.png" alt="Electrical" class="w-20 h-20 object-contain mb-3 transition transform group-hover:scale-110">
+        <span class="text-lg font-semibold text-gray-700 group-hover:text-blue-600">Electrical</span>
+      </div>
+
+      <div class="flex flex-col items-center cursor-pointer group" onclick="openForm('Cleaning')">
+        <img src="images/cleaning.png" alt="Cleaning" class="w-20 h-20 object-contain mb-3 transition transform group-hover:scale-110">
+        <span class="text-lg font-semibold text-gray-700 group-hover:text-blue-600">Cleaning</span>
+      </div>
+
+      <div class="flex flex-col items-center cursor-pointer group" onclick="openForm('Gardening')">
+        <img src="images/gardening.png" alt="Gardening" class="w-20 h-20 object-contain mb-3 transition transform group-hover:scale-110">
+        <span class="text-lg font-semibold text-gray-700 group-hover:text-blue-600">Gardening</span>
+      </div>
+
+      <div class="flex flex-col items-center cursor-pointer group" onclick="openForm('Painting')">
+        <img src="images/painting.png" alt="Painting" class="w-20 h-20 object-contain mb-3 transition transform group-hover:scale-110">
+        <span class="text-lg font-semibold text-gray-700 group-hover:text-blue-600">Painting</span>
+      </div>
+
+      <div class="flex flex-col items-center cursor-pointer group" onclick="openForm('Carpentry')">
+        <img src="images/carpentry.png" alt="Carpentry" class="w-20 h-20 object-contain mb-3 transition transform group-hover:scale-110">
+        <span class="text-lg font-semibold text-gray-700 group-hover:text-blue-600">Carpentry</span>
+      </div>
+
+      <div class="flex flex-col items-center cursor-pointer group" onclick="openForm('Furniture')">
+        <img src="images/furniture.png" alt="Furniture" class="w-20 h-20 object-contain mb-3 transition transform group-hover:scale-110">
+        <span class="text-lg font-semibold text-gray-700 group-hover:text-blue-600">Furniture</span>
+      </div>
+
+      <div class="flex flex-col items-center cursor-pointer group" onclick="openForm('Other')">
+        <img src="images/other.png" alt="Other" class="w-20 h-20 object-contain mb-3 transition transform group-hover:scale-110">
+        <span class="text-lg font-semibold text-gray-700 group-hover:text-blue-600">Other</span>
+      </div>
+
     </div>
   </section>
 
-  <!-- STORY -->
-  <section id="story" class="story-section">
-    <h2 class="reveal">Why Choose Home Revival Brisbane?</h2>
-    <p class="reveal">We’re not just another app or marketplace. We’re real locals who know the area and know who’s worth calling.</p>
-    <div class="story-grid">
-      <div class="story-card reveal">
-        <h3>Real People</h3>
-        <p>We only connect you with hand-picked professionals we’d trust in our own homes.</p>
-      </div>
-      <div class="story-card reveal">
-        <h3>Fast Response</h3>
-        <p>Most requests are matched within hours. When time matters, we’ve got your back.</p>
-      </div>
-      <div class="story-card reveal">
-        <h3>All Jobs Welcome</h3>
-        <p>Big or small, urgent or flexible — if it needs doing, we’ll find the right person.</p>
-      </div>
-    </div>
-    <a href="about.html" class="story-btn reveal">Learn More</a>
-  </section>
-
-  <!-- SERVICES -->
-  <section id="services" class="services">
-    <h2 class="reveal">Our Services</h2>
-    <div class="service-grid">
-      <div class="service-card reveal"><h3>Plumbing</h3></div>
-      <div class="service-card reveal"><h3>Electrical</h3></div>
-      <div class="service-card reveal"><h3>Carpentry</h3></div>
-      <div class="service-card reveal"><h3>Cleaning</h3></div>
-      <div class="service-card reveal"><h3>Yard Work</h3></div>
-      <div class="service-card reveal"><h3>Other</h3></div>
+  <!-- Story Section -->
+  <section class="bg-gray-100 py-16 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <h3 class="text-3xl font-bold mb-6">Our Story</h3>
+      <p class="text-lg text-gray-700 mb-6">
+        Home Revival Brisbane was built to make finding trusted local help simple, transparent, and stress-free. 
+        Our network of professionals is ready to tackle your household challenges quickly and affordably.
+      </p>
+      <a href="about.html" class="bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold shadow hover:bg-blue-700 transition">Learn More</a>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>&copy; 2025 Home Revival Brisbane</p>
-    <p>
-      <a href="about.html">About</a> | 
-      <a href="terms.html">Terms & Conditions</a>
-    </p>
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8 mt-12">
+    <div class="max-w-6xl mx-auto px-6 flex justify-between">
+      <p>&copy; 2025 Home Revival Brisbane. All rights reserved.</p>
+      <a href="terms.html" class="hover:underline">Terms & Conditions</a>
+    </div>
   </footer>
 
-  <!-- SCROLL SCRIPT -->
-  <script>
-    const reveals = document.querySelectorAll(".reveal");
-    const revealOnScroll = () => {
-      const windowHeight = window.innerHeight;
-      reveals.forEach(el => {
-        const elementTop = el.getBoundingClientRect().top;
-        if (elementTop < windowHeight - 60) {
-          el.classList.add("active");
-        }
-      });
-    };
-    window.addEventListener("scroll", revealOnScroll);
-    window.addEventListener("load", revealOnScroll);
-  </script>
+  <!-- Form Modal -->
+  <div id="contactForm" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+    <div class="bg-white rounded-xl shadow-lg p-8 w-full max-w-lg relative">
+      <button onclick="closeForm()" class="absolute top-4 right-4 text-gray-500 hover:text-red-500">✕</button>
+      <h3 id="formTitle" class="text-2xl font-bold mb-4">Request Help</h3>
+      <form id="serviceRequestForm" class="space-y-4">
+        <div>
+          <label class="block mb-1">Your Name</label>
+          <input type="text" name="name" class="w-full border rounded p-2" required>
+        </div>
+        <div>
+          <label class="block mb-1">Contact</label>
+          <input type="text" name="contact" class="w-full border rounded p-2" required>
+        </div>
+        <div>
+          <label class="block mb-1">Urgent?</label>
+          <input type="checkbox" name="urgent">
+        </div>
+        <p id="feeNote" class="text-gray-600 text-sm"><strong>Fee:</strong> $30</p>
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Submit Request</button>
+      </form>
+    </div>
+  </div>
 
+  <!-- Order Summary Modal -->
+  <div id="orderSummaryModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+    <div class="bg-white rounded-xl shadow-lg p-8 w-full max-w-md text-center">
+      <h3 class="text-xl font-bold mb-4">Order Summary</h3>
+      <div id="orderDetails" class="mb-6"></div>
+      <button id="pay-now-btn" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">Proceed to Payment</button>
+      <button onclick="cancelOrderSummary()" class="ml-4 text-gray-600 hover:underline">Cancel</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
