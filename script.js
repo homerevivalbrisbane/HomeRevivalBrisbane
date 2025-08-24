@@ -21,14 +21,18 @@ const servicePrices = {
 // DOM Ready
 // ------------------------------
 document.addEventListener("DOMContentLoaded", () => {
-  AOS.init({ duration: 700, once: true });
+  // Animate on scroll
+  const animatedElements = document.querySelectorAll("[data-aos]");
+  animatedElements.forEach(el => AOS.init({ duration: 700, once: true }));
 
-  // Add data-service attribute and click handler
-  document.querySelectorAll(".service").forEach(el => {
-    const serviceName = el.textContent.replace(/[\u{1F300}-\u{1FAFF}]/gu, '').trim();
-    el.dataset.service = serviceName;
-    el.addEventListener("click", () => openForm(serviceName));
-  });
+  // Add data-service attribute for clarity
+document.querySelectorAll(".service").forEach(el => {
+  // Remove the emoji and get the text properly
+  const serviceName = el.textContent.replace(/[\u{1F300}-\u{1FAFF}]/gu, '').trim();
+  el.dataset.service = serviceName;
+  el.addEventListener("click", () => openForm(serviceName));
+});
+
 
   // Form submit
   document.getElementById("serviceRequestForm").addEventListener("submit", handleFormSubmit);
@@ -71,8 +75,8 @@ document.addEventListener("DOMContentLoaded", () => {
 // ------------------------------
 function openForm(service) {
   const basePrice = servicePrices[service] || 30;
-  const urgentCheckbox = document.querySelector("input[name='urgent']");
   const feeNote = document.getElementById("feeNote");
+  const urgentCheckbox = document.querySelector("input[name='urgent']");
 
   document.getElementById("formTitle").innerText = `Request Help: ${service}`;
   updateFeeNote(basePrice, urgentCheckbox.checked, service);
@@ -94,7 +98,7 @@ function openForm(service) {
 }
 
 function updateFeeNote(basePrice, isUrgent, service) {
-  const urgentFee = isUrgent ? 40 : 0;
+  let urgentFee = isUrgent ? 40 : 0;
   let note = `<strong>Fee:</strong> $${basePrice + urgentFee}`;
   if (service === "Other") {
     note += `<br><em>Note: 'Other' services may incur additional costs based on complexity.</em>`;
@@ -106,7 +110,6 @@ function closeForm() {
   document.getElementById("contactForm").classList.add("hidden");
   const urgentCheckbox = document.querySelector("input[name='urgent']");
   if (urgentCheckbox) urgentCheckbox.checked = false;
-  document.getElementById("feeNote").innerHTML = '';
 }
 
 function cancelOrderSummary() {
@@ -167,4 +170,31 @@ async function setupStripe(total) {
   } catch (err) {
     console.error("Stripe setup error:", err);
   }
+}
+// Get all service buttons
+const serviceButtons = document.querySelectorAll('.service');
+const contactForm = document.getElementById('contactForm');
+const feeNote = document.getElementById('feeNote');
+const formTitle = document.getElementById('formTitle');
+
+// Open form modal when a service is clicked
+serviceButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const serviceName = btn.textContent.split('\n')[1]; // get the service label
+        formTitle.textContent = `Request Help - ${serviceName}`;
+        contactForm.classList.remove('hidden');
+
+        // Show special fee note only if "Other" is clicked
+        if (serviceName.trim() === "Other") {
+            feeNote.innerHTML = 'Note: Additional fees may apply. See <a href="terms.html#service-fee" target="_blank">Terms §3</a> for more information.';
+        } else {
+            feeNote.innerHTML = ''; // clear note for other services
+        }
+    });
+});
+
+// Close form modal
+function closeForm() {
+    contactForm.classList.add('hidden');
+    feeNote.innerHTML = '';
 }
