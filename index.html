@@ -40,92 +40,55 @@
     </div>
   </section>
 
-  <!-- Story Section -->
-  <section id="story" class="story-section">
-    <h2 data-aos="fade-up">Why Choose Home Revival Brisbane?</h2>
-    <p data-aos="fade-up" data-aos-delay="100">
-      We’re not just another app or marketplace. We’re real locals who know the area and know who’s worth calling.
-    </p>
-    <div class="story-grid">
-      <div class="story-card" data-aos="fade-up" data-aos-delay="200">
-        <h3>👨‍🔧 Real People</h3>
-        <p>We only connect you with hand-picked professionals we’d trust in our own homes.</p>
-      </div>
-      <div class="story-card" data-aos="fade-up" data-aos-delay="300">
-        <h3>⚡ Fast Response</h3>
-        <p>Most requests are matched within hours. When time matters, we’ve got your back.</p>
-      </div>
-      <div class="story-card" data-aos="fade-up" data-aos-delay="400">
-        <h3>🔨 All Jobs Welcome</h3>
-        <p>Big or small, urgent or flexible — if it needs doing, we’ll find the right person.</p>
-      </div>
-    </div>
-    <div style="margin-top: 2em; text-align: center;">
-      <a href="about.html" class="cta-btn story-btn" data-aos="zoom-in" data-aos-delay="500">Learn More</a>
-    </div>
-  </section>
-
   <!-- Services Section -->
   <section id="services">
     <h2 data-aos="fade-up">Ready to Get Started?</h2>
-    <p data-aos="fade-up" data-aos-delay="100">Select a service to request help effortlessly.</p>
+    <p data-aos="fade-up" data-aos-delay="100">Select a service and checkout securely.</p>
+
     <div class="service-container" data-aos="fade-up" data-aos-delay="200">
-      <div class="service" data-service="Plumbing">🚿<br />Plumbing</div>
-      <div class="service" data-service="Electrical">💡<br />Electrical</div>
-      <div class="service" data-service="Painting">🎨<br />Painting</div>
-      <div class="service" data-service="Gardening">🌿<br />Gardening</div>
-      <div class="service" data-service="Cleaning">🧹<br />Cleaning</div>
-      <div class="service" data-service="Appliances">🛠️<br />Appliances</div>
-      <div class="service" data-service="Carpentry">🔨<br />Carpentry</div>
-      <div class="service" data-service="Plastering">🧱<br />Plastering</div>
-      <div class="service" data-service="Furniture">🪑<br />Furniture</div>
-      <div class="service" data-service="Other">❓<br />Other</div>
+      <!-- Example service -->
+      <div class="service">
+        🚿<br />Plumbing
+        <br><a class="checkout-btn" href="checkout.html?priceId=price_1RzY7rGdI2lqSPTdc81f72ep">Pay $50</a>
+      </div>
+      <div class="service">
+        💡<br />Electrical
+        <br><a class="checkout-btn" href="checkout.html?priceId=price_1RzY8eGdI2lqSPTdmCAmGvU3">Pay $50</a>
+      </div>
+      <div class="service">
+        🎨<br />Painting
+        <br><a class="checkout-btn" href="checkout.html?priceId=price_1RzY8pGdI2lqSPTdxPbtYxDN">Pay $30</a>
+      </div>
+      <div class="service">
+        🌿<br />Gardening
+        <br><a class="checkout-btn" href="checkout.html?priceId=price_1RzY90GdI2lqSPTdkhk4N0Pj">Pay $20</a>
+      </div>
+      <div class="service">
+        🧹<br />Cleaning
+        <br><a class="checkout-btn" href="checkout.html?priceId=price_1RzY9CGdI2lqSPTdyeorUID2">Pay $20</a>
+      </div>
+      <div class="service">
+        🛠️<br />Appliances
+        <br><a class="checkout-btn" href="checkout.html?priceId=price_1RzY9NGdI2lqSPTdvfYqJRVD">Pay $30</a>
+      </div>
+      <div class="service">
+        🔨<br />Carpentry
+        <br><a class="checkout-btn" href="checkout.html?priceId=price_1RzY9YGdI2lqSPTd6JDElYOJ">Pay $30</a>
+      </div>
+      <div class="service">
+        🧱<br />Plastering
+        <br><a class="checkout-btn" href="checkout.html?priceId=price_1RzY9lGdI2lqSPTdDfdBcGjs">Pay $30</a>
+      </div>
+      <div class="service">
+        🪑<br />Furniture
+        <br><a class="checkout-btn" href="checkout.html?priceId=price_1RzY9wGdI2lqSPTd04bxlmkV">Pay $30</a>
+      </div>
+      <div class="service">
+        ❓<br />Other
+        <br><a class="checkout-btn" href="checkout.html?priceId=price_1RzYA3GdI2lqSPTdNypoVcCT">Pay $20</a>
+      </div>
     </div>
   </section>
-
-  <!-- First Modal: Service Form -->
-  <div class="modal hidden" id="contactForm">
-    <div class="modal-content scrollable">
-      <span class="close-btn" onclick="closeForm()">&times;</span>
-      <h2 id="formTitle">Request Help</h2>
-      <form id="serviceRequestForm">
-        <input type="hidden" name="service" />
-        <label class="required">Your Name:</label>
-        <input type="text" name="name" required />
-        <label class="required">Email:</label>
-        <input type="email" name="email" required />
-        <label class="required">Phone:</label>
-        <input type="tel" name="phone" required />
-        <label class="required">Address:</label>
-        <input type="text" name="address" required />
-        <label>Preferred completion date:</label>
-        <input type="date" name="completionDate" />
-        <label class="checkbox-label">
-          <input type="checkbox" name="urgent" /> Urgent (+$40)
-        </label>
-        <label>Budget:</label>
-        <input type="text" name="budget" />
-        <label class="required">Job Description:</label>
-        <textarea name="additionalInfo" required></textarea>
-        <label class="checkbox-label required">
-          <input type="checkbox" name="terms" required />
-          I agree to <a href="terms.html">Terms and Conditions.</a>
-        </label>
-        <div id="formErrorMsg" class="error-msg"></div>
-        <button type="submit">Submit Request</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Second Modal: Order Summary -->
-  <div class="modal hidden" id="orderSummaryModal">
-    <div class="modal-content scrollable">
-      <span class="close-btn" onclick="cancelOrderSummary()">&times;</span>
-      <h2>Confirm Your Request</h2>
-      <div id="orderDetails"></div>
-      <button id="confirmPaymentBtn">Confirm & Proceed</button>
-    </div>
-  </div>
 
   <!-- Footer -->
   <footer>
@@ -143,60 +106,9 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <script src="script.js"></script>
   <script>
     AOS.init({ duration: 700, once: true });
-
-    // Handle service selection
-    document.querySelectorAll(".service").forEach(serviceEl => {
-      serviceEl.addEventListener("click", () => {
-        document.querySelector("#serviceRequestForm [name='service']").value = serviceEl.dataset.service;
-        document.getElementById("contactForm").classList.remove("hidden");
-        document.getElementById("formTitle").textContent = `Request Help: ${serviceEl.dataset.service}`;
-      });
-    });
-
-    function closeForm() { document.getElementById("contactForm").classList.add("hidden"); }
-    function cancelOrderSummary() { document.getElementById("orderSummaryModal").classList.add("hidden"); }
-
-    // Show order summary after form submit
-    document.getElementById("serviceRequestForm").addEventListener("submit", (e) => {
-      e.preventDefault();
-      const formData = new FormData(e.target);
-      const service = formData.get("service") || "Other";
-      const urgent = formData.get("urgent") ? true : false;
-      const urgencyFee = urgent ? 40 : 0;
-
-      document.getElementById("orderDetails").innerHTML = `
-        <p><strong>Service:</strong> ${service}</p>
-        <p><strong>Urgency Fee:</strong> $${urgencyFee}</p>
-      `;
-
-      document.getElementById("contactForm").classList.add("hidden");
-      document.getElementById("orderSummaryModal").classList.remove("hidden");
-    });
-
-    // Redirect to Stripe Checkout
-    document.getElementById("confirmPaymentBtn").addEventListener("click", async () => {
-      const formData = new FormData(document.getElementById("serviceRequestForm"));
-      const service = formData.get("service") || "Other";
-      const urgent = formData.get("urgent") ? true : false;
-
-      const response = await fetch("http://localhost:4242/create-checkout-session", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ service, cost: 100, urgency: urgent ? 40 : 0 }) // Example cost: 100
-      });
-
-      const data = await response.json();
-      if (data.url) {
-        window.location.href = data.url; // Stripe hosted checkout
-      } else {
-        alert("Error creating Stripe session");
-      }
-    });
   </script>
 </body>
 </html>
