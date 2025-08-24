@@ -8,18 +8,18 @@ body {
   background: #f9fafb;
   color: #222;
   line-height: 1.6;
+  scroll-behavior: smooth;
 }
 
 a {
-  color: #27ae60;
   text-decoration: none;
+  color: inherit;
 }
-a:hover { color: #2c5f2d; text-decoration: underline; }
 
-.page-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 2em 1em;
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 0.8em;
+  font-weight: 700;
 }
 
 /* ------------------------- */
@@ -28,12 +28,16 @@ a:hover { color: #2c5f2d; text-decoration: underline; }
 .call-banner {
   background-color: #fceeb5;
   color: #000;
-  font-size: 1rem;
+  font-size: 0.95rem;
   padding: 6px 12px;
-  text-align: right;
+  text-align: center;
 }
 .call-banner a {
+  color: #000;
   font-weight: 600;
+}
+.call-banner a:hover {
+  text-decoration: underline;
 }
 
 /* ------------------------- */
@@ -46,12 +50,10 @@ header {
   background: #2c5f2d;
   color: white;
   padding: 1em 2em;
-  position: relative;
-  z-index: 10;
+  flex-wrap: wrap;
 }
 
 header .logo a {
-  text-decoration: none;
   font-size: 1.5em;
   font-weight: bold;
   color: white;
@@ -60,206 +62,95 @@ header .logo a {
 header nav ul {
   display: flex;
   list-style: none;
-  margin: 0;
-  padding: 0;
   gap: 1.5em;
+  padding: 0;
+  margin: 0.5em 0 0 0;
+  flex-wrap: wrap;
 }
 
 header nav a {
-  text-decoration: none;
   color: white;
   font-weight: 600;
 }
 
-/* ------------------------- */
-/* Hero Section */
-/* ------------------------- */
-#hero {
-  background: linear-gradient(to right, #2c5f2d, #27ae60);
-  color: white;
-  text-align: center;
-  padding: 6em 2em 4em;
-  border-bottom-left-radius: 40px;
-  border-bottom-right-radius: 40px;
-}
-#hero h1 {
-  font-size: 3em;
-  margin-bottom: 0.5em;
-  font-weight: 700;
-}
-#hero p {
-  font-size: 1.3em;
-  max-width: 700px;
-  margin: 0 auto 1.8em;
+header nav a:hover {
+  color: #fceeb5;
 }
 
 /* ------------------------- */
-/* Story Section */
+/* Main Content Wrapper */
 /* ------------------------- */
-.story-section {
-  background: #ffffff;
-  padding: 5em 2em;
-  text-align: center;
-}
-.story-section h2 {
-  font-size: 2.2em;
-  color: #2c5f2d;
-  margin-bottom: 0.5em;
-}
-.story-section p {
-  max-width: 800px;
-  margin: 0 auto 2em;
-  font-size: 1.1em;
-}
-.story-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2em;
-  margin-top: 2em;
-}
-.story-card {
-  background: #f9fafb;
-  padding: 2em;
-  border-radius: 16px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-.story-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 24px rgba(0,0,0,0.12);
-}
-.story-card h3 {
-  color: #27ae60;
-  margin-bottom: 0.8em;
-}
-.story-btn {
-  display: inline-block;
-  background: #fceeb5;
-  color: #2c5f2d;
-  padding: 1em 2em;
-  border-radius: 50px;
-  font-weight: bold;
-  font-size: 1.2em;
-  text-decoration: none;
-  transition: all 0.3s;
-}
-.story-btn:hover {
-  background: #fff;
-  transform: scale(1.05);
+.content-container, .page-container {
+  padding: 3em 1.5em;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 /* ------------------------- */
-/* Services Section */
-/* ------------------------- */
-#services {
-  background: #27ae60;
-  color: white;
-  padding: 5em 2em;
-  text-align: center;
-  border-top-left-radius: 40px;
-  border-top-right-radius: 40px;
-}
-#services h2 {
-  font-size: 2.2em;
-  margin-bottom: 1em;
-}
-.service-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5em;
-  margin-top: 2em;
-}
-.service {
-  background: white;
-  border-radius: 20px;
-  width: 140px;
-  height: 140px;
-  font-size: 1.2em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
-  cursor: pointer;
-  transition: transform 0.25s, box-shadow 0.25s;
-  color: #2c5f2d;
-  text-align: center;
-}
-.service:hover {
-  transform: scale(1.08);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
-}
-
-/* ------------------------- */
-/* Cards & Sections for Other Pages */
+/* Card Sections (About/Terms/Privacy) */
 /* ------------------------- */
 .card {
-  background: #f9fafb;
-  padding: 1.8em;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-  margin-bottom: 1.5em;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2em;
+  margin-bottom: 2em;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
   transition: transform 0.3s, box-shadow 0.3s;
 }
 .card:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 24px rgba(0,0,0,0.12);
 }
+.card h2 {
+  color: #2c5f2d;
+  font-size: 1.5em;
+}
+.card ul {
+  padding-left: 1.2em;
+  list-style-type: disc;
+}
+.card a.link-highlight {
+  color: #27ae60;
+  text-decoration: underline;
+}
+.card a.link-highlight:hover {
+  color: #2c5f2d;
+}
 
 /* ------------------------- */
-/* Forms & Inputs */
+/* Forms (Contact Page) */
 /* ------------------------- */
-form { display: flex; flex-direction: column; gap: 14px; }
-form input, form textarea { padding: 0.8em; border: 1px solid #ccc; border-radius: 6px; }
-form input:focus, form textarea:focus { border-color: #27ae60; outline: none; box-shadow: 0 0 4px #27ae60; }
-form button {
-  background: #27ae60;
-  color: white;
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+form input, form textarea {
   padding: 0.8em;
-  border: none;
+  border: 1px solid #ccc;
   border-radius: 6px;
-  cursor: pointer;
+  font-size: 1em;
+}
+form button.cta-btn {
+  background: #2c5f2d;
+  color: white;
+  padding: 0.9em;
+  border: none;
+  border-radius: 50px;
   font-weight: 600;
+  cursor: pointer;
   transition: all 0.3s;
 }
-form button:hover { background: #2c5f2d; }
+form button.cta-btn:hover {
+  background: #256d25;
+  transform: scale(1.03);
+}
 label.required::after { content: " *"; color: red; }
+.error-field { border-color: red; background: #ffeaea; }
 
 /* ------------------------- */
-/* Modals */
-/* ------------------------- */
-.modal {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(0,0,0,0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-.modal.hidden { display: none; }
-.modal-content {
-  background: white;
-  padding: 2em;
-  border-radius: 12px;
-  width: 90%;
-  max-width: 500px;
-  max-height: 90%;
-  overflow-y: auto;
-  position: relative;
-}
-.scrollable { overflow-y: auto; }
-.close-btn {
-  position: absolute;
-  top: 10px; right: 15px;
-  font-size: 24px;
-  cursor: pointer;
-}
-
-/* ------------------------- */
-/* Footer Modernized */
+/* Footer */
 /* ------------------------- */
 footer {
   background: #2c5f2d;
@@ -272,6 +163,7 @@ footer {
   flex-direction: column;
   align-items: center;
   gap: 0.5em;
+  text-align: center;
 }
 .footer-left, .footer-right {
   display: flex;
@@ -280,13 +172,8 @@ footer {
   justify-content: center;
   align-items: center;
 }
-.footer-left small {
-  display: block;
-  text-align: center;
-}
 .footer-right a {
   color: #f9fafb;
-  text-decoration: none;
   font-weight: 600;
   transition: color 0.3s, transform 0.2s;
 }
@@ -296,23 +183,32 @@ footer {
 }
 
 /* ------------------------- */
-/* Responsive Design */
+/* Responsive Adjustments */
 /* ------------------------- */
-@media (max-width: 1024px) {
-  #hero h1 { font-size: 2.5em; }
-  #hero p { font-size: 1.1em; }
-  .service { width: 120px; height: 120px; font-size: 1em; }
-}
-
 @media (max-width: 768px) {
-  .page-container { padding: 1.5em 1em; font-size: 1em; }
-  .story-grid { grid-template-columns: 1fr; }
-  .service-container { justify-content: center; gap: 1em; }
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  header nav ul {
+    flex-direction: column;
+    gap: 0.8em;
+  }
+  .content-container, .page-container {
+    padding: 2em 1em;
+  }
+  .card {
+    padding: 1.5em;
+  }
 }
-
 @media (max-width: 480px) {
-  h1 { font-size: 1.8em; }
-  h2 { font-size: 1.5em; }
-  p { font-size: 0.95em; }
-  .btn, form button { padding: 0.6em 1.5em; font-size: 0.95em; }
+  header .logo a {
+    font-size: 1.3em;
+  }
+  .card h2 {
+    font-size: 1.3em;
+  }
+  form button.cta-btn {
+    padding: 0.8em;
+  }
 }
