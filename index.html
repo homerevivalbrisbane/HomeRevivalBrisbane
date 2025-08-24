@@ -27,7 +27,7 @@
         <li><a href="contact.html">Contact</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="terms.html">Terms</a></li>
-        <li><a href="privacy.html">Privacy Policy</a></li>
+       <li><a href="privacy.html">Privacy Policy</a></li>
       </ul>
     </nav>
   </header>
@@ -37,39 +37,36 @@
     <div class="hero-content" data-aos="fade-up">
       <h1>Home help, minus the hassle.</h1>
       <p>From leaking taps to urgent yard cleanups — we connect Brisbane locals with trusted professionals fast.</p>
-      <a href="#services" class="cta-btn" data-aos="zoom-in" data-aos-delay="200">Request Help</a>
     </div>
   </section>
 
   <!-- Story Section -->
   <section id="story" class="story-section">
-    <div class="content-container">
-      <h2 data-aos="fade-up">Why Choose Home Revival Brisbane?</h2>
-      <p data-aos="fade-up" data-aos-delay="100">
-        We’re not just another app or marketplace. We’re real locals who know the area and know who’s worth calling.
-      </p>
-      <div class="story-grid">
-        <div class="story-card" data-aos="fade-up" data-aos-delay="200">
-          <h3>👨‍🔧 Real People</h3>
-          <p>We only connect you with hand-picked professionals we’d trust in our own homes.</p>
-        </div>
-        <div class="story-card" data-aos="fade-up" data-aos-delay="300">
-          <h3>⚡ Fast Response</h3>
-          <p>Most requests are matched within hours. When time matters, we’ve got your back.</p>
-        </div>
-        <div class="story-card" data-aos="fade-up" data-aos-delay="400">
-          <h3>🔨 All Jobs Welcome</h3>
-          <p>Big or small, urgent or flexible — if it needs doing, we’ll find the right person.</p>
-        </div>
+    <h2 data-aos="fade-up">Why Choose Home Revival Brisbane?</h2>
+    <p data-aos="fade-up" data-aos-delay="100">
+      We’re not just another app or marketplace. We’re real locals who know the area and know who’s worth calling.
+    </p>
+    <div class="story-grid">
+      <div class="story-card" data-aos="fade-up" data-aos-delay="200">
+        <h3>👨‍🔧 Real People</h3>
+        <p>We only connect you with hand-picked professionals we’d trust in our own homes.</p>
       </div>
-      <div style="margin-top: 2em; text-align: center;">
-        <a href="about.html" class="cta-btn story-btn" data-aos="zoom-in" data-aos-delay="500">Learn More</a>
+      <div class="story-card" data-aos="fade-up" data-aos-delay="300">
+        <h3>⚡ Fast Response</h3>
+        <p>Most requests are matched within hours. When time matters, we’ve got your back.</p>
       </div>
+      <div class="story-card" data-aos="fade-up" data-aos-delay="400">
+        <h3>🔨 All Jobs Welcome</h3>
+        <p>Big or small, urgent or flexible — if it needs doing, we’ll find the right person.</p>
+      </div>
+    </div>
+    <div style="margin-top: 2em; text-align: center;">
+      <a href="about.html" class="cta-btn story-btn" data-aos="zoom-in" data-aos-delay="500">Learn More</a>
     </div>
   </section>
 
   <!-- Services Section -->
-  <section id="services" class="content-container">
+  <section id="services">
     <h2 data-aos="fade-up">Ready to Get Started?</h2>
     <p data-aos="fade-up" data-aos-delay="100">Select a service to request help effortlessly.</p>
     <div class="service-container" data-aos="fade-up" data-aos-delay="200">
@@ -86,7 +83,7 @@
     </div>
   </section>
 
-  <!-- Service Form Modal -->
+  <!-- First Modal: Service Form -->
   <div class="modal hidden" id="contactForm">
     <div class="modal-content scrollable">
       <span class="close-btn" onclick="closeForm()">&times;</span>
@@ -108,16 +105,14 @@
         <input type="text" name="budget" />
         <label class="required">Job Description:</label>
         <textarea name="additionalInfo" required></textarea>
-        <label class="required">
-          <input type="checkbox" name="terms" required /> I agree to <a href="terms.html">Terms and Conditions.</a>
-        </label>
+        <label class="required"><input type="checkbox" name="terms" required /> I agree to <a href="terms.html">Terms and Conditions.</a></label>
         <div id="formErrorMsg" class="error-msg"></div>
         <button type="submit">Submit Request</button>
       </form>
     </div>
   </div>
 
-  <!-- Order Summary Modal -->
+  <!-- Second Modal: Order Summary -->
   <div class="modal hidden" id="orderSummaryModal">
     <div class="modal-content scrollable">
       <span class="close-btn" onclick="cancelOrderSummary()">&times;</span>
@@ -127,7 +122,7 @@
     </div>
   </div>
 
-  <!-- Stripe Payment Modal -->
+  <!-- Third Modal: Stripe Payment -->
   <div class="modal hidden" id="paymentModal">
     <div class="modal-content scrollable">
       <span class="close-btn" onclick="cancelPayment()">&times;</span>
@@ -138,24 +133,30 @@
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-container">
-      <div class="footer-left">
-        <p>&copy; 2025 Home Revival Brisbane</p>
-        <p><small>ABN: 76 698 587 269</small></p>
-        <p><small>Hours: 9am–5pm, Monday to Friday (excl. public holidays)</small></p>
-      </div>
-      <div class="footer-right">
-        <a href="terms.html">Terms & Conditions</a>
-        <span> | </span>
-        <a href="privacy.html">Privacy Policy</a>
-      </div>
+<!-- Footer -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-left">
+      <p>&copy; 2025 Home Revival Brisbane</p>
+      <p><small>ABN: 76 698 587 269</small></p>
+      <p><small>Hours: 9am–5pm, Monday to Friday (excl. public holidays)</small></p>
     </div>
-  </footer>
+    <div class="footer-right">
+      <a href="about.html">About</a>
+      <a href="terms.html">Terms</a>
+      <a href="policy.html">Policy</a>
+      <a href="terms.html">Terms & Conditions</a>
+      <span> | </span>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
 
-  <!-- Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <script src="script.js"></script>
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  AOS.init({ duration: 700, once: true });
+</script>
+<script src="script.js"></script>
 </body>
 </html>
