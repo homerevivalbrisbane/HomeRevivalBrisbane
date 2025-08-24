@@ -5,7 +5,7 @@ import Stripe from 'stripe';
 import cors from 'cors';
 
 const app = express();
-const stripe = new Stripe('sk_test_51RzXEUS9s8DViJRGf8CPh2myvwvyMKEr2Tf63Ow3aCYMK62JGvoaE5n9aFrD6pUU7kkShxiBqRnVywitGkRbIMJE00x4RZbVGj', {
+const stripe = new Stripe('spk_test_51RzXEUS9s8DViJRGJX6FLVQ7CqIj6HpoxE5vJHBWpRCvbeiGg9vc1LNw5P4QsLHSHqiceXF4IKmilLPqZ3DwEeUT009beNjoxF', {
   apiVersion: '2022-11-15'
 });
 
