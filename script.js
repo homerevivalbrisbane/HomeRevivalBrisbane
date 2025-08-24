@@ -26,11 +26,13 @@ document.addEventListener("DOMContentLoaded", () => {
   animatedElements.forEach(el => AOS.init({ duration: 700, once: true }));
 
   // Add data-service attribute for clarity
-  document.querySelectorAll(".service").forEach(el => {
-    const serviceName = el.textContent.split("\n")[1]?.trim() || el.textContent.trim();
-    el.dataset.service = serviceName;
-    el.addEventListener("click", () => openForm(serviceName));
-  });
+document.querySelectorAll(".service").forEach(el => {
+  // Remove the emoji and get the text properly
+  const serviceName = el.textContent.replace(/[\u{1F300}-\u{1FAFF}]/gu, '').trim();
+  el.dataset.service = serviceName;
+  el.addEventListener("click", () => openForm(serviceName));
+});
+
 
   // Form submit
   document.getElementById("serviceRequestForm").addEventListener("submit", handleFormSubmit);
