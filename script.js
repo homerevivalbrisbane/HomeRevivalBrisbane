@@ -171,3 +171,30 @@ async function setupStripe(total) {
     console.error("Stripe setup error:", err);
   }
 }
+// Get all service buttons
+const serviceButtons = document.querySelectorAll('.service');
+const contactForm = document.getElementById('contactForm');
+const feeNote = document.getElementById('feeNote');
+const formTitle = document.getElementById('formTitle');
+
+// Open form modal when a service is clicked
+serviceButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const serviceName = btn.textContent.split('\n')[1]; // get the service label
+        formTitle.textContent = `Request Help - ${serviceName}`;
+        contactForm.classList.remove('hidden');
+
+        // Show special fee note only if "Other" is clicked
+        if (serviceName.trim() === "Other") {
+            feeNote.innerHTML = 'Note: Additional fees may apply. See <a href="terms.html#service-fee" target="_blank">Terms §3</a> for more information.';
+        } else {
+            feeNote.innerHTML = ''; // clear note for other services
+        }
+    });
+});
+
+// Close form modal
+function closeForm() {
+    contactForm.classList.add('hidden');
+    feeNote.innerHTML = '';
+}
