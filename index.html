@@ -191,7 +191,11 @@
       });
 
       const data = await response.json();
-      window.location.href = data.url; // Redirects to Stripe hosted checkout
+      if (data.url) {
+        window.location.href = data.url; // Stripe hosted checkout
+      } else {
+        alert("Error creating Stripe session");
+      }
     });
   </script>
 </body>
