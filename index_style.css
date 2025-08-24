@@ -1,102 +1,384 @@
-/* ==========================
-   Index Page Specific Styles
-========================== */
+/* ------------------------- */
+/* Global Styles */
+/* ------------------------- */
+body {
+  font-family: "Inter", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f9fafb;
+  color: #222;
+  line-height: 1.6;
+}
 
+a { text-decoration: none; }
+a {
+  color: #27ae60;
+  text-decoration: none;
+}
+a:hover { color: #2c5f2d; text-decoration: underline; }
+
+.page-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2em 1em;
+}
+
+/* ------------------------- */
+/* Call Banner */
+/* ------------------------- */
+.call-banner {
+  background-color: #fceeb5;
+  color: #000;
+  font-size: 1rem;
+  padding: 6px 12px;
+  text-align: center; /* center for mobile */
+  text-align: right;
+}
+.call-banner a {
+  color: #000;
+  font-weight: 600;
+}
+.call-banner a:hover { text-decoration: underline; }
+
+/* ------------------------- */
+/* Header */
+/* ------------------------- */
+header {
+  display: flex;
+  flex-direction: column; /* stacked on mobile */
+  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  background: #2c5f2d;
+  color: white;
+  padding: 1em 2em;
+  position: relative;
+  z-index: 10;
+}
+
+header .logo a {
+  text-decoration: none;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: white;
+}
+
+header nav ul {
+  display: flex;
+  list-style: none;
+  margin: 1em 0 0 0;
+  margin: 0;
+  padding: 0;
+  gap: 1em;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5em;
+}
+
+header nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+}
+
+/* ------------------------- */
 /* Hero Section */
+/* ------------------------- */
 #hero {
-  background: url('hero-bg.jpg') no-repeat center center/cover;
+  background: linear-gradient(to right, #2c5f2d, #27ae60);
   color: white;
   text-align: center;
-  padding: 8em 1em 6em 1em;
+  padding: 5em 1em 3em;
+  padding: 6em 2em 4em;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
 }
+#hero h1 { font-size: 2.2em; margin-bottom: 0.5em; }
+#hero p { font-size: 1.1em; max-width: 90%; margin: 0 auto 1.5em; }
 #hero h1 {
   font-size: 3em;
   margin-bottom: 0.5em;
-  text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+  font-weight: 700;
 }
 #hero p {
   font-size: 1.3em;
   max-width: 700px;
-  margin: 0 auto;
-  text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
+  margin: 0 auto 1.8em;
 }
 
+/* ------------------------- */
 /* Story Section */
+/* ------------------------- */
 .story-section {
-  background: #f4f6f8;
-  padding: 6em 1em;
+  background: #ffffff;
+  padding: 4em 1em;
+  padding: 5em 2em;
   text-align: center;
 }
+.story-section h2 { font-size: 1.8em; color: #2c5f2d; margin-bottom: 0.5em; }
+.story-section p { font-size: 1em; max-width: 90%; margin: 0 auto 1.5em; }
+
+.story-section h2 {
+  font-size: 2.2em;
+  color: #2c5f2d;
+  margin-bottom: 0.5em;
+}
+.story-section p {
+  max-width: 800px;
+  margin: 0 auto 2em;
+  font-size: 1.1em;
+}
 .story-grid {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5em;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 2em;
-  flex-wrap: wrap;
   margin-top: 2em;
 }
 .story-card {
-  background: white;
+  background: #f9fafb;
+  padding: 1.5em;
   padding: 2em;
   border-radius: 16px;
-  width: 250px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
+.story-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+}
+.story-card h3 { color: #27ae60; margin-bottom: 0.5em; }
+
+/* CTA Button */
 .story-card h3 {
-  font-size: 1.2em;
-  margin-bottom: 0.5em;
+  color: #27ae60;
+  margin-bottom: 0.8em;
 }
 .story-btn {
-  background: #2c5f2d;
-  color: white;
-  padding: 0.9em 2em;
+  display: inline-block;
+  background: #fceeb5;
+  color: #2c5f2d;
+  padding: 0.8em 2em;
+  padding: 1em 2em;
   border-radius: 50px;
-  font-weight: 600;
+  font-weight: bold;
+  font-size: 1.1em;
+  font-size: 1.2em;
   text-decoration: none;
+  transition: all 0.3s;
 }
 .story-btn:hover {
-  background: #256d25;
+  background: #fff;
   transform: scale(1.05);
 }
 
+/* ------------------------- */
 /* Services Section */
+/* ------------------------- */
 #services {
-  padding: 6em 1em;
+  background: #27ae60;
+  color: white;
+  padding: 4em 1em;
+  padding: 5em 2em;
   text-align: center;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+}
+#services h2 { font-size: 1.8em; margin-bottom: 1em; }
+#services h2 {
+  font-size: 2.2em;
+  margin-bottom: 1em;
 }
 .service-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 1em;
+  margin-top: 1.5em;
+  gap: 1.5em;
   margin-top: 2em;
 }
 .service {
-  background: #2c5f2d;
-  color: white;
-  padding: 2em;
+  background: white;
   border-radius: 16px;
   width: 120px;
-  font-weight: 600;
-  font-size: 1.1em;
+  height: 120px;
+  font-size: 1em;
+  border-radius: 20px;
+  width: 140px;
+  height: 140px;
+  font-size: 1.2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
   cursor: pointer;
-  transition: transform 0.3s;
+  transition: transform 0.25s, box-shadow 0.25s;
+  color: #2c5f2d;
+  text-align: center;
 }
 .service:hover {
-  transform: translateY(-5px);
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+  transform: scale(1.08);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+}
+
+/* ------------------------- */
+/* Cards & Sections for Other Pages */
+/* ------------------------- */
+.card {
+  background: #f9fafb;
+  padding: 1.8em;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  margin-bottom: 1.5em;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+}
+
+/* ------------------------- */
+/* Forms & Inputs */
+/* ------------------------- */
+form { display: flex; flex-direction: column; gap: 14px; }
+form input, form textarea { padding: 0.8em; border: 1px solid #ccc; border-radius: 6px; }
+form input:focus, form textarea:focus { border-color: #27ae60; outline: none; box-shadow: 0 0 4px #27ae60; }
+form button {
+  background: #27ae60;
+  color: white;
+  padding: 0.8em;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+form button:hover { background: #2c5f2d; }
+label.required::after { content: " *"; color: red; }
+
+/* ------------------------- */
+/* Modals & Forms */
+/* Modals */
+/* ------------------------- */
+.modal { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.6); display:flex; align-items:center; justify-content:center; z-index:1000; }
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal.hidden { display: none; }
+.modal-content {
+  background: white;
+  padding: 2em;
+  border-radius: 12px;
+  width: 95%;
+  max-width: 450px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90%;
+  overflow-y: auto;
+  position: relative;
+}
+.close-btn { position:absolute; top:10px; right:15px; font-size:24px; cursor:pointer; }
+form { display:flex; flex-direction:column; gap:12px; }
+form input, form textarea { padding:0.6em; border:1px solid #ccc; border-radius:6px; width:100%; box-sizing:border-box; }
+form button { background:#2c5f2d; color:white; padding:0.7em; border:none; border-radius:6px; cursor:pointer; font-weight:600; }
+form button:hover { background:#256d25; }
+.scrollable { overflow-y: auto; }
+.close-btn {
+  position: absolute;
+  top: 10px; right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* ------------------------- */
+/* Footer - Modern & Responsive */
+/* Footer Modernized */
+/* ------------------------- */
+footer {
   background: #256d25;
+  color: #f5f5f5;
+  background: #2c5f2d;
+  color: #f9fafb;
+  padding: 2em 1em;
+  font-size: 0.95em;
+}
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+}
+.footer-left, .footer-right {
+  display: flex;
+  gap: 1.2em;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8em;
+  align-items: center;
+}
+.footer-left small {
+  display: block;
+  text-align: center;
+}
+.footer-left p,
+.footer-left small { margin: 2px 0; color:#e6f0e6; }
+.footer-right { display:flex; gap:1em; flex-wrap:wrap; justify-content:center; }
+.footer-right a { color:#f5f5f5; font-weight:600; transition: color 0.3s, transform 0.2s; }
+.footer-right a:hover { color:#fceeb5; transform: translateY(-2px); }
+.footer-right a {
+  color: #f9fafb;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s, transform 0.2s;
+}
+.footer-right a:hover {
+  color: #fceeb5;
+  transform: translateY(-2px);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  #hero h1 { font-size: 2.2em; }
+/* ------------------------- */
+/* Responsive Adjustments */
+/* Responsive Design */
+/* ------------------------- */
+@media (min-width: 600px) {
+  header { flex-direction: row; justify-content: space-between; padding: 1em 2em; }
+  .footer-container { flex-direction: row; justify-content: space-between; max-width: 1100px; margin: 0 auto; width:90%; text-align:left; }
+  .footer-right { justify-content:flex-end; }
+@media (max-width: 1024px) {
+  #hero h1 { font-size: 2.5em; }
   #hero p { font-size: 1.1em; }
-  .story-card { width: 200px; padding: 1.5em; }
-  .service { width: 100px; padding: 1.5em; font-size: 1em; }
+  .service { width: 120px; height: 120px; font-size: 1em; }
 }
 
+@media (max-width: 768px) {
+  .page-container { padding: 1.5em 1em; font-size: 1em; }
+  .story-grid { grid-template-columns: 1fr; }
+  .service-container { justify-content: center; gap: 1em; }
+}
+
+@media (max-width: 400px) {
+  .service { width: 100px; height:100px; font-size:0.9em; }
+  #hero h1 { font-size:1.8em; }
+  #hero p { font-size:1em; }
+  .story-section h2 { font-size:1.5em; }
+  .story-section p { font-size:0.95em; }
+  #services h2 { font-size:1.5em; }
 @media (max-width: 480px) {
-  #hero h1 { font-size: 1.8em; }
-  #hero p { font-size: 1em; }
-  .story-card { width: 100%; }
-  .service { width: 80px; padding: 1em; font-size: 0.95em; }
+  h1 { font-size: 1.8em; }
+  h2 { font-size: 1.5em; }
+  p { font-size: 0.95em; }
+  .btn, form button { padding: 0.6em 1.5em; font-size: 0.95em; }
 }
