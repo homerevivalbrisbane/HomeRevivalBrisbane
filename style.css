@@ -358,4 +358,9 @@ small.form-info {
   margin-bottom: 2em;
   font-size: 1.1em;
 }
+.story-btn {
+  margin-top: 2em;
+  display: inline-block;
+}
+
 
