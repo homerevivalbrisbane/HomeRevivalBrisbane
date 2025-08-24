@@ -1,17 +1,25 @@
-import express from "express";
-import Stripe from "stripe";
-import bodyParser from "body-parser";
-import cors from "cors";
+
+app.listen(3000, () => console.log("Server running on port 3000"));
+import express from 'express';
+import Stripe from 'stripe';
+import cors from 'cors';
 
 const app = express();
-const stripe = new Stripe("sk_test_YOUR_SECRET_KEY"); // Replace with your secret key
+const stripe = new Stripe('sk_test_51RzXEUS9s8DViJRGf8CPh2myvwvyMKEr2Tf63Ow3aCYMK62JGvoaE5n9aFrD6pUU7kkShxiBqRnVywitGkRbIMJE00x4RZbVGj', {
+  apiVersion: '2022-11-15'
+});
 
-app.use(bodyParser.json());
 app.use(cors());
+app.use(express.json());
 
-// Map service to base cost
-const servicePrices = {
-  Plumbing: 50,
+// Create payment intent
+app.post('/create-payment-intent', async (req, res) => {
+  const { service, urgent } = req.body;
+  let amount = 0;
+
+  // Set prices for each service
+  const servicePrices = {
+   Plumbing: 50,
   Electrical: 50,
   Painting: 30,
   Gardening: 20,
@@ -21,42 +29,28 @@ const servicePrices = {
   Plastering: 30,
   Furniture: 30,
   Other: 20
-};
+  };
 
-// Endpoint to create payment intent
-app.post("/create-payment-intent", async (req, res) => {
+  amount = servicePrices[service] || 100;
+  if (urgent) amount += 40; // urgency fee
+
   try {
-    const { service, urgent } = req.body;
-    const serviceCost = servicePrices[service] || 80;
-    const urgencyFee = urgent ? 40 : 0;
-
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: Math.round((serviceCost + urgencyFee) * 100), // in cents
-      currency: "aud",
-      automatic_payment_methods: { enabled: true },
-      metadata: {
-        service,
-        urgent: urgent ? "Yes" : "No",
-        serviceCost,
-        urgencyFee
-      }
+      amount: amount * 100, // in cents
+      currency: 'aud',
+      automatic_payment_methods: { enabled: true }
     });
-
     res.send({ clientSecret: paymentIntent.client_secret });
   } catch (err) {
-    console.error(err);
     res.status(500).send({ error: err.message });
   }
 });
 
-// Endpoint to log orders after successful payment (optional)
-app.post("/log-order", async (req, res) => {
-  try {
-    console.log("New Order:", req.body); // You can save to DB here
-    res.send({ success: true });
-  } catch (err) {
-    res.status(500).send({ error: err.message });
-  }
+// Log order (optional)
+app.post('/log-order', (req, res) => {
+  console.log("Order received:", req.body);
+  res.send({ success: true });
 });
 
 app.listen(3000, () => console.log("Server running on port 3000"));
+
