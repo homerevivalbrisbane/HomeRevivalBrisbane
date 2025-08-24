@@ -279,3 +279,83 @@ small.form-info {
   color: #666;
   font-size: 0.85em;
 }
+/* Hero Section */
+#hero {
+  background: linear-gradient(to right, #2c5f2d, #3d7a3d);
+  color: white;
+  text-align: center;
+  padding: 6em 2em;
+}
+
+#hero .hero-content {
+  max-width: 700px;
+  margin: auto;
+}
+
+#hero h1 {
+  font-size: 2.5em;
+  margin-bottom: 0.5em;
+}
+
+#hero p {
+  font-size: 1.2em;
+  margin-bottom: 1.5em;
+}
+
+.cta-btn {
+  display: inline-block;
+  background: white;
+  color: #2c5f2d;
+  padding: 0.8em 1.5em;
+  border-radius: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.cta-btn:hover {
+  background: #fceeb5;
+}
+
+/* Story Section */
+.story-section {
+  background: #fff;
+  padding: 4em 2em;
+  text-align: center;
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5em;
+  margin-top: 2em;
+}
+
+.story-card {
+  background: #f9f9f9;
+  padding: 2em;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.story-card h3 {
+  margin-bottom: 0.8em;
+  color: #2c5f2d;
+}
+
+/* Get Started Section */
+.get-started {
+  background: #d6eadf;
+  padding: 4em 2em;
+  text-align: center;
+}
+
+.get-started h2 {
+  margin-bottom: 0.5em;
+}
+
+.get-started p {
+  margin-bottom: 2em;
+  font-size: 1.1em;
+}
+
